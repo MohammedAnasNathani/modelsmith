@@ -141,7 +141,7 @@ function viewLanding() {
         <a href="#capabilities" data-smooth>Capabilities</a>
         <a href="#workflow" data-smooth>Workflow</a>
         <a href="#proof" data-smooth>Proof</a>
-        <a href="#pricing" data-smooth>Pricing</a>
+        <a href="#pricing" data-smooth>Runs anywhere</a>
         <a href="#faq" data-smooth>FAQ</a>
         <a href="#underhood" data-smooth>Under the hood</a>
         <a class="n-btn n-btn-primary n-mob-cta" href="#/login">Open the app <span aria-hidden="true">→</span></a>
@@ -165,7 +165,7 @@ function viewLanding() {
       <div class="n-hero-inner">
         <a class="n-badge" href="#workflow" data-smooth data-rv>
           <span class="n-badge-dot"></span>
-          New in 1.0: guided planner, command palette, product tour
+          Eight optimization techniques, one honest pipeline
           <span class="n-badge-arrow">→</span>
         </a>
 
@@ -189,8 +189,7 @@ function viewLanding() {
         </div>
 
         <div class="n-hero-hint" data-rv style="--rvd:.32s">
-          <span class="n-prompt">$</span> ./run.sh <span class="n-dim">→</span> localhost:8100
-          <span class="n-dim">·</span> demo@modelsmith.io <span class="n-dim">/</span> demo12345
+          No cold start. No vendor benchmarks. Your model, your machine, your numbers.
         </div>
       </div>
 
@@ -200,7 +199,7 @@ function viewLanding() {
           <div class="n-win-head">
             <span class="n-win-dot"></span><span class="n-win-dot"></span><span class="n-win-dot"></span>
             <span class="n-win-title">modelsmith · forge</span>
-            <span class="n-win-badge">live pipeline</span>
+            <span class="n-win-badge">from a real run</span>
           </div>
           <div class="n-win-body">
             <div class="n-win-col">
@@ -595,13 +594,13 @@ function viewLanding() {
           ["Which model formats are supported?",
            "PyTorch full-module checkpoints (.pt and .pth) and ONNX files. TensorFlow and JAX models are welcome the moment you export them to ONNX, which is one command in each framework."],
           ["Where do my models actually live?",
-           "On the machine running the server. Uploads and artifacts are encrypted with Fernet/AES before they touch disk and are never sent anywhere else. Deleting a model deletes its bytes; the audit entry stays."],
+           "On the machine running the server, and nowhere else. Uploads and artifacts are encrypted before they touch disk, never sent to any external service, and deleting a model deletes its bytes. The audit entry outlives the file."],
           ["What does measured, not promised mean?",
            "Before execution you see predictions: size, latency, memory, accuracy retention. After execution you see measurements of the same four things on the real artifact. Both are stored, so you can check the prediction against reality."],
           ["Can I reproduce a run from last month?",
            "Yes. Every run records library versions, platform, seed and benchmark settings. Re-running the same plan reproduces the pipeline; tiny timing differences are expected and honest."],
           ["Is this production infrastructure?",
-           "It is a final-year major project with production habits: WAL-mode SQLite, encrypted storage, revocable sessions, rate limiting, a 104-check e2e suite. Single node by design. It will not accidentally scale to a datacenter, and it says so."],
+           "It is a single-node tool built with production habits: WAL-mode SQLite, encrypted storage, revocable sessions, rate limiting, and a 104-check e2e suite that runs against the live server. It will not accidentally scale to a datacenter, and it says so."],
         ].map(([q, a], i) => `
         <details class="n-faq-item" ${i === 0 ? "open" : ""} data-rv style="--rvd:${i * 0.06}s">
           <summary>${q}<span class="n-faq-plus" aria-hidden="true"></span></summary>
@@ -610,49 +609,35 @@ function viewLanding() {
       </div>
     </section>
 
-    <!-- ============ pricing ============ -->
+    <!-- ============ deployment story ============ -->
     <section class="n-section" id="pricing">
       <div class="n-sec-head" data-rv>
-        <span class="n-eyebrow">Pricing</span>
-        <h2>Simple tiers.<br><span class="n-serif">Honest limits.</span></h2>
-        <p>ModelSmith is a final-year major project (ITP701, Group No. 2).
-        The tiers below show how it would scale as a real product.</p>
+        <span class="n-eyebrow">Runs anywhere</span>
+        <h2>Your infrastructure.<br><span class="n-serif">Your data.</span></h2>
+        <p>ModelSmith ships as a single container. Point it at a volume,
+        run it anywhere Docker runs, and your models never leave your
+        network. No accounts to create, no telemetry, no phone home.</p>
       </div>
-      <div class="n-pricing">
-        <div class="n-tier" data-rv>
-          <b class="n-tier-name">Smith</b>
-          <div class="n-tier-price">Free</div>
-          <ul>
-            <li>2 projects</li>
-            <li>Models up to 100 MB</li>
-            <li>All 8 optimization techniques</li>
-            <li>Community support</li>
-          </ul>
-          <a class="n-btn n-btn-secondary" href="#/register">Start free</a>
+      <div class="n-deploy" data-rv>
+        <div class="n-dep-card">
+          <span class="n-dep-ico">▣</span><b>One command</b>
+          <p>A single <span class="n-mono">docker compose up</span> brings up
+          the API, the runner and the frontend together.</p>
         </div>
-        <div class="n-tier n-tier-hot" data-rv style="--rvd:.1s">
-          <span class="n-tier-badge">Most popular</span>
-          <b class="n-tier-name">Forge</b>
-          <div class="n-tier-price">$29<small>/mo</small></div>
-          <ul>
-            <li>Unlimited projects</li>
-            <li>Models up to 2 GB</li>
-            <li>Priority job queue</li>
-            <li>Team collaboration</li>
-            <li>API access</li>
-          </ul>
-          <a class="n-btn n-btn-primary" href="#/register">Start forging</a>
+        <div class="n-dep-card">
+          <span class="n-dep-ico">🔒</span><b>Encrypted at rest</b>
+          <p>Uploads and artifacts are Fernet-encrypted before they touch
+          the disk. Deleting a model deletes its bytes.</p>
         </div>
-        <div class="n-tier" data-rv style="--rvd:.2s">
-          <b class="n-tier-name">Foundry</b>
-          <div class="n-tier-price">$99<small>/mo</small></div>
-          <ul>
-            <li>Everything in Forge</li>
-            <li>Private model registry</li>
-            <li>Custom hardware profiles</li>
-            <li>SSO &amp; audit exports</li>
-          </ul>
-          <a class="n-btn n-btn-secondary" href="#/register">Talk to us</a>
+        <div class="n-dep-card">
+          <span class="n-dep-ico">⚙</span><b>Observability included</b>
+          <p>Health and Prometheus endpoints, a structured access log, and a
+          request id on every response.</p>
+        </div>
+        <div class="n-dep-card">
+          <span class="n-dep-ico">⬇</span><b>Export everything</b>
+          <p>Reports, artifacts, reproducible scripts, audit logs and your
+          whole workspace as JSON or CSV.</p>
         </div>
       </div>
     </section>
@@ -664,7 +649,7 @@ function viewLanding() {
       <div class="n-final-cta">
         <a class="n-btn n-btn-primary n-btn-xl" href="#/login">Open the app <span aria-hidden="true">→</span></a>
       </div>
-      <p class="n-final-hint">demo@modelsmith.io / demo12345, no signup required</p>
+      <p class="n-final-hint">Runs locally in one command. Open source, end to end.</p>
     </section>
 
     <!-- ============ footer ============ -->
@@ -678,33 +663,33 @@ function viewLanding() {
           <b>Product</b>
           <a href="#capabilities" data-smooth>Capabilities</a>
           <a href="#workflow" data-smooth>Workflow</a>
-          <a href="#pricing" data-smooth>Pricing</a>
+          <a href="#pricing" data-smooth>Runs anywhere</a>
           <a href="/docs" target="_blank" rel="noopener">API reference</a>
           <a href="#/login">Open the app</a>
         </div>
         <div class="n-foot-col">
-          <b>Project</b>
-          <span>ITP701 · Group No. 2</span>
-          <span>Final Year Major Project</span>
+          <b>Resources</b>
           <a href="#underhood" data-smooth>Under the hood</a>
+          <a href="#requirements" data-smooth>Requirements</a>
+          <a href="#faq" data-smooth>FAQ</a>
         </div>
         <div class="n-foot-col">
-          <b>Demo access</b>
-          <span class="n-mono">admin@modelsmith.io</span>
-          <span class="n-mono">demo@modelsmith.io</span>
-          <span>passwords in README</span>
+          <b>Open source</b>
+          <a href="https://github.com/MohammedAnasNathani/modelsmith" target="_blank" rel="noopener">Source code</a>
+          <span>MIT licensed</span>
+          <span>Zero frontend dependencies</span>
         </div>
       </div>
       <div class="n-foot-base">
-        <span>ModelSmith, forged with PyTorch, ONNX Runtime, and FastAPI</span>
-        <span>Zero frontend dependencies. Charts hand-rolled in SVG.</span>
+        <span>ModelSmith</span>
+        <span>Every number on this page came off a real run.</span>
       </div>
     </footer>
     <!-- sticky mobile CTA -->
     <div class="n-sticky-cta">
       <div>
-        <b>Try it with the demo account</b>
-        <span>demo@modelsmith.io / demo12345</span>
+        <b>See it on a real model</b>
+        <span>Sample workspace loads in seconds</span>
       </div>
       <a class="n-btn n-btn-primary" href="#/login">Open the app</a>
     </div>

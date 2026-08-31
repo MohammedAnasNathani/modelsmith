@@ -345,7 +345,7 @@ function shell({ active, crumbs = "", actions = "" }, contentHTML) {
           <div class="search-pill desktop-only" id="cmdkOpen">🔍 Search or jump to… <kbd>⌘K</kbd></div>
         </div>
         <div class="content">${contentHTML}
-          <div class="footer">ModelSmith · Intelligent AI Model Optimization & Deployment Platform · ITP701 · Group No. 2</div>
+          <div class="footer">ModelSmith · every number measured, none promised</div>
         </div>
       </div>
     </div>`;
@@ -792,9 +792,9 @@ function viewLogin(register = false) {
             <a href="#" id="forgotLink" style="font-size:12.5px;color:var(--faint)">Forgot password?</a></div>`}
         </div>
         <div class="demo-cred">
-          <b>Demo accounts</b><br>
-          admin: <code>admin@modelsmith.io</code> / <code>admin12345</code><br>
-          member: <code>demo@modelsmith.io</code> / <code>demo12345</code>
+          <b>Try the guided tour</b>
+          <button class="btn ghost small" id="fillDemo" style="width:100%;justify-content:center;margin-top:8px">
+            Use the sample account</button>
         </div>
         <div class="auth-toggle">
           ${register ? "Already have an account? <a href='#/login'>Log in</a>"
@@ -818,6 +818,12 @@ function viewLogin(register = false) {
     } catch (e) { toast(e.message, true); }
   };
   $("#fPass").addEventListener("keydown", e => { if (e.key === "Enter") $("#authBtn").click(); });
+  $("#fillDemo")?.addEventListener("click", () => {
+    $("#fEmail").value = "demo@modelsmith.io";
+    $("#fPass").value = "demo12345";
+    $("#fPass").focus();
+    toast("Filled. Press Log in when ready.");
+  });
   const forgot = $("#forgotLink");
   if (forgot) forgot.onclick = async e => {
     e.preventDefault();
