@@ -103,7 +103,7 @@ function countUp(el, target, { decimals = 0, suffix = "", prefix = "", dur = 900
 /* ---------------- guided product tour ---------------- */
 const TOUR_KEY = "ms_tour_done";
 const TOUR_STEPS = [
-  { sel: ".side-nav .side-item", title: "Your workspace", body: "Projects hold every model, run and artifact, fenced to you alone. This is where work starts." },
+  { sel: ".side-nav .side-item", title: "Your workspace", body: "Projects group your models, runs and artifacts, isolated per account." },
   { sel: ".search-pill", title: "Search anything, instantly", body: "Press ⌘K anywhere to open the command palette. Models, actions, pages, no mouse required." },
   { sel: ".bell-btn", title: "Stay in the loop", body: "Background jobs report here the moment they finish. Good news and bad news travel equally fast." },
   { sel: ".avatar", title: "Your account", body: "Your profile, password and session details live here. So does your activity history." },
@@ -144,7 +144,7 @@ function startTour(force = false) {
       <button class="btn small ghost" id="tSkip" style="position:absolute;top:14px;right:14px;padding:3px 9px">Skip</button>`;
     $("#tNext", card)?.addEventListener("click", () => { step++; render(); });
     $("#tPrev", card)?.addEventListener("click", () => { step--; render(); });
-    $("#tDone", card)?.addEventListener("click", () => { cleanup(); toast("Tour complete. The ? key still works if you forget any of this"); });
+    $("#tDone", card)?.addEventListener("click", () => { cleanup(); toast("Tour complete. Press ? any time for shortcuts"); });
     $("#tSkip", card)?.addEventListener("click", cleanup);
   }
   render();
@@ -434,7 +434,7 @@ function setupBell() {
       ${notifications.length ? `
         ${recent.length ? `<div class="notif-when">today</div>${recent.map(item).join("")}` : ""}
         ${older.length ? `<div class="notif-when">earlier</div>${older.map(item).join("")}` : ""}`
-      : '<div class="notif-empty">Quiet in here. Jobs will announce themselves.</div>'}`;
+      : '<div class="notif-empty">No notifications yet. Jobs will report here when they finish.</div>'}`;
     document.body.appendChild(panel);
     $("#notifClear", panel).onclick = () => {
       api("/api/notifications/read", { method: "POST" })
@@ -658,7 +658,7 @@ async function viewSearch() {
       <div class="sub">Every model you own, searchable in one place.</div></div></div>
     <div class="search-bar" style="margin-bottom:20px">
       <div class="search-pill" style="flex:1;max-width:500px;cursor:text;padding:10px 16px;font-size:14px">
-        🔍 <input type="text" id="searchInput" placeholder="Search by model name..." style="background:none;border:none;color:var(--text);font-size:14px;outline:none;width:100%;font-family:var(--sans)">
+        🔍 <input type="text" id="searchInput" placeholder="Search by model name…" style="background:none;border:none;color:var(--text);font-size:14px;outline:none;width:100%;font-family:var(--sans)">
       </div>
       <select id="searchStatus" style="background:var(--panel);border:1px solid var(--line);color:var(--dim);padding:8px 12px;border-radius:var(--r-sm);font-size:13px">
         <option value="">All statuses</option>
@@ -730,9 +730,9 @@ async function viewSearch() {
         viewSearch.cmpA = { id: b.dataset.cmp, name: b.dataset.nm };
         b.textContent = "✓ Selected as A";
         b.classList.add("primary");
-        toast(`Picked ${b.dataset.nm}. Now pick its rival.`);
+        toast(`Picked ${b.dataset.nm}. Select another to compare.`);
       } else if (viewSearch.cmpA.id === b.dataset.cmp) {
-        toast("That one is already in the ring. Pick a different model.", true);
+        toast("Already selected. Pick a different model to compare.", true);
       } else {
         location.hash = `#/compare/${viewSearch.cmpA.id}/${b.dataset.cmp}`;
       }
@@ -760,9 +760,9 @@ function view404() {
   <div class="nf-wrap">
     <div class="nf-card">
       <div class="nf-code">4<span class="nf-hammer">0</span>4</div>
-      <h2>This page wasn't forged</h2>
+      <h2>Page not found</h2>
       <p>The route <code>${esc(location.hash)}</code> doesn't exist.<br>
-      Maybe the metal was moved, or the link cooled down.</p>
+      It may have been moved, renamed, or never existed.</p>
       <div class="nf-actions">
         <a class="btn primary" href="#${state.token ? "/dashboard" : "/welcome"}">
           ${state.token ? "← Back to dashboard" : "← Back to home"}</a>
@@ -808,7 +808,7 @@ function viewLogin(register = false) {
       if (register) {
         await api("/api/auth/register", { method: "POST",
           body: { email, password, full_name: $("#fName")?.value.trim() } });
-        toast("Account created. Welcome in.");
+        toast("Account created. Logging you in…")
       }
       const r = await api("/api/auth/login", { method: "POST", body: { email, password } });
       state.token = r.token; state.user = r.user;
@@ -822,13 +822,13 @@ function viewLogin(register = false) {
     $("#fEmail").value = "demo@modelsmith.io";
     $("#fPass").value = "demo12345";
     $("#fPass").focus();
-    toast("Filled. Press Log in when ready.");
+    toast("Credentials filled. Press Log in.")
   });
   const forgot = $("#forgotLink");
   if (forgot) forgot.onclick = async e => {
     e.preventDefault();
     const email = $("#fEmail").value.trim();
-    if (!email) { toast("Type your email above first, then ask for a reset.", true); return; }
+    if (!email) { toast("Enter your email above first", true); return; }
     try {
       const r = await api("/api/auth/password/reset-request", { method: "POST", body: { email } });
       openModal(`<h3>Reset password</h3>
@@ -838,10 +838,10 @@ function viewLogin(register = false) {
         <button class="btn primary" style="width:100%;justify-content:center" id="mOk">Set new password</button>`,
         { onOk: async () => {
           const p = $("#rstPass").value;
-          if (p.length < 8) { toast("Eight characters minimum. Make them count.", true); return false; }
+          if (p.length < 8) { toast("Password must be at least 8 characters", true); return false; }
           await api("/api/auth/password/reset-confirm", { method: "POST",
             body: { reset_token: r.reset_token, password: p } });
-          toast("Password updated. Your old sessions are dead; log in with the new one.");
+          toast("Password updated. Log in with your new password.");
         } });
     } catch (err) { toast(err.message, true); }
   };
@@ -897,7 +897,7 @@ async function viewDashboard() {
             <div class="tm">${m.status} · ${timeago(m.created_at)}</div>
           </div>
           <span style="color:var(--faint)">→</span>
-        </div>`).join("") : `<div class="empty" style="padding:24px"><div class="big">◈</div>No models yet. The upload button knows what to do.</div>`}
+        </div>`).join("") : `<div class="empty" style="padding:24px"><div class="big">◈</div>No models yet. Upload one from a project.</div>`}
     </div>
 
     <div class="tile span4">
@@ -1060,7 +1060,7 @@ async function viewProjects() {
     actions: `<button class="btn ghost small" id="exportBtn">⬇ Export</button>
               <button class="btn primary" id="newProjBtn">+ New project</button>` }, `
     <div class="page-head"><div><h1>Projects</h1>
-      <div class="sub">Projects keep models, runs and artifacts fenced off from everyone else's. Yours are yours.</div></div>
+      <div class="sub">Projects isolate your models, runs and artifacts from every other account.</div></div>
       <div class="actions">
         <select id="projSort" class="proj-sort">
           <option value="updated">Last updated</option>
@@ -1086,7 +1086,7 @@ async function viewProjects() {
     if (!projects.length) {
       grid.innerHTML = `<div class="tile span12"><div class="empty-svg">${emptySVG("project")}</div>
         <div class="empty"><h3>No projects yet</h3>
-        <p>A workspace this clean will not last. Create a project and start filling it.</p>
+        <p>Create your first project to upload and optimize models.</p>
         <button class="btn primary" id="emptyCreateBtn">+ Create project</button></div></div>`;
       $("#emptyCreateBtn")?.addEventListener("click", () => $("#newProjBtn").click());
       return;
@@ -1143,7 +1143,7 @@ async function viewProjects() {
     $$("[data-del]", grid).forEach(b => b.onclick = async e => {
       e.stopPropagation();
       if (await confirmModal("Delete project?", "This removes all models, runs and encrypted artifacts. This cannot be undone.", "Delete project")) {
-        try { await api("/api/projects/" + b.dataset.del, { method: "DELETE" }); toast("Project deleted, along with everything it owned. As promised."); load(); }
+        try { await api("/api/projects/" + b.dataset.del, { method: "DELETE" }); toast("Project deleted, with all models and runs"); load(); }
         catch (err) { toast(err.message, true); }
       }
     });
@@ -1158,7 +1158,7 @@ async function viewProjects() {
       if (!name) { toast("Every project needs a name.", true); return false; }
       await api("/api/projects", { method: "POST",
         body: { name, description: $("#pDesc").value.trim() } });
-      toast("Project created. Now give it a model worth shrinking."); load();
+      toast("Project created"); load();
     } });
   $("#exportBtn").onclick = () => openModal(`
     <h3>Export workspace data</h3>
@@ -1176,7 +1176,7 @@ async function viewProjects() {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = d.filename || `modelsmith_export.${fmt}`;
-      a.click(); toast("Export downloaded. Spreadsheet season."); closeModal();
+      a.click(); toast("Export downloaded"); closeModal();
     }).catch(e => toast(e.message, true));
   };
   $("#exportJSON")?.addEventListener("click", () => dl("json"));
@@ -1213,7 +1213,7 @@ async function viewProject(pid) {
     if (!models.length) {
       grid.innerHTML = `<div class="tile span12"><div class="empty-svg">${emptySVG("model")}</div>
         <div class="empty"><h3>Nothing uploaded yet</h3>
-        <p>The forge is cold. Feed it a .pt, .pth or .onnx file and watch the layers add up.</p>
+        <p>Upload a .pt, .pth or .onnx file to start the analysis workflow.</p>
         <button class="btn primary" id="emptyUploadBtn">⬆ Upload model</button></div></div>`;
       $("#emptyUploadBtn")?.addEventListener("click", () => $("#uploadBtn").click());
       return;
@@ -1261,7 +1261,7 @@ async function viewProject(pid) {
     if (selDel) selDel.onclick = async () => {
       const n = selSet.size;
       if (!await confirmModal(`Delete ${n} model${n > 1 ? "s" : ""}?`,
-        "Every run and encrypted artifact belonging to them goes too. No undo.", "Delete")) return;
+        "All runs and encrypted artifacts will also be deleted. This cannot be undone.", "Delete")) return;
       let ok = 0;
       for (const id of [...selSet]) {
         try { await api("/api/models/" + id, { method: "DELETE" }); ok++; }
@@ -1314,7 +1314,7 @@ async function viewProject(pid) {
     <h3>Upload a model</h3>
     <div class="drop-zone" id="dz">
       <div style="font-size:30px">⬆</div>
-      <div>Drop your model here, or <span style="color:var(--accent2)">browse</span>. Weights are encrypted the moment they land.</div>
+      <div>Drop your model here, or <span style="color:var(--accent2)">browse</span></div>
       <div class="tag-mini" style="margin-top:4px">.pt / .pth (PyTorch full module) or .onnx</div>
       <input type="file" id="mFile" accept=".pt,.pth,.onnx" multiple hidden>
     </div>
@@ -1334,7 +1334,7 @@ async function viewProject(pid) {
       const name = $("#mName").value.trim();
       if (!files.length) { toast("Choose a file first.", true); return false; }
       if (!name && files.length > 1) { toast("A base name is needed when uploading several at once.", true); return false; }
-      if (!name) { toast("Give the model a name. Future you will thank present you.", true); return false; }
+      if (!name) { toast("Model name is required", true); return false; }
       const prog = $("#uploadProgress"), bar = $("#uploadBar"),
             pct = $("#uploadPct"), status = $("#uploadStatus");
       prog.hidden = false; bar.style.width = "0%"; bar.style.background = "var(--accent)";
@@ -1385,7 +1385,7 @@ async function viewProject(pid) {
   let picked = [];
   function setFiles(files) {
     picked = files.filter(f => /\.(pt|pth|onnx)$/i.test(f.name));
-    if (files.length && !picked.length) { toast("Only .pt, .pth and .onnx files make it through the door.", true); return; }
+    if (files.length && !picked.length) { toast("Supported formats: .pt, .pth and .onnx", true); return; }
     if (!picked.length) return;
     const dt = new DataTransfer(); picked.forEach(f => dt.items.add(f)); fi.files = dt.files;
     if (!$("#mName", root).value.trim())
@@ -1454,13 +1454,13 @@ async function viewModel(mid, tab = "overview") {
     <button class="btn primary" style="width:100%;justify-content:center" id="mOk">Save name</button>`,
     { onOk: async () => {
       const name = $("#rnName").value.trim();
-      if (!name) { toast("A model with no name is just weights.", true); return false; }
+      if (!name) { toast("Name is required", true); return false; }
       await api("/api/models/" + mid, { method: "PATCH", body: { name } });
-      toast("Renamed. The old name is already forgotten.")
+      toast("Renamed")
       viewModel(mid, tab);
     } });
   $("#delModel").onclick = async () => {
-    if (await confirmModal("Delete model?", "This removes the model, all runs and encrypted artifacts. There is no undo.", "Delete model")) {
+    if (await confirmModal("Delete model?", "This removes the model, all its runs and encrypted artifacts. This cannot be undone.", "Delete model")) {
       try { await api("/api/models/" + mid, { method: "DELETE" }); toast("Model deleted, runs and all.")
         location.hash = "#/project/" + m.project_id; }
       catch (e) { toast(e.message, true); }
@@ -1471,7 +1471,7 @@ async function viewModel(mid, tab = "overview") {
       .then(r => { if (!r.ok) throw new Error(); return r.blob(); })
       .then(b => { const a = document.createElement("a");
         a.href = URL.createObjectURL(b); a.download = "modelsmith_report.md"; a.click();
-        toast("Report downloaded. Attach it to the PR and win the argument.") })
+        toast("Report downloaded") })
       .catch(() => toast("Report failed", true));
   };
 
@@ -1490,7 +1490,7 @@ async function viewModel(mid, tab = "overview") {
     $("#retryAnalysis")?.addEventListener("click", async () => {
       try {
         await api(`/api/jobs/${m.jobs[0].id}/retry`, { method: "POST" });
-        toast("Back in the queue. Analysis, round two."); viewModel(mid, tab);
+        toast("Analysis requeued"); viewModel(mid, tab);
       } catch (e) { toast(e.message, true); }
     });
     return;
@@ -1525,14 +1525,14 @@ function pollJob(jobId, box, onDone, opts = {}) {
       if (cancelBtn) cancelBtn.onclick = async () => {
         try {
           await api(`/api/jobs/${jobId}/cancel`, { method: "POST" });
-          toast("Cancelled while it was still safe to cancel."); stopPolling(); onDone && onDone(j);
+          toast("Job cancelled"); stopPolling(); onDone && onDone(j);
         } catch (e) { toast(e.message, true); }
       };
       const retryBtn = $("[data-jretry]", box);
       if (retryBtn) retryBtn.onclick = async () => {
         try {
           await api(`/api/jobs/${jobId}/retry`, { method: "POST" });
-          toast("Requeued. Second attempt, fresh luck."); poll(tick, 1500);
+          toast("Job requeued"); poll(tick, 1500);
         } catch (e) { toast(e.message, true); }
       };
       if (j.status === "success" || j.status === "failed") { stopPolling(); refreshBellDot(); onDone && onDone(j); }
@@ -1565,7 +1565,7 @@ function renderOverview(body, m) {
       <div class="t-head"><span class="t-title">Notes</span>
         <div class="right"><span class="tag-mini" id="tagsView"></span></div></div>
       <textarea id="modelNotes" class="notes-editor" rows="4"
-        placeholder="Context for future you: what this model is for, who owns it, why it exists…">${esc(m.notes || "")}</textarea>
+        placeholder="What is this model for, who owns it, any deployment constraints…">${esc(m.notes || "")}</textarea>
       <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
         <input type="text" id="modelTags" class="mono" style="flex:1;padding:8px 12px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--line);color:var(--dim);font-size:12.5px" placeholder="tags, comma separated (e.g. vision, prod)" value="${esc((m.tags || []).join(", "))}">
         <button class="btn small primary" id="saveMeta">Save</button>
@@ -1674,7 +1674,7 @@ function renderOverview(body, m) {
         const run = await api(`/api/runs/${b.dataset.rerun}`);
         await api(`/api/models/${m.id}/execute`, { method: "POST",
           body: { plan_id: run.plan_id } });
-        toast("Same plan, second date. Executions tab has the live view.",
+        toast("Plan re-executing",
           false, 4200, { label: "Watch", run: () => viewModel(m.id, "runs") });
         viewModel(m.id, "runs");
       } catch (e) { toast(e.message, true); }
@@ -1691,7 +1691,7 @@ function renderOverview(body, m) {
         notes: $("#modelNotes").value,
         tags: $("#modelTags").value.split(",").map(t => t.trim()).filter(Boolean),
       } });
-      toast("Saved. Future you says thanks.");
+      toast("Saved")
     } catch (e) { toast(e.message, true); }
   };
 
@@ -1890,7 +1890,7 @@ function renderPlansTab(body, m) {
       if (all[idx]) {
         pickedPlans.has(all[idx].plan_id) ? pickedPlans.delete(all[idx].plan_id)
           : pickedPlans.size < 3 ? pickedPlans.add(all[idx].plan_id)
-          : toast("Three plans max. Past that the radar becomes modern art.", true);
+          : toast("Compare up to 3 plans", true);
         renderPlansTab($("#tabBody"), m);
       }
     }
@@ -1901,7 +1901,7 @@ function renderPlansTab(body, m) {
     e.stopPropagation();
     if (pickedPlans.has(c.dataset.plan)) pickedPlans.delete(c.dataset.plan);
     else if (pickedPlans.size < 3) pickedPlans.add(c.dataset.plan);
-    else { toast("Three plans max. Past that the radar becomes modern art.", true); return; }
+    else { toast("Compare up to 3 plans", true); return; }
     renderPlansTab($("#tabBody"), m);
   });
   const clr = $("#clearCmp");
@@ -1924,7 +1924,7 @@ function renderPlansTab(body, m) {
         <div class="wi-row"><span>plans surviving</span><b>${pass.length} of ${all.length}</b></div>
         ${pass.length ? `<div class="wi-row"><span>new top plan</span><b>${pass[0].plan_id}</b></div>
         <div class="wi-row"><span>its size cut</span><b class="win">−${pass[0].predicted.size_saved_pct}%</b></div>`
-        : `<div class="wi-row none">At ${floor}% nothing survives. The accuracy budget has spoken.</div>`}`;
+        : `<div class="wi-row none">At ${floor}% no plan survives the filter.</div>`}`;
       localStorage.setItem("ms_wi_floor", String(floor));
     };
     sld.addEventListener("input", apply);
@@ -2003,7 +2003,7 @@ function renderRunsTab(body, m) {
   if (!runs.length) {
     body.innerHTML = `<div class="tile span12"><div class="empty-svg">${emptySVG("jobs")}</div>
       <div class="empty"><h3>No runs yet</h3>
-      <p>Plans are predictions. Executing one is where the real numbers come from.</p></div></div>`;
+      <p>Choose a plan on the Plans tab and execute it to get real numbers.</p></div></div>`;
     return;
   }
   body.innerHTML = runs.map((r, idx) => {
@@ -2064,7 +2064,7 @@ function renderRunsTab(body, m) {
     if (fresh && big && !renderRunsTab._cheered?.has(r.id)) {
       (renderRunsTab._cheered ??= new Set()).add(r.id);
       celebrate(big ? (r.benchmark.size_saved_pct >= 75 ? 1.4 : 1) : 0.6);
-      toast(`−${r.benchmark.size_saved_pct}% smaller. That one earned the confetti.`);
+      toast(`Size reduced by ${r.benchmark.size_saved_pct}%`);
     }
   });
 
@@ -2090,7 +2090,7 @@ function renderRunsTab(body, m) {
       const blob = await api(`/api/runs/${b.dataset.run}/artifacts/${b.dataset.dl}/download`);
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob); a.download = b.dataset.dl; a.click();
-      toast("Artifact decrypted and on its way to your disk.")
+      toast("Artifact downloaded")
     } catch (e) { toast(e.message, true); }
   });
   /* reproducible script download */
@@ -2102,7 +2102,7 @@ function renderRunsTab(body, m) {
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
         a.download = `repro_${b.dataset.script}.py`; a.click();
-        toast("Script downloaded. Runnable proof of work.");
+        toast("Reproduction script downloaded")
       })
       .catch(() => toast("Script generation failed", true));
   });
@@ -2203,7 +2203,7 @@ async function viewAdmin() {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = "modelsmith_audit_log.csv"; a.click();
-      toast("Audit log exported. Every action, timestamped.")
+      toast("Audit log exported")
     }).catch(e => toast(e.message, true));
   };
   $$("[data-ua]").forEach(b => b.onclick = async () => {
@@ -2240,7 +2240,7 @@ async function viewCompare(idA, idB) {
     crumbs: `<span data-nav="#/search" style="cursor:pointer">Search</span><span class="sep">/</span><b>Compare</b>` }, `
     <div class="page-head">
       <div><h1>Model comparison</h1>
-      <div class="sub">Two models walk in. Green rings mark who wins each metric.</div></div>
+      <div class="sub">Side by side, with the better value on each metric highlighted.</div></div>
     </div>
     <div class="bento">
       ${side(a, aa)}${side(b, ab)}
@@ -2306,7 +2306,7 @@ async function viewSettings() {
   shell({ active: "settings", crumbs: "<b>Settings</b>" }, `
     <div class="page-head">
       <div><h1>Settings</h1>
-      <div class="sub">Identity, keys and receipts.</div></div>
+      <div class="sub">Profile, security and session details.</div></div>
     </div>
     <div class="bento">
       <div class="tile span6">
@@ -2393,13 +2393,13 @@ async function viewSettings() {
   $("#savePass").onclick = async () => {
     const cur = $("#sCur").value, nw = $("#sNew").value, nw2 = $("#sNew2").value;
     if (nw.length < 8) { toast("New password must be at least 8 characters", true); return; }
-    if (nw !== nw2) { toast("The two new passwords disagree with each other.", true); return; }
+    if (nw !== nw2) { toast("New passwords do not match", true); return; }
     try {
       const r = await api("/api/auth/password/change", { method: "POST",
         body: { current_password: cur, new_password: nw } });
       state.token = r.token;
       localStorage.setItem("ms_token", r.token);
-      toast("Password changed. Every other session just expired.")
+      toast("Password changed. Other sessions were revoked.")
       $("#sCur").value = $("#sNew").value = $("#sNew2").value = "";
     } catch (e) { toast(e.message, true); }
   };
@@ -2407,7 +2407,7 @@ async function viewSettings() {
     try { await api("/api/auth/logout", { method: "POST" }); } catch {}
     logoutLocal();
   };
-  $("#dangerNote").onclick = () => toast("Account deletion goes through an administrator. Admins like paperwork.", true);
+  $("#dangerNote").onclick = () => toast("Account deletion is handled by an administrator", true);
   const motion = $("#motionPref");
   if (motion && matchMedia("(prefers-reduced-motion: reduce)").matches) motion.textContent = "reduced (system)";
 
@@ -2671,7 +2671,7 @@ function setupGlobalDrop() {
       const { projects } = await api("/api/projects");
       const active = projects.filter(p => !p.archived);
       const target = active[0];
-      if (!target) { toast("Create a project first, then drop away.", true); return; }
+      if (!target) { toast("Create a project first", true); return; }
       let ok = 0, firstId = null;
       for (const f of files) {
         const fd = new FormData();
@@ -2699,7 +2699,7 @@ async function viewAchievements() {
   document.title = "Achievements · ModelSmith";
   shell({ active: "achievements", crumbs: "<b>Achievements</b>" }, `
     <div class="page-head"><div><h1>Achievements</h1>
-      <div class="sub">Earned from real history. The forge does not hand out participation trophies.</div></div>
+      <div class="sub">Each badge is earned from your real activity, computed from the database.</div></div>
       <div class="actions"><span class="pill accent" id="achCount">…</span></div></div>
     <div class="bento" id="achGrid">${skeletonBento(6, 4)}</div>`);
 
@@ -2780,7 +2780,7 @@ function applyTheme(t) {
 function toggleTheme() {
   applyTheme((localStorage.getItem("ms_theme") || "dark") === "dark" ? "light" : "dark");
   toast(document.documentElement.dataset.theme === "light"
-    ? "Light mode. The Foundry, for daylight hours." : "Back to the Forge. Much better.");
+    ? "Light theme on." : "Dark theme on.");
 }
 
 /* ---------------- boot ---------------- */

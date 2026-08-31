@@ -189,7 +189,7 @@ function viewLanding() {
         </div>
 
         <div class="n-hero-hint" data-rv style="--rvd:.32s">
-          No cold start. No vendor benchmarks. Your model, your machine, your numbers.
+          Analysis, planning and execution all run on your own hardware, against your actual model.
         </div>
       </div>
 
@@ -419,10 +419,10 @@ function viewLanding() {
         <div class="n-vs-col">
           <div class="n-vs-head manual">Doing it by hand</div>
           ${[
-            "Read three quantization papers, form an opinion, hope",
-            "Write the export script, meet every opset error personally",
-            "Benchmark once on your laptop, round optimistically",
-            "Results live in a Slack thread titled 'final_FINAL_v3'",
+            "Read the quantization docs, form an opinion, hope it holds",
+            "Write the export script, debug every opset mismatch",
+            "Benchmark once, under conditions that flatter the result",
+            "Results end up scattered across chat threads and notebooks",
           ].map(t => `<div class="n-vs-row"><span class="n-vs-x">✕</span>${t}</div>`).join("")}
         </div>
         <div class="n-vs-col modelsmith">
@@ -590,7 +590,7 @@ function viewLanding() {
       <div class="n-faq" data-rv>
         ${[
           ["Will quantization hurt my accuracy?",
-           "INT8 dynamic quantization usually keeps output agreement above 95%. Usually is not a guarantee, which is why every run measures agreement on seeded inputs and reports the exact number. You get the measurement, not the marketing."],
+           "INT8 dynamic quantization typically keeps output agreement above 95%, but typical is not a guarantee. Every run therefore measures agreement on seeded inputs and reports the exact number."],
           ["Which model formats are supported?",
            "PyTorch full-module checkpoints (.pt and .pth) and ONNX files. TensorFlow and JAX models are welcome the moment you export them to ONNX, which is one command in each framework."],
           ["Where do my models actually live?",
