@@ -1,0 +1,16 @@
+# Render blueprint: one-click deploy
+services:
+  - type: web
+    name: modelsmith
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: MODELSMITH_DATA
+        value: /data
+      - key: MODELSMITH_SEED
+        value: "1"
+    disk:
+      name: ms-data
+      mountPath: /data
+      sizeGB: 3

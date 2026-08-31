@@ -1,0 +1,54 @@
+MAJOR PROJECT ITP701                                                                        GROUP NO. 2
+
+
+
+
+             ModelSmith - Non-Functional Requirements
+
+ID           Quality Attribute    Requirement
+                                  Interactive API operations should remain responsive; long-
+NFR-01       Performance          running analysis, optimization and benchmarking jobs shall run
+                                  asynchronously.
+                                  The architecture shall support multiple users and concurrent
+NFR-02       Scalability          background jobs, with independently scalable API and worker
+                                  services.
+                                  Job state shall be persisted; recoverable failures shall support
+NFR-03       Reliability
+                                  retry, and incomplete artifacts shall not be marked successful.
+                                  Critical services shall expose health checks and use appropriate
+NFR-04       Availability
+                                  backup/recovery procedures for persistent data.
+                                  Protected operations shall require authentication and
+NFR-05       Security             authorization; least privilege shall be applied across users,
+                                  services and storage.
+                                  Models, user data and artifacts shall be encrypted in transit and
+NFR-06       Data Protection
+                                  at rest and isolated between projects/users.
+                                  Uploaded models shall undergo file validation/security checks
+NFR-07       Model Security       and execute in isolated, resource-controlled worker
+                                  environments.
+                                  Models, versions, plans, predictions, jobs, benchmarks and
+NFR-08       Data Integrity
+                                  artifacts shall remain traceably linked.
+                                  An optimization result shall record the model version, plan,
+NFR-09       Reproducibility      hardware/runtime context and execution metadata required to
+                                  reproduce it.
+                                  The workflow shall be clear and structured; recommendations
+NFR-10       Usability
+                                  shall explain expected benefits and important trade-offs.
+                                  The platform shall support documented model formats and
+NFR-11       Compatibility        target hardware/runtime combinations through modular
+                                  adapters.
+                                  Analysis, planning, prediction, execution and export components
+NFR-12       Maintainability
+                                  shall be modular and independently extensible.
+                                  The system shall provide structured logs, job status,
+NFR-13       Observability
+                                  health/resource metrics and actionable failure information.
+                                  Access to project resources shall be restricted to authorized
+NFR-14       Privacy              users and retention/deletion rules shall be defined for models,
+                                  logs and artifacts.
+Key Quality Priorities
+Security • Reliability • Performance • Scalability • Explainability • Reproducibility • Maintainability
+• Usability • Observability
+

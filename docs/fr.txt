@@ -1,0 +1,59 @@
+MAJOR PROJECT ITP701                                                                   GROUP NO. 2
+
+
+
+
+                 ModelSmith - Functional Requirements
+Priority: P0 = MVP/core; P1 = high-value extension.
+ID         Module                   Functional Requirement                             Priority
+                                    Register, log in, log out and reset password
+FR-01      User Authentication                                                         P0
+                                    securely.
+                                    Create, view, edit and delete projects; organize
+FR-02      Project Management                                                          P0
+                                    associated models and results.
+                                    Upload supported models, validate files, detect
+FR-03      Model Upload                                                                P0
+                                    format/framework and store metadata.
+                                    Extract graph, layers/operators, parameters,
+FR-04      Model Analysis                                                              P0
+                                    FLOPs, tensor shapes and memory estimates.
+                                    Estimate latency and memory usage and identify
+FR-05      Profiling                                                                   P0
+                                    performance bottlenecks/hotspots.
+                                    Accept optimization objective, accuracy
+FR-06      Deployment Goals                                                            P0
+                                    constraints and target hardware/runtime.
+                                    Generate multiple candidate strategies based
+FR-07      Optimization Planning    on model, goals, hardware and optimization         P0
+                                    knowledge.
+                                    Remove incompatible strategies, rank valid
+FR-08      Plan Filtering & Ranking plans and provide reasons for                      P0
+                                    recommendations.
+                                    Predict model size, memory, latency and other
+FR-09      Performance Prediction                                                      P0
+                                    relevant outcomes; show expected trade-offs.
+                                    Display candidate plans side-by-side and allow
+FR-10      Plan Comparison                                                             P0
+                                    the user to select a preferred plan.
+                                    Convert a selected plan into an executable
+FR-11      Optimization Execution pipeline and run supported optimization              P1
+                                    techniques.
+                                    Measure and compare original vs optimized
+FR-12      Benchmarking             latency, throughput, memory, size and accuracy     P1
+                                    where applicable.
+                                    Store optimized models, configurations and
+FR-13      Artifacts & Export                                                          P1
+                                    reports and provide authorized downloads.
+                                    Generate analysis/optimization/benchmark
+FR-14      Reports & Notifications reports and notify users about long-running job     P0/P1
+                                    status.
+                                    Provide system/user/job monitoring and audit
+FR-15      Administration                                                              P1
+                                    functions where administration is enabled.
+
+
+
+
+                                                 1
+

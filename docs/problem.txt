@@ -1,0 +1,136 @@
+MAJOR PROJECT ITP701                                                                   GROUP NO. 2
+
+
+
+
+             ModelSmith - Problem Definition & Solution
+
+1. Problem Definition
+Modern AI models are increasingly large and computationally expensive. A trained model is rarely
+ready for deployment: engineers must determine whether it fits the target hardware, meets
+latency and memory limits, and preserves acceptable accuracy.
+Current Problems
+ Problem                                        Impact
+                                                Engineers repeatedly try quantization, pruning,
+ Manual optimization
+                                                graph optimization and other techniques.
+                                                Every candidate often has to be executed and
+ Trial-and-error benchmarking
+                                                benchmarked before its value is known.
+                                                A technique suitable for a GPU may be
+ Hardware dependency                            unsuitable for CPU, edge, mobile or another
+                                                runtime.
+                                                Model size, latency, memory, throughput and
+ Multiple trade-offs
+                                                accuracy can improve or worsen together.
+                                                Analysis, optimization, benchmarking and
+ Fragmented tooling                             deployment tools are spread across different
+                                                frameworks.
+                                                Selecting the right optimization strategy
+ High expertise requirement                     requires specialized ML and deployment
+                                                knowledge.
+
+
+
+2. Problem Statement
+There is a need for an intelligent system that can analyze an AI model, understand deployment
+requirements and target hardware, recommend suitable optimization strategies, predict their
+trade-offs, and guide or execute the selected optimization workflow.
+
+
+
+3. Proposed Solution - ModelSmith
+ModelSmith is an intelligent AI model optimization and deployment platform. It acts as a decision-
+making and orchestration layer between model development and deployment. Instead of relying
+entirely on repeated manual experimentation, it analyzes the model and generates ranked
+optimization plans before execution.
+
+
+
+                                                1
+    MAJOR PROJECT ITP701                                                                  GROUP NO. 2
+
+
+
+    Core Workflow
+    Stage                         Main Function                     Output
+                                  Validate and store the
+    1. Upload                                                       Model + metadata
+                                  supported model.
+                                  Inspect graph, layers,
+    2. Analyze                    parameters, FLOPs, tensors        Analysis report
+                                  and memory.
+                                  Estimate latency, memory and
+    3. Profile                                                      Performance profile
+                                  computational hotspots.
+                                  Use model features, goals,
+                                  hardware and optimization
+    4. Plan                                                         Ranked plans
+                                  knowledge to generate
+                                  candidates.
+                                  Estimate size, latency,
+    5. Predict                    memory, throughput and            Prediction report
+                                  accuracy impact.
+                                  Show plans and their trade-
+    6. Compare                    offs so the user can select       Selected plan
+                                  one.
+                                  Run the selected optimization
+    7. Execute                                                      Optimized model
+                                  pipeline using supported tools.
+                                  Compare original and
+    8. Validate/Benchmark                                           Benchmark report
+                                  optimized models.
+                                  Prepare deployment-ready
+    9. Export                     model and configuration           Artifact package
+                                  artifacts.
+
+
+
+
+    4. Intelligent Optimization Engine
+     Model features: architecture, operators, parameters, FLOPs, memory and runtime
+      characteristics.
+     Deployment requirements: target objective such as lowest latency, lowest memory, smallest
+      size, edge deployment or balanced optimization.
+     Hardware profile: CPU/GPU/edge/mobile target, available memory, runtime and supported
+      precision.
+     Knowledge base: relationships between model types, optimization techniques, hardware and
+      expected outcomes.
+     Planner: generates candidates, removes incompatible strategies, ranks valid plans and
+      explains recommendations.
+     Prediction engine: estimates expected performance before expensive optimization execution.
+
+                                                 2
+MAJOR PROJECT ITP701                                                                 GROUP NO. 2
+
+
+
+5. Expected Benefits
+ Benefit                                       Expected Result
+                                               Avoid unnecessary optimization attempts by
+ Less experimentation
+                                               predicting likely outcomes first.
+ Faster deployment decisions                   Compare multiple strategies in one workflow.
+                                               Recommendations match the intended
+ Hardware-aware optimization
+                                               deployment environment.
+                                               Users understand why a strategy is
+ Explainable decisions
+                                               recommended and what trade-offs it has.
+                                               Model, plan, hardware, predictions and
+ Reproducibility
+                                               execution results remain linked.
+
+
+
+6. Scope
+In scope: model upload, analysis, profiling, optimization planning, performance prediction, plan
+comparison and reporting. Optimization execution, benchmarking and deployment export are
+planned extensions. Training models, dataset engineering and replacing inference runtimes are
+outside the primary scope.
+
+
+
+
+                                               3
+

@@ -1,0 +1,12 @@
+{
+  "name": "ModelSmith",
+  "short_name": "ModelSmith",
+  "description": "Intelligent AI Model Optimization & Deployment Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0b08",
+  "theme_color": "#ffb224",
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

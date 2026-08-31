@@ -1,0 +1,127 @@
+"""FR-14 Reports: markdown reports for analysis, optimization and benchmarks."""
+from __future__ import annotations
+
+from .database import uj
+
+
+def _fmt_mb(n) -> str:
+    return f"{n:.2f} MB" if isinstance(n, (int, float)) else "-"
+
+
+def model_report(model: dict, runs: list[dict]) -> str:
+    a = uj(model.get("analysis"), {}) or {}
+    goals = uj(model.get("goals"), {}) or {}
+    plans = uj(model.get("plans"), {}) or {}
+    bench = a.get("benchmark", {})
+    b = a.get("bottlenecks", {})
+
+    lines = [
+        f"# ModelSmith Report: {model['name']}",
+        "",
+        f"- **Model ID:** `{model['id']}`",
+        f"- **Framework:** {model['framework']}",
+        f"- **Uploaded:** {model['created_at']}",
+        f"- **SHA-256:** `{model['sha256']}`",
+        "",
+        "## 1. Analysis (FR-04)",
+        "",
+        "| Metric | Value |",
+        "|---|---|",
+        f"| Parameters | {a.get('total_params', 0):,} |" if a else "",
+        f"| Parameter size | {_fmt_mb(a.get('param_size_mb'))} |",
+        f"| File size | {_fmt_mb(a.get('file_size_mb'))} |",
+        f"| Compute | {a.get('total_flops', 0) / 1e6:.2f} MFLOPs/forward |",
+        f"| Input shape | {' × '.join(str(d) for d in a.get('input_shape', []))} |",
+        f"| Architecture class | {a.get('arch', '-')} |",
+        "",
+        "### Layer breakdown (top contributors)",
+        "",
+        "| Layer | Type | Params | Share |",
+        "|---|---|---|---|",
+    ]
+    total = max(a.get("total_params", 1), 1)
+    for l in (a.get("layers") or [])[:8]:
+        if l.get("params"):
+            lines.append(f"| {l['name']} | {l['type']} | {l['params']:,} | "
+                         f"{100 * l['params'] / total:.1f}% |")
+
+    lines += [
+        "",
+        "## 2. Profiling (FR-05)",
+        "",
+        f"- Measured latency (CPU): **{bench.get('latency_ms', '-')} ms** mean, "
+        f"{bench.get('p95_ms', '-')} ms p95 over {bench.get('runs', 0)} runs",
+        f"- Throughput: {bench.get('throughput_fps', '-')} inferences/s",
+        "",
+        "### Bottleneck notes",
+        "",
+    ]
+    lines += [f"- {n}" for n in (b.get("notes") or [])]
+
+    lines += [
+        "",
+        "## 3. Deployment goals (FR-06)",
+        "",
+        f"- Objective: `{goals.get('objective', 'balanced')}`",
+        f"- Target hardware: `{goals.get('target_hardware', 'cpu-server')}`",
+        f"- Minimum accuracy retention: {goals.get('min_accuracy_pct', '-')}%",
+        "",
+        "## 4. Ranked optimization plans (FR-07/08/09)",
+        "",
+        "| # | Plan | Techniques | Size ↓ | Latency ↓ | Acc. retention |",
+        "|---|---|---|---|---|---|",
+    ]
+    for p in (plans.get("valid") or []):
+        pred = p["predicted"]
+        lines.append(
+            f"| {p['rank']} | {p['plan_id']} ({p['tagline']}) | "
+            f"{', '.join(p['technique_labels'])} | {pred['size_saved_pct']}% | "
+            f"{pred['latency_gain_pct']}% | {pred['accuracy_retention_pct']}% |")
+    if plans.get("rejected"):
+        lines += ["", "_Filtered out by compatibility/accuracy rules:_"]
+        for p in plans["rejected"]:
+            lines.append(f"- `{p['plan_id']}`: {'; '.join(p['rejected_because'])}")
+
+    if runs:
+        lines += ["", "## 5. Execution history & benchmarks (FR-11/12)"]
+        for r in runs:
+            bm = uj(r.get("benchmark"), {}) or {}
+            base, opt = bm.get("baseline", {}), bm.get("optimized", {})
+            ag = (bm.get("output_agreement") or {}).get("agreement_pct")
+            lines += [
+                "",
+                f"### Run `{r['id']}`: {r['plan_name']} ({r['status']})",
+                "",
+                f"- Executed: {r['created_at']}",
+                f"- Baseline: {_fmt_mb(base.get('size_mb'))}, "
+                f"{base.get('latency_ms', '-')} ms",
+                f"- Optimized: {_fmt_mb(opt.get('size_mb'))}, "
+                f"{opt.get('latency_ms', '-')} ms",
+                f"- **Size saved: {bm.get('size_saved_pct', '-')}%** | "
+                f"**Latency gain: {bm.get('latency_gain_pct', '-')}%** | "
+                f"Output agreement: {ag if ag is not None else 'n/a'}",
+                f"- Artifacts: {', '.join(x['name'] for x in (uj(r.get('artifacts')) or []))}"
+                if uj(r.get("artifacts")) else "- Artifacts: none",
+            ]
+            repro = uj(r.get("repro"), {}) or {}
+            if repro:
+                v = repro.get("versions", {})
+                lines += [
+                    "",
+                    "<details><summary>Reproducibility metadata (NFR-09)</summary>",
+                    "",
+                    "```json",
+                    str(repro).replace("'", '"'),
+                    "```",
+                    "</details>",
+                ]
+    else:
+        lines += ["", "_No optimization runs executed for this model yet._"]
+
+    lines += [
+        "",
+        "---",
+        "_Generated by ModelSmith · Intelligent AI Model Optimization & "
+        "Deployment Platform._",
+    ]
+    return "\n".join(x for x in lines if x is not None)
