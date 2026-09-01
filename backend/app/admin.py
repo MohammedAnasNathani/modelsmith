@@ -85,8 +85,8 @@ def dashboard(user: dict = Depends(current_user)):
             "JOIN projects p ON p.id=m.project_id WHERE p.owner_id=? "
             "AND r.status='success'", (user["id"],)).fetchone()["c"]
         saved_mb = conn.execute(
-            "SELECT COALESCE(SUM(json_extract(r.benchmark,'$.baseline.size_mb') - "
-            "json_extract(r.benchmark,'$.optimized.size_mb')),0) s FROM runs r "
+            "SELECT COALESCE(SUM(MAX(json_extract(r.benchmark,'$.baseline.size_mb') - "
+            "json_extract(r.benchmark,'$.optimized.size_mb'), 0)),0) s FROM runs r "
             "JOIN models m ON m.id=r.model_id JOIN projects p ON p.id=m.project_id "
             "WHERE p.owner_id=? AND r.status='success'", (user["id"],)).fetchone()["s"]
         recent_jobs = conn.execute(

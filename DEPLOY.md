@@ -72,3 +72,20 @@ fly deploy
 
 Health endpoint for uptime probes: `GET /api/health`.
 Prometheus metrics: `GET /api/metrics`.
+
+## Permanent demo URL (read-only)
+
+**https://modelsmith-alpha.vercel.app**
+
+The marketing site plus a snapshot of a real workspace: three analyzed
+models, ranked plans, executed runs, benchmarks. Hosted on Vercel so the
+link never expires. The interactive pipeline (upload, execute) requires
+the compute-heavy backend, which runs from this repo:
+
+```bash
+./run.sh          # full interactive deployment on :8100
+./share-url.sh    # temporary public URL for the full deployment
+```
+
+The snapshot is regenerated with `deploy-demo` (captured from the live
+server, committed as `api-snapshot.json`).
