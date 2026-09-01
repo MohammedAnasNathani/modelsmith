@@ -225,6 +225,7 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 .topline {
   position: sticky; top: 0; z-index: 8;
   display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
   padding: 12px 28px;
   background: rgba(13, 11, 8, 0.85);
   backdrop-filter: blur(14px);
@@ -247,7 +248,7 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
   padding: 2px 5px; border-radius: 4px;
   background: var(--line); color: var(--dim);
 }
-.content { flex: 1; padding: 24px 28px 40px; }
+.content { flex: 1; padding: 24px 28px 40px; max-width: 1480px; width: 100%; margin: 0 auto; }
 .footer {
   text-align: center; padding: 32px 0 0; font-size: 11.5px;
   color: var(--faint); letter-spacing: 0.02em;
@@ -709,7 +710,9 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 /* ============================================================
    TABLES
    ============================================================ */
-.tbl-wrap { overflow-x: auto; }
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tbl { min-width: 520px; }
+.tbl-wrap .tbl:has(td:nth-child(3)):not(:has(td:nth-child(4))) { min-width: 380px; }
 .tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .tbl th, .tbl td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
 .tbl th { font-size: 11px; font-weight: 600; color: var(--faint); text-transform: uppercase; letter-spacing: 0.05em; }
@@ -727,6 +730,9 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 /* compare grid */
 .compare-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 640px) {
+  .compare-grid { grid-template-columns: 1fr; }
 }
 
 /* onboarding checklist */
@@ -1254,7 +1260,8 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
    ============================================================ */
 @media (max-width: 1080px) {
   .bento { grid-template-columns: repeat(6, 1fr); }
-  .span5, .span7, .span8 { grid-column: span 6; }
+  .span2, .span3 { grid-column: span 3; }
+  .span4, .span5, .span6, .span7, .span8 { grid-column: span 6; }
   .l-hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 32px; }
   .l-split { grid-template-columns: 1fr; gap: 32px; padding: 48px 32px; }
   .l-split.flip { direction: ltr; }
@@ -1269,8 +1276,8 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 @media (max-width: 760px) {
   .shell { grid-template-columns: 1fr; }
   .sidebar { display: none; }
-  .bento { grid-template-columns: 1fr; }
-  .span2, .span3, .span4, .span5, .span6, .span7, .span8 { grid-column: span 1; }
+  .bento { grid-template-columns: 1fr !important; }
+  .bento > * { grid-column: 1 / -1 !important; }
   .content { padding: 16px; }
   .l-hero { padding: 40px 20px; }
   .l-hero h1 { font-size: 2rem; }
@@ -2547,6 +2554,14 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
   .mob-header { display: flex; }
   .sidebar { display: none !important; }
   .shell { grid-template-columns: 1fr; }
+  .page-head h1 { font-size: 21px; }
+  .hero-num { font-size: 27px; }
+  .crumbs { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .topline { padding: 10px 14px; }
+  .content { padding: 14px 14px 32px; }
+  .tile { padding: 16px; border-radius: 14px; }
+  .plan-card { padding: 15px; }
+  .modal-box { padding: 22px 18px; max-height: 92vh; overflow-y: auto; }
 }
 
 /* --- keyboard shortcuts overlay panel --- */
@@ -2669,7 +2684,8 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 /* --- enhanced notification panel --- */
 .notif-panel {
   position: fixed; right: 16px; top: 56px;
-  width: 340px; max-height: 480px; overflow-y: auto;
+  width: 340px; max-width: calc(100vw - 24px);
+  max-height: 480px; overflow-y: auto;
   background: linear-gradient(180deg, var(--panel3), var(--panel2));
   border: 1px solid var(--line3); border-radius: var(--r-lg);
   box-shadow: var(--shadow-lg);
@@ -2755,7 +2771,13 @@ code, .mono { font-family: var(--mono); font-size: 0.92em; }
 .ctx-menu-sep { height: 1px; background: var(--line); margin: 4px 0; }
 
 /* --- model detail tabs: refined --- */
-.tabs { gap: 0; margin-bottom: 24px; }
+.tabs {
+  gap: 0; margin-bottom: 24px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab { white-space: nowrap; flex-shrink: 0; }
 .tab {
   padding: 11px 20px; font-size: 13.5px; font-weight: 500;
   position: relative;
