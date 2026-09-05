@@ -269,7 +269,14 @@ function render() {
   const hash = location.hash || (state.token ? "#/dashboard" : "#/welcome");
   for (const [re, fn] of routes) {
     const m = hash.match(re);
-    if (m) { fn(...m.slice(1)); return; }
+    if (m) {
+      /* a rejected view fetch must not leave a blank page behind */
+      Promise.resolve(fn(...m.slice(1))).catch(e => {
+        console.error(e);
+        toast(e.message || "This view failed to load. Try again.", true);
+      });
+      return;
+    }
   }
   view404();
 }

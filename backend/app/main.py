@@ -11,6 +11,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -30,6 +31,8 @@ app = FastAPI(title="ModelSmith", version=config.APP_VERSION,
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
 )
+# static assets ship ~336 KB of JS/CSS; gzip cuts app.js alone from 150 KB to 39 KB
+app.add_middleware(GZipMiddleware, minimum_size=2048)
 app.add_middleware(middleware.RateLimitMiddleware)
 app.add_middleware(middleware.AccessLogMiddleware)
 app.add_middleware(middleware.RequestIDMiddleware)
