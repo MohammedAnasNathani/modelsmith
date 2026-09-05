@@ -121,7 +121,10 @@ function startTour(force = false) {
   card.className = "tour-card";
   document.body.append(backdrop, spotlight, card);
 
-  function cleanup() { backdrop.remove(); spotlight.remove(); card.remove(); }
+  function cleanup() { backdrop.remove(); spotlight.remove(); card.remove(); document.removeEventListener("keydown", esc); }
+  const esc = e => { if (e.key === "Escape") cleanup(); };
+  document.addEventListener("keydown", esc);
+  backdrop.addEventListener("click", cleanup);
   function render() {
     const s = TOUR_STEPS[step];
     const target = $(s.sel);
@@ -289,32 +292,32 @@ function shell({ active, crumbs = "", actions = "" }, contentHTML) {
   const navItems = `
         <div class="side-label">Workspace</div>
         <nav class="side-nav">
-          <div class="side-item ${active === "dashboard" ? "active" : ""}" data-nav="#/dashboard">
-            <span class="ico">◈</span> Dashboard</div>
-          <div class="side-item ${active === "projects" ? "active" : ""}" data-nav="#/projects">
-            <span class="ico">▤</span> Projects</div>
-          <div class="side-item ${active === "jobs" ? "active" : ""}" data-nav="#/jobs">
-            <span class="ico">⚙</span> Jobs</div>
-          <div class="side-item ${active === "api" ? "active" : ""}" data-nav="#/api">
-            <span class="ico">⌘</span> API playground</div>
-          <div class="side-item ${active === "achievements" ? "active" : ""}" data-nav="#/achievements">
-            <span class="ico">★</span> Achievements</div>
-          <div class="side-item ${active === "settings" ? "active" : ""}" data-nav="#/settings">
-            <span class="ico">◈</span> Settings</div>
+          <a class="side-item ${active === "dashboard" ? "active" : ""}" href="#/dashboard">
+            <span class="ico">◈</span> Dashboard</a>
+          <a class="side-item ${active === "projects" ? "active" : ""}" href="#/projects">
+            <span class="ico">▤</span> Projects</a>
+          <a class="side-item ${active === "jobs" ? "active" : ""}" href="#/jobs">
+            <span class="ico">⚙</span> Jobs</a>
+          <a class="side-item ${active === "api" ? "active" : ""}" href="#/api">
+            <span class="ico">⌘</span> API playground</a>
+          <a class="side-item ${active === "achievements" ? "active" : ""}" href="#/achievements">
+            <span class="ico">★</span> Achievements</a>
+          <a class="side-item ${active === "settings" ? "active" : ""}" href="#/settings">
+            <span class="ico">◈</span> Settings</a>
         </nav>
         ${isAdmin ? `
         <div class="side-label">System</div>
         <nav class="side-nav">
-          <div class="side-item ${active === "admin" ? "active" : ""}" data-nav="#/admin">
-            <span class="ico">⚙</span> Admin</div>
+          <a class="side-item ${active === "admin" ? "active" : ""}" href="#/admin">
+            <span class="ico">⚙</span> Admin</a>
         </nav>` : ""}`;
   const sidebarUser = `
         <div class="side-user">
           ${avatarHTML(state.user)}
-          <div class="info" data-nav="#/settings" style="cursor:pointer;min-width:0">
+          <a class="info" href="#/settings" style="cursor:pointer;min-width:0">
             <div class="nm">${esc(state.user?.full_name || state.user?.email || "")}</div>
             <div class="rl">${esc(state.user?.role || "")}</div>
-          </div>
+          </a>
           <button class="theme-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle theme">☀</button>
           <button class="bell-btn" id="bell" title="Notifications">🔔<span class="dot" id="bellDot" hidden></span></button>
         </div>`;
@@ -322,10 +325,10 @@ function shell({ active, crumbs = "", actions = "" }, contentHTML) {
     <div class="bg-fx"></div>
     <div class="shell">
       <aside class="sidebar">
-        <div class="side-logo" data-nav="#/dashboard">
+        <a class="side-logo" href="#/dashboard">
           <span class="mark">MS</span>
           <span class="name">Model<em>Smith</em></span>
-        </div>
+        </a>
         ${navItems}
         <div class="side-spacer"></div>
         ${sidebarUser}
@@ -368,24 +371,24 @@ function openMobileDrawer() {
   drawer.id = "sidebarDrawer";
   drawer.innerHTML = `
     <div style="padding:0 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-      <div class="side-logo" data-nav="#/dashboard" style="margin:0;padding:0">
+      <a class="side-logo" href="#/dashboard" style="margin:0;padding:0">
         <span class="mark">MS</span><span class="name">Model<em>Smith</em></span>
-      </div>
-      <button class="drawer-close" id="drawerClose">×</button>
+      </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
     </div>
     <div class="side-label">Workspace</div>
     <nav class="side-nav">
-      <div class="side-item" data-nav="#/dashboard"><span class="ico">◈</span> Dashboard</div>
-      <div class="side-item" data-nav="#/projects"><span class="ico">▤</span> Projects</div>
-      <div class="side-item" data-nav="#/jobs"><span class="ico">⚙</span> Jobs</div>
-      <div class="side-item" data-nav="#/api"><span class="ico">⌘</span> API playground</div>
-      <div class="side-item" data-nav="#/achievements"><span class="ico">★</span> Achievements</div>
-      <div class="side-item" data-nav="#/settings"><span class="ico">◈</span> Settings</div>
+      <a class="side-item" href="#/dashboard"><span class="ico">◈</span> Dashboard</a>
+      <a class="side-item" href="#/projects"><span class="ico">▤</span> Projects</a>
+      <a class="side-item" href="#/jobs"><span class="ico">⚙</span> Jobs</a>
+      <a class="side-item" href="#/api"><span class="ico">⌘</span> API playground</a>
+      <a class="side-item" href="#/achievements"><span class="ico">★</span> Achievements</a>
+      <a class="side-item" href="#/settings"><span class="ico">◈</span> Settings</a>
     </nav>
     ${isAdmin ? `
     <div class="side-label">System</div>
     <nav class="side-nav">
-      <div class="side-item" data-nav="#/admin"><span class="ico">⚙</span> Admin</div>
+      <a class="side-item" href="#/admin"><span class="ico">⚙</span> Admin</a>
     </nav>` : ""}
     <div style="flex:1"></div>
     <div class="drawer-user">
@@ -398,9 +401,9 @@ function openMobileDrawer() {
   document.body.append(backdrop, drawer);
   backdrop.onclick = closeMobileDrawer;
   drawer.querySelector("#drawerClose").onclick = closeMobileDrawer;
-  $$("[data-nav]", drawer).forEach(el => el.onclick = () => { closeMobileDrawer(); location.hash = el.dataset.nav; });
-  $$(".side-item", drawer).forEach(el => {
-    if (el.dataset.nav === location.hash) el.classList.add("active");
+  $$("a.side-item, a.side-logo", drawer).forEach(el => {
+    if (el.getAttribute("href") === location.hash) el.classList.add("active");
+    el.addEventListener("click", closeMobileDrawer);
   });
 }
 function closeMobileDrawer() {
@@ -600,6 +603,7 @@ document.addEventListener("keydown", e => {
     return;
   }
   if (e.key === "g") { gPending = true; setTimeout(() => (gPending = false), 1200); return; }
+  if (e.key === "/") { e.preventDefault(); openCommandPalette(); return; }
   if (e.key === "?") { e.preventDefault(); openShortcutsOverlay(); }
 });
 
@@ -613,7 +617,7 @@ function openShortcutsOverlay() {
       <h3>Keyboard shortcuts</h3>
       <p class="sub">Navigate faster without touching the mouse.</p>
       <div class="shortcuts-group-title">Navigation</div>
-      <div class="sc-row"><span class="sc-label"><span class="ico">◈</span> Command palette</span><span class="sc-keys"><kbd>⌘</kbd><kbd>K</kbd></span></div>
+      <div class="sc-row"><span class="sc-label"><span class="ico">◈</span> Command palette</span><span class="sc-keys"><kbd>⌘</kbd><kbd>K</kbd> <em>or</em> <kbd>/</kbd></span></div>
       <div class="sc-row"><span class="sc-label"><span class="ico">⇥</span> Go to dashboard</span><span class="sc-keys"><kbd>G</kbd><kbd>D</kbd></span></div>
       <div class="sc-row"><span class="sc-label"><span class="ico">▤</span> Go to projects</span><span class="sc-keys"><kbd>G</kbd><kbd>P</kbd></span></div>
       <div class="sc-row"><span class="sc-label"><span class="ico">⚙</span> Go to settings</span><span class="sc-keys"><kbd>G</kbd><kbd>S</kbd></span></div>
@@ -707,7 +711,7 @@ async function viewSearch() {
       return;
     }
     grid.innerHTML = results.map((m, i) => `
-      <div class="tile span4 clickable" data-id="${m.id}" style="animation-delay:${i * 0.04}s">
+      <a class="tile span4 clickable" href="#/model/${m.id}" data-id="${m.id}" style="animation-delay:${i * 0.04}s">
         <div class="t-head">
           <span class="t-title">${esc(m.name)}</span>
           <span class="pill ${m.status === "analyzed" ? "good" : m.status === "failed" ? "bad" : "warn"}">${m.status}</span>
@@ -718,7 +722,7 @@ async function viewSearch() {
           <span class="k">size</span><span class="v">${fmtBytes(m.size_bytes)}</span>
         </div>
         ${m.status === "analyzed" ? `<button class="btn small ghost cmp-pick" data-cmp="${m.id}" data-nm="${esc(m.name)}" style="margin-top:10px">⟷ Compare</button>` : ""}
-      </div>`).join("");
+      </a>`).join("");
     $$(".tile.clickable", grid).forEach(c => c.onclick = e => {
       if (e.target.closest(".cmp-pick")) return;
       location.hash = "#/model/" + c.dataset.id;
@@ -890,14 +894,14 @@ async function viewDashboard() {
       <div class="t-head"><span class="t-title">Recent models</span>
         <div class="right"><span class="pill accent">${s.models} total</span></div></div>
       ${d.recent_models.length ? d.recent_models.map(m => `
-        <div class="feed-item" style="cursor:pointer" data-model="${m.id}">
+        <a class="feed-item" href="#/model/${m.id}" data-model="${m.id}">
           <span class="feed-dot" style="background:${m.status === "analyzed" ? "var(--good)" : m.status === "failed" ? "var(--bad)" : "var(--warn)"}"></span>
           <div style="flex:1;min-width:0">
             <div class="tx"><b>${esc(m.name)}</b> <span class="tag-mini">· ${esc(m.framework)} · ${fmtBytes(m.size_bytes)}</span></div>
             <div class="tm">${m.status} · ${timeago(m.created_at)}</div>
           </div>
           <span style="color:var(--faint)">→</span>
-        </div>`).join("") : `<div class="empty" style="padding:24px"><div class="big">◈</div>No models yet. Upload one from a project.</div>`}
+        </a>`).join("") : `<div class="empty" style="padding:24px"><div class="big">◈</div>No models yet. Upload one from a project.</div>`}
     </div>
 
     <div class="tile span4">
@@ -1001,25 +1005,23 @@ async function viewDashboard() {
       if (!grid) return;
       const cards = [];
       if (ins.heaviest_model)
-        cards.push(`<div class="ins-chip" data-model="${ins.heaviest_model.id}">
+        cards.push(`<a class="ins-chip" href="#/model/${ins.heaviest_model.id}">
           <b>${fmtBytes(ins.heaviest_model.size_bytes)}</b>
-          <span>heaviest: ${esc(ins.heaviest_model.name)}</span></div>`);
+          <span>heaviest: ${esc(ins.heaviest_model.name)}</span></a>`);
       if (ins.best_run)
-        cards.push(`<div class="ins-chip" data-model="${ins.best_run.model_id}">
+        cards.push(`<a class="ins-chip" href="#/model/${ins.best_run.model_id}">
           <b>−${ins.best_run.saved}%</b>
-          <span>best win: ${esc(ins.best_run.plan_name)}</span></div>`);
+          <span>best win: ${esc(ins.best_run.plan_name)}</span></a>`);
       if (ins.most_active_project && (ins.most_active_project.jobs || 0) > 0)
-        cards.push(`<div class="ins-chip">
+        cards.push(`<a class="ins-chip" href="#/projects">
           <b>${ins.most_active_project.jobs}</b>
-          <span>jobs through ${esc(ins.most_active_project.name)}</span></div>`);
+          <span>jobs through ${esc(ins.most_active_project.name)}</span></a>`);
       if (ins.pending_jobs > 0)
-        cards.push(`<div class="ins-chip live"><b>${ins.pending_jobs}</b>
-          <span>job${ins.pending_jobs > 1 ? "s" : ""} in flight right now</span></div>`);
+        cards.push(`<a class="ins-chip live" href="#/jobs"><b>${ins.pending_jobs}</b>
+          <span>job${ins.pending_jobs > 1 ? "s" : ""} in flight right now</span></a>`);
       if (cards.length)
         grid.insertAdjacentHTML("afterbegin",
           `<div class="tile span12 ins-strip"><div class="ins-row">${cards.join("")}</div></div>`);
-      $$("[data-model]", grid).forEach(el => el.onclick = () =>
-        el.dataset.model && (location.hash = "#/model/" + el.dataset.model));
     } catch {}
   })();
 
@@ -1099,7 +1101,7 @@ async function viewProjects() {
       const analyzingPct = Math.round(((sb.analyzing || 0) / total) * 100);
       const pendingPct = 100 - analyzedPct - failedPct - analyzingPct;
       return `
-      <div class="tile span4 clickable proj-card ${p.archived ? "archived" : ""}" data-id="${p.id}" style="animation-delay:${i * 0.05}s">
+      <a class="tile span4 clickable proj-card ${p.archived ? "archived" : ""}" href="#/project/${p.id}" data-id="${p.id}" style="animation-delay:${i * 0.05}s">
         <div class="t-head">
           <span class="t-title">${esc(p.name)}</span>
           <div class="right"><span class="pill accent">${p.model_count} model${p.model_count !== 1 ? "s" : ""}</span></div>
@@ -1126,17 +1128,16 @@ async function viewProjects() {
           <button class="btn small ghost" data-arch="${p.id}" title="${p.archived ? "Unarchive" : "Archive (keep data, hide from list)"}">${p.archived ? "↺" : "🗄"}</button>
           <button class="btn small danger" data-del="${p.id}" title="Delete project">×</button>
         </div>
-      </div>`;
+      </a>`;
     }).join("");
-    $$(".tile.clickable", grid).forEach(c => c.onclick = e => {
-      if (e.target.closest("[data-del]")) return;
-      location.hash = "#/project/" + c.dataset.id;
-    });
     $$("[data-arch]", grid).forEach(b => b.onclick = async e => {
       e.stopPropagation();
+      const proj = projects_all.find(x => x.id === b.dataset.arch);
+      const verb = proj?.archived ? "unarchive" : "archive";
       try {
-        await api(`/api/projects/${b.dataset.arch}/${b.dataset.arch && projects_all.find(x => x.id === b.dataset.arch)?.archived ? "unarchive" : "archive"}`, { method: "POST" });
-        toast("Done"); load();
+        await api(`/api/projects/${b.dataset.arch}/${verb}`, { method: "POST" });
+        toast(proj?.archived ? "Project restored to the active list" : "Project archived. Data kept, hidden from the list");
+        load();
       } catch (err) { toast(err.message, true); }
     });
     $("#projSort")?.addEventListener("change", () => load());
@@ -1193,7 +1194,7 @@ async function viewProject(pid) {
   catch (e) { toast(e.message, true); location.hash = "#/projects"; return; }
   document.title = `${p.name} · ModelSmith`;
   shell({ active: "projects",
-    crumbs: `<span data-nav="#/projects" style="cursor:pointer">Projects</span><span class="sep">/</span><b>${esc(p.name)}</b>`,
+    crumbs: `<a class="crumb-link" href="#/projects">Projects</a><span class="sep">/</span><b>${esc(p.name)}</b>`,
     actions: `<button class="btn primary" id="uploadBtn">⬆ Upload model</button>` }, `
     <div class="page-head">
       <div><h1>${esc(p.name)}</h1><div class="sub">${esc(p.description || "")}</div></div>
@@ -1238,7 +1239,7 @@ async function viewProject(pid) {
     ${shown.length ? shown.map((m, i) => {
       const st = m.status === "analyzed" ? "good" : m.status === "failed" ? "bad" : "warn";
       return `
-      <div class="tile span4 clickable model-tile ${selSet.has(m.id) ? "sel" : ""}" data-id="${m.id}" style="animation-delay:${i * 0.05}s">
+      <a class="tile span4 clickable model-tile ${selSet.has(m.id) ? "sel" : ""}" href="${selMode ? "javascript:void(0)" : `#/model/${m.id}`}" data-id="${m.id}" style="animation-delay:${i * 0.05}s">
         ${selMode ? `<span class="sel-check ${selSet.has(m.id) ? "on" : ""}" data-sel="${m.id}"></span>` : ""}
         <div class="t-head">
           <span class="t-title">${esc(m.name)}</span>
@@ -1250,7 +1251,7 @@ async function viewProject(pid) {
           <span class="k">sha256</span><span class="v">${esc((m.sha256 || "").slice(0, 12))}…</span>
           <span class="k">added</span><span class="v">${timeago(m.created_at)}</span>
         </div>
-      </div>`;
+      </a>`;
     }).join("") : `<div class="tile span12"><div class="empty" style="padding:28px">
       No models with status "${esc(filter)}" in this project.</div></div>`}`;
     $$(".fchip", grid).forEach(c => c.onclick = () => drawModels(models, c.dataset.f));
@@ -1310,7 +1311,7 @@ async function viewProject(pid) {
     } catch {}
   })();
 
-  $("#uploadBtn").onclick = () => openModal(`
+  $("#uploadBtn").onclick = () => { openModal(`
     <h3>Upload a model</h3>
     <div class="drop-zone" id="dz">
       <div style="font-size:30px">⬆</div>
@@ -1374,30 +1375,35 @@ async function viewProject(pid) {
       bar.style.background = "var(--bad)";
       return false;
     }, wide: false });
-  const root = $("#modalRoot");
-  const dz = $("#dz", root), fi = $("#mFile", root);
-  const check = () => { $("#mOk", root).disabled = !(fi.files.length && $("#mName", root).value.trim()); };
-  dz.onclick = () => fi.click();
-  dz.ondragover = e => { e.preventDefault(); dz.classList.add("drag"); };
-  dz.ondragleave = () => dz.classList.remove("drag");
-  dz.ondrop = e => { e.preventDefault(); dz.classList.remove("drag"); setFiles([...e.dataTransfer.files]); };
-  fi.onchange = e => setFiles([...e.target.files]);
-  let picked = [];
-  function setFiles(files) {
-    picked = files.filter(f => /\.(pt|pth|onnx)$/i.test(f.name));
-    if (files.length && !picked.length) { toast("Supported formats: .pt, .pth and .onnx", true); return; }
-    if (!picked.length) return;
-    const dt = new DataTransfer(); picked.forEach(f => dt.items.add(f)); fi.files = dt.files;
-    if (!$("#mName", root).value.trim())
-      $("#mName", root).value = picked[0].name.replace(/\.(pt|pth|onnx)$/i, "");
-    dz.innerHTML = picked.length === 1
-      ? `<div style="font-size:30px">📄</div><div>${esc(picked[0].name)}</div>
-         <div class="tag-mini">${fmtBytes(picked[0].size)} · ${esc(picked[0].name.split(".").pop())}</div>`
-      : `<div style="font-size:30px">🗂</div><div>${picked.length} models queued</div>
-         <div class="tag-mini">${picked.map(f => esc(f.name)).slice(0, 3).join(", ")}${picked.length > 3 ? ` +${picked.length - 3} more` : ""}</div>`;
-    check();
+    wireUploadModal();
+  };
+  function wireUploadModal() {
+    const root = $("#modalRoot");
+    const dz = $("#dz", root), fi = $("#mFile", root);
+    if (!dz || !fi) return;
+    const check = () => { $("#mOk", root).disabled = !(fi.files.length && $("#mName", root).value.trim()); };
+    dz.onclick = () => fi.click();
+    dz.ondragover = e => { e.preventDefault(); dz.classList.add("drag"); };
+    dz.ondragleave = () => dz.classList.remove("drag");
+    dz.ondrop = e => { e.preventDefault(); dz.classList.remove("drag"); setFiles([...e.dataTransfer.files]); };
+    fi.onchange = e => setFiles([...e.target.files]);
+    let picked = [];
+    function setFiles(files) {
+      picked = files.filter(f => /\.(pt|pth|onnx)$/i.test(f.name));
+      if (files.length && !picked.length) { toast("Supported formats: .pt, .pth and .onnx", true); return; }
+      if (!picked.length) return;
+      const dt = new DataTransfer(); picked.forEach(f => dt.items.add(f)); fi.files = dt.files;
+      if (!$("#mName", root).value.trim())
+        $("#mName", root).value = picked[0].name.replace(/\.(pt|pth|onnx)$/i, "");
+      dz.innerHTML = picked.length === 1
+        ? `<div style="font-size:30px">📄</div><div>${esc(picked[0].name)}</div>
+           <div class="tag-mini">${fmtBytes(picked[0].size)} · ${esc(picked[0].name.split(".").pop())}</div>`
+        : `<div style="font-size:30px">🗂</div><div>${picked.length} models queued</div>
+           <div class="tag-mini">${picked.map(f => esc(f.name)).slice(0, 3).join(", ")}${picked.length > 3 ? ` +${picked.length - 3} more` : ""}</div>`;
+      check();
+    }
+    $("#mName", root).addEventListener("input", check);
   }
-  $("#mName", root).addEventListener("input", check);
 }
 
 /* ---------------- model detail ---------------- */
@@ -1414,8 +1420,8 @@ async function viewModel(mid, tab = "overview") {
     ["report", "Report"],
   ];
   shell({ active: "projects",
-    crumbs: `<span data-nav="#/projects" style="cursor:pointer">Projects</span><span class="sep">/</span>
-             <span data-nav="#/project/${m.project_id}" style="cursor:pointer">project</span><span class="sep">/</span><b>${esc(m.name)}</b>`,
+    crumbs: `<a class="crumb-link" href="#/projects">Projects</a><span class="sep">/</span>
+             <a class="crumb-link" href="#/project/${m.project_id}">project</a><span class="sep">/</span><b>${esc(m.name)}</b>`,
     actions: `<button class="btn ghost small" id="dlReport">⬇ Report</button>
               <button class="btn ghost small" id="shareModel">🔗 Share</button>
               <button class="btn ghost small" id="renModel">Rename</button>
@@ -1430,8 +1436,8 @@ async function viewModel(mid, tab = "overview") {
         <span class="mono" title="${esc(m.sha256 || "")}" style="cursor:copy" id="shaLine">${esc((m.sha256 || "").slice(0, 16))}…</span>
         <button class="copy-btn" data-copy="${esc(m.sha256 || "")}" title="Copy full SHA-256">⧉</button></div></div>
     </div>
-    <div class="tabs" id="mTabs">${tabs.map(([k, l]) =>
-      `<div class="tab ${k === tab ? "active" : ""}" data-tab="${k}">${l}</div>`).join("")}</div>
+    <div class="tabs" id="mTabs" role="tablist">${tabs.map(([k, l]) =>
+      `<button class="tab ${k === tab ? "active" : ""}" role="tab" aria-selected="${k === tab}" data-tab="${k}">${l}</button>`).join("")}</div>
     <div id="tabBody"></div>`);
   $$("#mTabs .tab").forEach(t => t.onclick = () => viewModel(mid, t.dataset.tab));
   $$("[data-copy]").forEach(b => b.onclick = () => copyText(b.dataset.copy, "SHA-256 copied"));
@@ -2237,7 +2243,7 @@ async function viewCompare(idA, idB) {
       <div class="chart-box" style="margin-top:12px" id="cmpDonut-${m.id}"></div>
     </div>`;
   shell({ active: "projects",
-    crumbs: `<span data-nav="#/search" style="cursor:pointer">Search</span><span class="sep">/</span><b>Compare</b>` }, `
+    crumbs: `<a class="crumb-link" href="#/search">Search</a><span class="sep">/</span><b>Compare</b>` }, `
     <div class="page-head">
       <div><h1>Model comparison</h1>
       <div class="sub">Side by side, with the better value on each metric highlighted.</div></div>
