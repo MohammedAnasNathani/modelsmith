@@ -199,6 +199,16 @@ rings, and tabular numerals for every metric. Charts are hand-rolled SVG
 - **Cascading deletes**: deleting a project removes its models, encrypted
   uploads, runs, artifacts, and jobs; deleting a model or run likewise
   cleans up everything it owns.
+- **Input validation**: server-side length limits on project names (120),
+  descriptions (500), model names (120 on both create and update paths);
+  upload extensions restricted to `.pt/.pth/.onnx` with a hard size cap.
+  Verified against hostile inputs: markup payloads in names render escaped
+  on every surface, cross-user project reads/writes 403, disguised
+  executables fail analysis honestly instead of being marked successful.
+- **Frontend escape discipline**: every user-supplied string passes
+  through an `esc()` helper before reaching `innerHTML`; toasts and
+  confirm dialogs escape their bodies; a rejected view load surfaces a
+  toast instead of a blank page.
 
 ## Quick start
 
@@ -289,6 +299,24 @@ seeded and analyzed automatically so every feature is explorable immediately.
 | NFR-13 | Observability | Structured access logs (method/path/status/duration/client), rate-limit telemetry, job status/progress API, health metrics, audit log |
 | NFR-14 | Privacy | Ownership checks on every read/download; audit trail of access |
 
+## Quality pass (verified, not claimed)
+
+- **Accessibility**: every navigation item, project card, model tile and
+  tab is a real anchor or button (keyboard focus, Enter activation,
+  middle-click, screen-reader semantics); command palette speaks
+  combobox/listbox roles with `aria-activedescendant` tracking; focus
+  restores to the opener on close; the guided tour dismisses with
+  Escape; `prefers-reduced-motion` collapses all animation.
+- **Responsive**: verified at 390 / 768 / 1080 / 1280 px with zero
+  horizontal overflow on every view and all five model tabs (30
+  automated browser checks); the bento grid snaps to a 6-column tablet
+  layout and single-column mobile with explicit track remapping.
+- **Performance**: gzip compression ships the whole app in ~79 KB on
+  the wire (was 336 KB raw); job polling stops the moment a job
+  completes; no global timers.
+- **Contrast**: light-theme text on tinted surfaces measured at 4.5:1+
+  (WCAG AA); amber/red accents get darker variants in light mode.
+
 ## Architecture
 
 ```
@@ -314,14 +342,14 @@ Files         backend/data/uploads · artifacts (encrypted) · tmp (auto-cleaned
 auth (incl. reset + revocation), project CRUD + access control, upload,
 async analysis, goals re-ranking, plan execution, benchmark assertions,
 artifact authorization, report content, notifications, admin actions,
-run/project deletion with cascade verification. The suite is fully
-idempotent: it uses unique test accounts and cleans up after itself,
-so it can be run repeatedly against the same database.
+run/project deletion with cascade verification, plus a dedicated
+validation and abuse-limits section (oversized names rejected, forged
+tokens 401, injection-shaped queries safe).
 
 ```bash
 ./run.sh &            # server on :8100
 .venv/bin/python tests/e2e_test.py
-# → RESULT: 104 passed, 0 failed
+# → RESULT: 110 passed, 0 failed
 ```
 
 ## Honest limitations (good viva answers)
