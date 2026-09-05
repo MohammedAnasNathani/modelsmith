@@ -1,4 +1,4 @@
-"""FR-14 Reports: markdown reports for analysis, optimization and benchmarks."""
+"""Markdown reports for analysis, optimization and benchmarks."""
 from __future__ import annotations
 
 from .database import uj
@@ -23,7 +23,7 @@ def model_report(model: dict, runs: list[dict]) -> str:
         f"- **Uploaded:** {model['created_at']}",
         f"- **SHA-256:** `{model['sha256']}`",
         "",
-        "## 1. Analysis (FR-04)",
+        "## 1. Model analysis",
         "",
         "| Metric | Value |",
         "|---|---|",
@@ -47,7 +47,7 @@ def model_report(model: dict, runs: list[dict]) -> str:
 
     lines += [
         "",
-        "## 2. Profiling (FR-05)",
+        "## 2. Benchmark profile",
         "",
         f"- Measured latency (CPU): **{bench.get('latency_ms', '-')} ms** mean, "
         f"{bench.get('p95_ms', '-')} ms p95 over {bench.get('runs', 0)} runs",
@@ -60,13 +60,13 @@ def model_report(model: dict, runs: list[dict]) -> str:
 
     lines += [
         "",
-        "## 3. Deployment goals (FR-06)",
+        "## 3. Deployment goals",
         "",
         f"- Objective: `{goals.get('objective', 'balanced')}`",
         f"- Target hardware: `{goals.get('target_hardware', 'cpu-server')}`",
         f"- Minimum accuracy retention: {goals.get('min_accuracy_pct', '-')}%",
         "",
-        "## 4. Ranked optimization plans (FR-07/08/09)",
+        "## 4. Ranked optimization plans",
         "",
         "| # | Plan | Techniques | Size ↓ | Latency ↓ | Acc. retention |",
         "|---|---|---|---|---|---|",
@@ -83,7 +83,7 @@ def model_report(model: dict, runs: list[dict]) -> str:
             lines.append(f"- `{p['plan_id']}`: {'; '.join(p['rejected_because'])}")
 
     if runs:
-        lines += ["", "## 5. Execution history & benchmarks (FR-11/12)"]
+        lines += ["", "## 5. Execution history & benchmarks"]
         for r in runs:
             bm = uj(r.get("benchmark"), {}) or {}
             base, opt = bm.get("baseline", {}), bm.get("optimized", {})
@@ -108,7 +108,7 @@ def model_report(model: dict, runs: list[dict]) -> str:
                 v = repro.get("versions", {})
                 lines += [
                     "",
-                    "<details><summary>Reproducibility metadata (NFR-09)</summary>",
+                    "<details><summary>Reproducibility metadata</summary>",
                     "",
                     "```json",
                     str(repro).replace("'", '"'),

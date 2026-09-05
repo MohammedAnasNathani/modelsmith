@@ -1,1 +1,3418 @@
-{"_meta": {"captured_at": 1788223277.814492}, "health": {"status": "ok", "service": "modelsmith", "version": "1.0.0", "uptime_seconds": 53.0, "checks": {"database": {"ok": true}}, "counts": {"users": 9, "models": 3, "jobs": {"success": 7}}, "queue_depth": 0, "queue_lag_seconds": 0.0, "data_dir_mb": 315.9, "versions": {"torch": "2.13.0", "onnxruntime": "1.28.0"}}, "config": {"max_upload_mb": 500, "benchmark_runs": 30, "token_ttl_hours": 12.0, "job_workers": 2, "version": "1.0.0", "rate_limits": {"general_per_min": 300, "auth_failed_per_min": 20}}, "me": {"id": "u_4084a36670b3", "email": "demo@modelsmith.io", "full_name": "Demo Engineer", "role": "member", "is_active": 1, "created_at": 1786730648.0779579}, "session": {"issued_at": 1788223277, "expires_at": 1788266477, "seconds_remaining": 43199, "ttl_hours": 12.0}, "activity": {"activity": [{"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788223277.808484}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788223231.231084}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788222218.480984}, {"action": "share", "entity": "model", "entity_id": "m_6ce295ae6f89", "detail": "2gBchA", "created_at": 1788219900.558097}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788219899.5100281}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788219865.880487}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788219865.256066}, {"action": "delete", "entity": "project", "entity_id": "p_9199489b6bcf", "detail": "E2E Renamed", "created_at": 1788219048.6686678}, {"action": "delete", "entity": "run", "entity_id": "run_b9dac7e2547c", "detail": "Size + speed", "created_at": 1788219048.6619031}, {"action": "share", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "ZcEjDH", "created_at": 1788219048.646496}, {"action": "unarchive", "entity": "project", "entity_id": "p_9199489b6bcf", "detail": null, "created_at": 1788219048.617352}, {"action": "archive", "entity": "project", "entity_id": "p_9199489b6bcf", "detail": null, "created_at": 1788219048.6146402}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788219048.611}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788219048.609039}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "Renamed E2E Model -> MNIST Digit CNN (MLP-tail)", "created_at": 1788219048.576513}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail) -> Renamed E2E Model", "created_at": 1788219048.572261}, {"action": "execute_done", "entity": "run", "entity_id": "run_b9dac7e2547c", "detail": "success", "created_at": 1788219046.883381}, {"action": "execute", "entity": "run", "entity_id": "run_b9dac7e2547c", "detail": "deep-cut", "created_at": 1788219046.447443}, {"action": "analyze", "entity": "model", "entity_id": "m_a05b33f86eb0", "detail": "arch=mlp", "created_at": 1788219044.479441}, {"action": "upload", "entity": "model", "entity_id": "m_a05b33f86eb0", "detail": "E2E MLP (817693 bytes)", "created_at": 1788219044.381689}, {"action": "set_goals", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "balanced", "created_at": 1788219042.720002}, {"action": "set_goals", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "min_size", "created_at": 1788219042.7137558}, {"action": "update", "entity": "project", "entity_id": "p_9199489b6bcf", "detail": null, "created_at": 1788219042.6959171}, {"action": "create", "entity": "project", "entity_id": "p_9199489b6bcf", "detail": "E2E Test Project", "created_at": 1788219042.6820889}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788219041.394293}, {"action": "delete", "entity": "project", "entity_id": "p_3cbabb62c1f7", "detail": "E2E Renamed", "created_at": 1788217228.396089}, {"action": "delete", "entity": "run", "entity_id": "run_3a783d505a67", "detail": "Size + speed", "created_at": 1788217228.389534}, {"action": "share", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "R8piP7", "created_at": 1788217228.375686}, {"action": "unarchive", "entity": "project", "entity_id": "p_3cbabb62c1f7", "detail": null, "created_at": 1788217228.3490062}, {"action": "archive", "entity": "project", "entity_id": "p_3cbabb62c1f7", "detail": null, "created_at": 1788217228.3454568}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788217228.341331}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788217228.338785}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "Renamed E2E Model -> MNIST Digit CNN (MLP-tail)", "created_at": 1788217228.3108218}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail) -> Renamed E2E Model", "created_at": 1788217228.3078551}, {"action": "execute_done", "entity": "run", "entity_id": "run_3a783d505a67", "detail": "success", "created_at": 1788217226.5909262}, {"action": "execute", "entity": "run", "entity_id": "run_3a783d505a67", "detail": "deep-cut", "created_at": 1788217226.190542}, {"action": "analyze", "entity": "model", "entity_id": "m_4c015fb61608", "detail": "arch=mlp", "created_at": 1788217224.235289}, {"action": "upload", "entity": "model", "entity_id": "m_4c015fb61608", "detail": "E2E MLP (817693 bytes)", "created_at": 1788217224.146446}, {"action": "set_goals", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "balanced", "created_at": 1788217222.5526242}, {"action": "set_goals", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "min_size", "created_at": 1788217222.5396018}, {"action": "update", "entity": "project", "entity_id": "p_3cbabb62c1f7", "detail": null, "created_at": 1788217222.519924}, {"action": "create", "entity": "project", "entity_id": "p_3cbabb62c1f7", "detail": "E2E Test Project", "created_at": 1788217222.5072389}, {"action": "login", "entity": "user", "entity_id": "u_4084a36670b3", "detail": null, "created_at": 1788217221.2374651}, {"action": "delete", "entity": "project", "entity_id": "p_33e07c2be34f", "detail": "E2E Renamed", "created_at": 1788216423.795988}, {"action": "delete", "entity": "run", "entity_id": "run_ce2d93bb003f", "detail": "Size + speed", "created_at": 1788216423.789909}, {"action": "share", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "64CJvp", "created_at": 1788216423.7707121}, {"action": "unarchive", "entity": "project", "entity_id": "p_33e07c2be34f", "detail": null, "created_at": 1788216423.738747}, {"action": "archive", "entity": "project", "entity_id": "p_33e07c2be34f", "detail": null, "created_at": 1788216423.7351801}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788216423.727731}, {"action": "update", "entity": "model", "entity_id": "m_8d95c929ee8a", "detail": "MNIST Digit CNN (MLP-tail): metadata", "created_at": 1788216423.722934}]}, "dashboard": {"stats": {"projects": 1, "models": 3, "analyzed": 3, "runs": 4, "saved_mb": 0, "storage_mb": 65.6}, "recent_jobs": [{"id": "job_48fa0f82e231", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1787332707.0708532}, {"id": "job_9f7221706358", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1787332639.9898298}, {"id": "job_b582928ce3d8", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1786923631.7073019}, {"id": "job_f5736aca7b16", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1786762840.3223119}, {"id": "job_d26dfb8f135d", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.803613}, {"id": "job_675d13eb8336", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.1369119}, {"id": "job_57d0fa617bac", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.1099331}], "recent_models": [{"id": "m_6ce295ae6f89", "name": "ResNet-18 (random init)", "status": "analyzed", "framework": "pytorch", "size_bytes": 46848011, "created_at": 1786730648.803227}, {"id": "m_6df0e94e24ee", "name": "CIFAR-10 CNN", "status": "analyzed", "framework": "pytorch", "size_bytes": 2287320, "created_at": 1786730648.136788}, {"id": "m_8d95c929ee8a", "name": "MNIST Digit CNN (MLP-tail)", "status": "analyzed", "framework": "pytorch", "size_bytes": 93837, "created_at": 1786730648.109846}], "health": {"status": "ok", "service": "modelsmith", "version": "1.0.0", "uptime_seconds": 53.0, "checks": {"database": {"ok": true}}, "counts": {"users": 9, "models": 3, "jobs": {"success": 7}}, "queue_depth": 0, "queue_lag_seconds": 0.0, "data_dir_mb": 315.9, "versions": {"torch": "2.13.0", "onnxruntime": "1.28.0"}}}, "dashboard_stats": {"status_breakdown": {"analyzed": 3}, "frameworks": {"pytorch": 3}, "total_params": 12279826, "avg_saved_pct": 108.8}, "dashboard_activity": {"days": [{"day": "2026-08-14", "cnt": 3}, {"day": "2026-08-15", "cnt": 1}, {"day": "2026-08-17", "cnt": 1}, {"day": "2026-08-21", "cnt": 2}]}, "insights": {"heaviest_model": {"id": "m_6ce295ae6f89", "name": "ResNet-18 (random init)", "size_bytes": 46848011, "status": "analyzed"}, "best_run": {"id": "run_99bf6615ba85", "plan_name": "Size + speed", "model_id": "m_8d95c929ee8a", "model_name": "MNIST Digit CNN (MLP-tail)", "saved": 51.1, "opt_mb": 0.135}, "most_active_project": {"id": "p_8575cf3c913f", "name": "Demo Optimization Lab", "jobs": 7}, "pending_jobs": 0}, "achievements": {"achievements": [{"id": "first_blood", "name": "First Steps", "desc": "Upload your first model", "icon": "\u25c8", "earned": true}, {"id": "reader", "name": "Know Your Layers", "desc": "Complete a full analysis", "icon": "\u25ce", "earned": true}, {"id": "operator", "name": "Pipeline Operator", "desc": "Execute a plan end to end", "icon": "\u2699", "earned": true}, {"id": "half_way", "name": "The 50% Club", "desc": "Cut a model's size by half or more", "icon": "\u2702", "earned": true}, {"id": "eighty_club", "name": "The 80% Club", "desc": "Ship something 80% smaller", "icon": "\u2605", "earned": false}, {"id": "collector", "name": "Collector", "desc": "Hold five models at once", "icon": "\u25a4", "earned": false}, {"id": "forge_master", "name": "Forge Master", "desc": "Land ten successful runs", "icon": "\u265c", "earned": false}, {"id": "polyglot", "name": "Polyglot", "desc": "Work in both PyTorch and ONNX", "icon": "\u21c4", "earned": false}, {"id": "night_owl", "name": "Night Shift", "desc": "Run a job between midnight and 5am", "icon": "\u263e", "earned": false}, {"id": "repeat_customer", "name": "Trust but Verify", "desc": "Execute the same plan twice", "icon": "\u21bb", "earned": true}, {"id": "librarian", "name": "Librarian", "desc": "Leave notes on a model", "icon": "\u270e", "earned": true}, {"id": "tagger", "name": "Tag, You're It", "desc": "Tag a model for later", "icon": "\ud83c\udff7", "earned": true}], "earned_count": 7, "total": 12, "counters": {"models": 3, "analyzed": 3, "runs": 4, "best_save": 51.1}}, "projects": {"projects": [{"id": "p_8575cf3c913f", "owner_id": "u_4084a36670b3", "name": "Demo Optimization Lab", "description": "Sample project seeded with three models of different shapes to explore the full ModelSmith workflow.", "created_at": 1786730648.078479, "updated_at": 1786730648.078479, "archived": 0, "model_count": 3, "run_count": 4, "status_breakdown": {"analyzed": 3}, "total_bytes": 49229168, "latest_activity": 1788219048.610983}], "has_archived": false}, "notifications": {"notifications": [{"id": "n_c95145688bc3", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 0, "created_at": 1788219048.626278}, {"id": "n_d8bf80beb3c1", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788219046.8833642}, {"id": "n_0a4e992bd722", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788219046.4473379}, {"id": "n_a8f491e74fd3", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788219044.4794219}, {"id": "n_7bad493b45d6", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788219044.3892329}, {"id": "n_a011dca23a31", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 1, "created_at": 1788217228.357486}, {"id": "n_c85796c182e6", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788217226.590104}, {"id": "n_e6ff6d02ac0b", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788217226.190392}, {"id": "n_283a0fd20a48", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788217224.2352672}, {"id": "n_5df52ff776b6", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788217224.1476061}, {"id": "n_d97b2457587f", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 1, "created_at": 1788216423.7471511}, {"id": "n_f66318faad3c", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788216422.119117}, {"id": "n_4e3fab9c50a3", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788216421.577308}, {"id": "n_bce4cd7c739a", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788216419.647446}, {"id": "n_ac31988455c8", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788216419.5438}, {"id": "n_7b2b6647de95", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 1, "created_at": 1788214946.4488761}, {"id": "n_b0bc1876de63", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788214944.798579}, {"id": "n_084d9213692d", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788214944.274833}, {"id": "n_e9bb985eabd4", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788214942.285568}, {"id": "n_71995e317898", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788214942.233133}, {"id": "n_87a0d1c18816", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 1, "created_at": 1788212429.9114408}, {"id": "n_a7bc950dfdd1", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788212427.944774}, {"id": "n_dcaabccc464e", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788212427.751521}, {"id": "n_f6677cd8c1f5", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788212425.737233}, {"id": "n_4b36e35dcc76", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788212425.704283}, {"id": "n_b6445001e9c5", "user_id": "u_4084a36670b3", "kind": "info", "title": "e2e check", "body": "broadcast pipe test", "is_read": 1, "created_at": 1788212408.804231}, {"id": "n_b3a7b97e61d7", "user_id": "u_4084a36670b3", "kind": "success", "title": "Optimization complete", "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%", "is_read": 1, "created_at": 1788212407.49674}, {"id": "n_516a9b1f7d1f", "user_id": "u_4084a36670b3", "kind": "info", "title": "Optimization started", "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'", "is_read": 1, "created_at": 1788212406.654546}, {"id": "n_9681d265817c", "user_id": "u_4084a36670b3", "kind": "success", "title": "Analysis complete", "body": "'E2E MLP' analyzed: 6 valid plans ranked", "is_read": 1, "created_at": 1788212404.671731}, {"id": "n_4d1379d5f8d0", "user_id": "u_4084a36670b3", "kind": "info", "title": "Analysis started", "body": "Model 'E2E MLP' queued for analysis", "is_read": 1, "created_at": 1788212404.611263}], "unread": 1}, "jobs": {"jobs": [{"id": "job_48fa0f82e231", "type": "execute", "ref_id": "run_950a887a9d2d", "model_id": "m_8d95c929ee8a", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1787332707.0708532, "started_at": 1787332707.0739882, "finished_at": 1787332707.438251}, {"id": "job_9f7221706358", "type": "execute", "ref_id": "run_99bf6615ba85", "model_id": "m_8d95c929ee8a", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1787332639.9898298, "started_at": 1787332639.992109, "finished_at": 1787332640.6588101}, {"id": "job_b582928ce3d8", "type": "execute", "ref_id": "run_80017d17c71c", "model_id": "m_6ce295ae6f89", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1786923631.7073019, "started_at": 1786923631.708263, "finished_at": 1786923639.8045099}, {"id": "job_f5736aca7b16", "type": "execute", "ref_id": "run_a6ca85692d4a", "model_id": "m_6ce295ae6f89", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1786762840.3223119, "started_at": 1786762840.323296, "finished_at": 1786762846.7676952}, {"id": "job_d26dfb8f135d", "type": "analyze", "ref_id": "m_6ce295ae6f89", "model_id": "m_6ce295ae6f89", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1786730648.803613, "started_at": 1786730648.821876, "finished_at": 1786730649.37711}, {"id": "job_675d13eb8336", "type": "analyze", "ref_id": "m_6df0e94e24ee", "model_id": "m_6df0e94e24ee", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1786730648.1369119, "started_at": 1786730648.137876, "finished_at": 1786730648.201507}, {"id": "job_57d0fa617bac", "type": "analyze", "ref_id": "m_8d95c929ee8a", "model_id": "m_8d95c929ee8a", "status": "success", "progress": 100, "message": "completed", "error": null, "attempts": 1, "created_at": 1786730648.1099331, "started_at": 1786730648.1106281, "finished_at": 1786730648.177283}]}, "search_results": {"results": [{"id": "m_6ce295ae6f89", "name": "ResNet-18 (random init)", "framework": "pytorch", "status": "analyzed", "size_bytes": 46848011, "created_at": 1786730648.803227, "project_id": "p_8575cf3c913f", "project": "Demo Optimization Lab"}, {"id": "m_6df0e94e24ee", "name": "CIFAR-10 CNN", "framework": "pytorch", "status": "analyzed", "size_bytes": 2287320, "created_at": 1786730648.136788, "project_id": "p_8575cf3c913f", "project": "Demo Optimization Lab"}, {"id": "m_8d95c929ee8a", "name": "MNIST Digit CNN (MLP-tail)", "framework": "pytorch", "status": "analyzed", "size_bytes": 93837, "created_at": 1786730648.109846, "project_id": "p_8575cf3c913f", "project": "Demo Optimization Lab"}], "total": 3, "scanned": 3}, "project_p_8575cf3c913f": {"id": "p_8575cf3c913f", "owner_id": "u_4084a36670b3", "name": "Demo Optimization Lab", "description": "Sample project seeded with three models of different shapes to explore the full ModelSmith workflow.", "created_at": 1786730648.078479, "updated_at": 1786730648.078479, "archived": 0, "models": [{"id": "m_6ce295ae6f89", "name": "ResNet-18 (random init)", "framework": "pytorch", "status": "analyzed", "size_bytes": 46848011, "created_at": 1786730648.803227, "sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c", "analyzed": true}, {"id": "m_6df0e94e24ee", "name": "CIFAR-10 CNN", "framework": "pytorch", "status": "analyzed", "size_bytes": 2287320, "created_at": 1786730648.136788, "sha256": "3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5", "analyzed": true}, {"id": "m_8d95c929ee8a", "name": "MNIST Digit CNN (MLP-tail)", "framework": "pytorch", "status": "analyzed", "size_bytes": 93837, "created_at": 1786730648.109846, "sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6", "analyzed": true}], "model_count": 3, "run_count": 4}, "projectstats_p_8575cf3c913f": {"models": 3, "total_bytes": 49229168, "total_params": 12279826, "best_run": {"plan_name": "Size + speed", "saved": 51.1, "opt_mb": 0.135, "model": "MNIST Digit CNN (MLP-tail)"}, "heaviest_model": {"name": "ResNet-18 (random init)", "size_bytes": 46848011}}, "model_m_6ce295ae6f89": {"id": "m_6ce295ae6f89", "project_id": "p_8575cf3c913f", "name": "ResNet-18 (random init)", "framework": "pytorch", "orig_name": "demo_model.pt", "size_bytes": 46848011, "sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c", "status": "analyzed", "error": null, "analysis": {"framework": "pytorch", "input_shape": [3, 32, 32], "total_params": 11689512, "param_size_mb": 46.758, "file_size_mb": 46.848, "total_flops": 75199488, "layer_count": 59, "layers": [{"name": "layer4.0.conv2", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}, {"name": "layer4.1.conv1", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}, {"name": "layer4.1.conv2", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}, {"name": "layer4.0.conv1", "type": "Conv2d", "params": 1179648, "size_bytes": 4718592, "dtype": "float32", "flops": 2359296}, {"name": "layer3.0.conv2", "type": "Conv2d", "params": 589824, "size_bytes": 2359296, "dtype": "float32", "flops": 4718592}, {"name": "layer3.1.conv1", "type": "Conv2d", "params": 589824, "size_bytes": 2359296, "dtype": "float32", "flops": 4718592}, {"name": "layer3.1.conv2", "type": "Conv2d", "params": 589824, "size_bytes": 2359296, "dtype": "float32", "flops": 4718592}, {"name": "fc", "type": "Linear", "params": 513000, "size_bytes": 2052000, "dtype": "float32", "flops": 1024000}, {"name": "layer3.0.conv1", "type": "Conv2d", "params": 294912, "size_bytes": 1179648, "dtype": "float32", "flops": 2359296}, {"name": "layer2.0.conv2", "type": "Conv2d", "params": 147456, "size_bytes": 589824, "dtype": "float32", "flops": 4718592}, {"name": "layer2.1.conv1", "type": "Conv2d", "params": 147456, "size_bytes": 589824, "dtype": "float32", "flops": 4718592}, {"name": "layer2.1.conv2", "type": "Conv2d", "params": 147456, "size_bytes": 589824, "dtype": "float32", "flops": 4718592}, {"name": "layer4.0.downsample.0", "type": "Conv2d", "params": 131072, "size_bytes": 524288, "dtype": "float32", "flops": 262144}, {"name": "layer2.0.conv1", "type": "Conv2d", "params": 73728, "size_bytes": 294912, "dtype": "float32", "flops": 2359296}, {"name": "layer1.0.conv1", "type": "Conv2d", "params": 36864, "size_bytes": 147456, "dtype": "float32", "flops": 4718592}, {"name": "layer1.0.conv2", "type": "Conv2d", "params": 36864, "size_bytes": 147456, "dtype": "float32", "flops": 4718592}, {"name": "layer1.1.conv1", "type": "Conv2d", "params": 36864, "size_bytes": 147456, "dtype": "float32", "flops": 4718592}, {"name": "layer1.1.conv2", "type": "Conv2d", "params": 36864, "size_bytes": 147456, "dtype": "float32", "flops": 4718592}, {"name": "layer3.0.downsample.0", "type": "Conv2d", "params": 32768, "size_bytes": 131072, "dtype": "float32", "flops": 262144}, {"name": "conv1", "type": "Conv2d", "params": 9408, "size_bytes": 37632, "dtype": "float32", "flops": 4816896}, {"name": "layer2.0.downsample.0", "type": "Conv2d", "params": 8192, "size_bytes": 32768, "dtype": "float32", "flops": 262144}, {"name": "layer4.0.bn1", "type": "BatchNorm2d", "params": 1024, "size_bytes": 4096, "dtype": "float32", "flops": 1024}, {"name": "layer4.0.bn2", "type": "BatchNorm2d", "params": 1024, "size_bytes": 4096, "dtype": "float32", "flops": 1024}, {"name": "layer4.0.downsample.1", "type": "BatchNorm2d", "params": 1024, "size_bytes": 4096, "dtype": "float32", "flops": 1024}, {"name": "layer4.1.bn1", "type": "BatchNorm2d", "params": 1024, "size_bytes": 4096, "dtype": "float32", "flops": 1024}, {"name": "layer4.1.bn2", "type": "BatchNorm2d", "params": 1024, "size_bytes": 4096, "dtype": "float32", "flops": 1024}, {"name": "layer3.0.bn1", "type": "BatchNorm2d", "params": 512, "size_bytes": 2048, "dtype": "float32", "flops": 2048}, {"name": "layer3.0.bn2", "type": "BatchNorm2d", "params": 512, "size_bytes": 2048, "dtype": "float32", "flops": 2048}, {"name": "layer3.0.downsample.1", "type": "BatchNorm2d", "params": 512, "size_bytes": 2048, "dtype": "float32", "flops": 2048}, {"name": "layer3.1.bn1", "type": "BatchNorm2d", "params": 512, "size_bytes": 2048, "dtype": "float32", "flops": 2048}, {"name": "layer3.1.bn2", "type": "BatchNorm2d", "params": 512, "size_bytes": 2048, "dtype": "float32", "flops": 2048}, {"name": "layer2.0.bn1", "type": "BatchNorm2d", "params": 256, "size_bytes": 1024, "dtype": "float32", "flops": 4096}, {"name": "layer2.0.bn2", "type": "BatchNorm2d", "params": 256, "size_bytes": 1024, "dtype": "float32", "flops": 4096}, {"name": "layer2.0.downsample.1", "type": "BatchNorm2d", "params": 256, "size_bytes": 1024, "dtype": "float32", "flops": 4096}, {"name": "layer2.1.bn1", "type": "BatchNorm2d", "params": 256, "size_bytes": 1024, "dtype": "float32", "flops": 4096}, {"name": "layer2.1.bn2", "type": "BatchNorm2d", "params": 256, "size_bytes": 1024, "dtype": "float32", "flops": 4096}, {"name": "bn1", "type": "BatchNorm2d", "params": 128, "size_bytes": 512, "dtype": "float32", "flops": 32768}, {"name": "layer1.0.bn1", "type": "BatchNorm2d", "params": 128, "size_bytes": 512, "dtype": "float32", "flops": 8192}, {"name": "layer1.0.bn2", "type": "BatchNorm2d", "params": 128, "size_bytes": 512, "dtype": "float32", "flops": 8192}, {"name": "layer1.1.bn1", "type": "BatchNorm2d", "params": 128, "size_bytes": 512, "dtype": "float32", "flops": 8192}], "benchmark": {"latency_ms": 4.4553, "p95_ms": 6.2506, "throughput_fps": 224.5, "runs": 30, "runtime": "pytorch-cpu"}, "arch": "cnn", "conv_param_share_pct": 95.5, "bottlenecks": {"top_layers": [{"name": "layer4.0.conv2", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}, {"name": "layer4.1.conv1", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}, {"name": "layer4.1.conv2", "type": "Conv2d", "params": 2359296, "size_bytes": 9437184, "dtype": "float32", "flops": 4718592}], "param_concentration_pct": 60.5, "notes": ["Conv2d layer 'layer4.0.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.", "Conv2d layer 'layer4.1.conv1' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.", "Conv2d layer 'layer4.1.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.", "Convolution-heavy: structured pruning + ONNX/TensorRT graph optimization usually give the largest latency gains.", "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."]}, "memory_estimate_mb": 121.9575, "environment": {"python": "3.11.12", "machine": "arm64", "system": "Darwin"}}, "goals": {"objective": "min_size", "target_hardware": "mobile", "max_latency_ms": null, "max_size_mb": null, "min_accuracy_pct": 98}, "plans": {"objective": "min_size", "target_hardware": "mobile", "hardware": {"label": "Mobile", "memory_mb": 1024, "precisions": ["int8"], "runtimes": ["TFLite", "Core ML", "SNPE"], "preferred": ["int8", "onnx"]}, "valid": [{"plan_id": "edge-lite", "tagline": "Compact + fast", "techniques": ["int8", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 11.6895, "size_saved_pct": 75.0, "latency_ms": 2.6509, "latency_gain_pct": 40.5, "memory_mb": 16.8329, "memory_saved_pct": 70.0, "accuracy_retention_pct": 98.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 75.5, "rank": 1, "recommended": true}, {"plan_id": "speed", "tagline": "Latency focused", "techniques": ["prune20", "onnx"], "technique_labels": ["Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 37.4064, "size_saved_pct": 20.0, "latency_ms": 3.1053, "latency_gain_pct": 30.3, "memory_mb": 46.0099, "memory_saved_pct": 18.0, "accuracy_retention_pct": 98.0}, "reasons": ["Matches target runtimes int8, onnx", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 36.33, "rank": 2, "recommended": false}], "rejected": [{"plan_id": "edge-max", "tagline": "Smallest footprint", "techniques": ["int8", "prune40", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Aggressive Pruning (40%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 7.2475, "size_saved_pct": 84.5, "latency_ms": 1.8026, "latency_gain_pct": 59.5, "memory_mb": 11.783, "memory_saved_pct": 79.0, "accuracy_retention_pct": 92.6}, "reasons": ["Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "rejected_because": ["Predicted accuracy retention 92.6% is below your 98.0% minimum."]}, {"plan_id": "half", "tagline": "Precision focused", "techniques": ["fp16", "onnx"], "technique_labels": ["FP16 Half Precision", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 23.379, "size_saved_pct": 50.0, "latency_ms": 3.4083, "latency_gain_pct": 23.5, "memory_mb": 28.0548, "memory_saved_pct": 50.0, "accuracy_retention_pct": 99.9}, "reasons": ["Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "rejected_because": ["Mobile does not reliably support FP16."]}, {"plan_id": "balanced", "tagline": "Trade-off blend", "techniques": ["int8", "prune20"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)"], "auto_executable": true, "predicted": {"size_mb": 9.3516, "size_saved_pct": 80.0, "latency_ms": 2.5573, "latency_gain_pct": 42.6, "memory_mb": 13.803, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression."], "rejected_because": ["Predicted accuracy retention 96.5% is below your 98.0% minimum."]}, {"plan_id": "max-speed", "tagline": "GPU throughput", "techniques": ["fp16", "tensorrt"], "technique_labels": ["FP16 Half Precision", "TensorRT Build (guided)"], "auto_executable": false, "predicted": {"size_mb": 23.379, "size_saved_pct": 50.0, "latency_ms": 1.8044, "latency_gain_pct": 59.5, "memory_mb": 22.4438, "memory_saved_pct": 60.0, "accuracy_retention_pct": 99.9}, "reasons": ["Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."], "rejected_because": ["TensorRT requires a GPU server target.", "Mobile does not reliably support FP16."]}, {"plan_id": "deep-cut", "tagline": "Size + speed", "techniques": ["int8", "prune20", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 9.3516, "size_saved_pct": 80.0, "latency_ms": 2.1737, "latency_gain_pct": 51.2, "memory_mb": 13.803, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "rejected_because": ["Predicted accuracy retention 96.5% is below your 98.0% minimum."]}, {"plan_id": "distill", "tagline": "Smallest via retraining", "techniques": ["distill"], "technique_labels": ["Knowledge Distillation (guided)"], "auto_executable": false, "predicted": {"size_mb": 14.0274, "size_saved_pct": 70.0, "latency_ms": 1.7821, "latency_gain_pct": 60.0, "memory_mb": 19.6384, "memory_saved_pct": 65.0, "accuracy_retention_pct": 97.0}, "reasons": ["Train a smaller student against this model \u2014 needs training data and multiple retraining cycles."], "rejected_because": ["Predicted accuracy retention 97.0% is below your 98.0% minimum."]}]}, "uploaded_by": "u_4084a36670b3", "created_at": 1786730648.803227, "updated_at": 1787347183.4563258, "notes": "ResNet baseline for the vision API", "tags": ["vision", "baseline"], "efficiency_score": 66, "runs": [{"id": "run_80017d17c71c", "model_id": "m_6ce295ae6f89", "plan_id": "edge-lite", "plan_name": "Compact + fast", "user_id": "u_4084a36670b3", "status": "success", "steps": [{"technique": "onnx", "label": "ONNX Export", "status": "success", "note": "Exported + validated ONNX graph (opset 13)."}, {"technique": "int8", "label": "INT8 Dynamic Quantization", "status": "success", "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."}], "benchmark": {"baseline": {"size_mb": 46.848, "latency_ms": 4.7704, "p95_ms": 7.3823, "throughput_fps": 209.6, "runs": 30, "runtime": "pytorch-cpu"}, "optimized": {"size_mb": 92.0475, "latency_ms": 5.2176, "p95_ms": 8.0611, "throughput_fps": 191.7, "runs": 30, "runtime": "pytorch-cpu", "onnx_artifact": {"latency_ms": 4.0162, "p95_ms": 7.9758, "throughput_fps": 249.0, "runs": 30, "runtime": "onnxruntime-1.28.0"}}, "size_saved_pct": 3.3, "latency_gain_pct": -9.4, "output_agreement": {"agreement_pct": 100.0, "inputs_checked": 16, "seed": 42}, "note": null}, "artifacts": [{"name": "optimized.onnx", "size_bytes": 46733663, "sha256": "3579bf0115585653e77f13ca9a4508fc5482544d2e51b6b40da8c5dbd2321538", "encrypted": true}, {"name": "optimized.pt", "size_bytes": 45313803, "sha256": "aba70524ce6bfbf0086d7bd0d420cc1b897acab3afc4bd8248d913bcdf7e616f", "encrypted": true}], "repro": {"model_sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c", "model_id": "m_6ce295ae6f89", "plan_id": "edge-lite", "techniques": ["int8", "onnx"], "seed": 42, "benchmark_runs": 30, "versions": {"python": "3.11.12", "torch": "2.13.0", "onnx": "1.22.0", "onnxruntime": "1.28.0", "numpy": "2.4.6"}, "platform": {"system": "Darwin", "machine": "arm64", "processor": "arm"}, "executed_at": 1786923639.3579352}, "error": null, "created_at": 1786923631.707165, "finished_at": 1786923639.800239}, {"id": "run_a6ca85692d4a", "model_id": "m_6ce295ae6f89", "plan_id": "edge-lite", "plan_name": "Compact + fast", "user_id": "u_4084a36670b3", "status": "success", "steps": [{"technique": "onnx", "label": "ONNX Export", "status": "success", "note": "Exported + validated ONNX graph (opset 13)."}, {"technique": "int8", "label": "INT8 Dynamic Quantization", "status": "success", "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."}], "benchmark": {"baseline": {"size_mb": 46.848, "latency_ms": 6.235, "p95_ms": 11.0716, "throughput_fps": 160.4, "runs": 30, "runtime": "pytorch-cpu"}, "optimized": {"size_mb": 92.0475, "latency_ms": 5.5585, "p95_ms": 8.327, "throughput_fps": 179.9, "runs": 30, "runtime": "pytorch-cpu", "onnx_artifact": {"latency_ms": 4.0207, "p95_ms": 7.1235, "throughput_fps": 248.7, "runs": 30, "runtime": "onnxruntime-1.28.0"}}, "size_saved_pct": 3.3, "latency_gain_pct": 10.9, "output_agreement": {"agreement_pct": 100.0, "inputs_checked": 16, "seed": 42}, "note": null}, "artifacts": [{"name": "optimized.onnx", "size_bytes": 46733663, "sha256": "3579bf0115585653e77f13ca9a4508fc5482544d2e51b6b40da8c5dbd2321538", "encrypted": true}, {"name": "optimized.pt", "size_bytes": 45313803, "sha256": "aba70524ce6bfbf0086d7bd0d420cc1b897acab3afc4bd8248d913bcdf7e616f", "encrypted": true}], "repro": {"model_sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c", "model_id": "m_6ce295ae6f89", "plan_id": "edge-lite", "techniques": ["int8", "onnx"], "seed": 42, "benchmark_runs": 30, "versions": {"python": "3.11.12", "torch": "2.13.0", "onnx": "1.22.0", "onnxruntime": "1.28.0", "numpy": "2.4.6"}, "platform": {"system": "Darwin", "machine": "arm64", "processor": "arm"}, "executed_at": 1786762846.4438121}, "error": null, "created_at": 1786762840.320499, "finished_at": 1786762846.741312}], "jobs": [{"id": "job_b582928ce3d8", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1786923631.7073019}, {"id": "job_f5736aca7b16", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1786762840.3223119}, {"id": "job_d26dfb8f135d", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.803613}]}, "history_m_6ce295ae6f89": {"history": [{"label": "original", "kind": "baseline", "size_mb": 46.85, "latency_ms": 4.4553, "ts": 1786730648.803227}, {"label": "Compact + fast", "kind": "success", "run_id": "run_a6ca85692d4a", "size_mb": 92.0475, "latency_ms": 5.5585, "size_saved_pct": 3.3, "latency_gain_pct": 10.9, "ts": 1786762840.320499}, {"label": "Compact + fast", "kind": "success", "run_id": "run_80017d17c71c", "size_mb": 92.0475, "latency_ms": 5.2176, "size_saved_pct": 3.3, "latency_gain_pct": -9.4, "ts": 1786923631.707165}], "run_count": 2, "best_size_mb": 46.85}, "suggestions_m_6ce295ae6f89": {"suggestions": [{"title": "96% of parameters live in convolutions", "body": "Conv-heavy networks respond well to channel pruning combined with INT8. The planner ranks both.", "action": "Compare the prune+quantize plans side by side."}, {"title": "Best ranked plan: edge-lite", "body": "Compact + fast", "action": "Predicted 75.0% smaller, 40.5% faster."}]}, "diff_m_6ce295ae6f89": {"run": {"id": "run_a6ca85692d4a", "plan_name": "Compact + fast", "created_at": 1786762840.320499}, "agreement_pct": 100.0, "rows": [{"metric": "Size (MB)", "before": 46.848, "after": 92.0475, "delta": 45.2, "unit": "", "better": "lower"}, {"metric": "Latency (ms)", "before": 6.235, "after": 5.5585, "delta": -0.676, "unit": "", "better": "lower"}, {"metric": "p95 latency (ms)", "before": 11.0716, "after": 8.327, "delta": -2.745, "unit": "", "better": "lower"}, {"metric": "Throughput (inf/s)", "before": 160.4, "after": 179.9, "delta": 19.5, "unit": "", "better": "higher"}], "summary": {"size_saved_pct": 3.3, "latency_gain_pct": 10.9}}, "report_m_6ce295ae6f89": "# ModelSmith Report: ResNet-18 (random init)\n\n- **Model ID:** `m_6ce295ae6f89`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.803227\n- **SHA-256:** `5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c`\n\n## 1. Analysis (FR-04)\n\n| Metric | Value |\n|---|---|\n| Parameters | 11,689,512 |\n| Parameter size | 46.76 MB |\n| File size | 46.85 MB |\n| Compute | 75.20 MFLOPs/forward |\n| Input shape | 3 \u00d7 32 \u00d7 32 |\n| Architecture class | cnn |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| layer4.0.conv2 | Conv2d | 2,359,296 | 20.2% |\n| layer4.1.conv1 | Conv2d | 2,359,296 | 20.2% |\n| layer4.1.conv2 | Conv2d | 2,359,296 | 20.2% |\n| layer4.0.conv1 | Conv2d | 1,179,648 | 10.1% |\n| layer3.0.conv2 | Conv2d | 589,824 | 5.0% |\n| layer3.1.conv1 | Conv2d | 589,824 | 5.0% |\n| layer3.1.conv2 | Conv2d | 589,824 | 5.0% |\n| fc | Linear | 513,000 | 4.4% |\n\n## 2. Profiling (FR-05)\n\n- Measured latency (CPU): **4.4553 ms** mean, 6.2506 ms p95 over 30 runs\n- Throughput: 224.5 inferences/s\n\n### Bottleneck notes\n\n- Conv2d layer 'layer4.0.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'layer4.1.conv1' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'layer4.1.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Convolution-heavy: structured pruning + ONNX/TensorRT graph optimization usually give the largest latency gains.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals (FR-06)\n\n- Objective: `min_size`\n- Target hardware: `mobile`\n- Minimum accuracy retention: 98%\n\n## 4. Ranked optimization plans (FR-07/08/09)\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 40.5% | 98.5% |\n| 2 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 30.3% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 98.0% minimum.\n- `half`: Mobile does not reliably support FP16.\n- `balanced`: Predicted accuracy retention 96.5% is below your 98.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.; Mobile does not reliably support FP16.\n- `deep-cut`: Predicted accuracy retention 96.5% is below your 98.0% minimum.\n- `distill`: Predicted accuracy retention 97.0% is below your 98.0% minimum.\n\n## 5. Execution history & benchmarks (FR-11/12)\n\n### Run `run_80017d17c71c`: Compact + fast (success)\n\n- Executed: 1786923631.707165\n- Baseline: 46.85 MB, 4.7704 ms\n- Optimized: 92.05 MB, 5.2176 ms\n- **Size saved: 3.3%** | **Latency gain: -9.4%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata (NFR-09)</summary>\n\n```json\n{\"model_sha256\": \"5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c\", \"model_id\": \"m_6ce295ae6f89\", \"plan_id\": \"edge-lite\", \"techniques\": [\"int8\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1786923639.3579352}\n```\n</details>\n\n### Run `run_a6ca85692d4a`: Compact + fast (success)\n\n- Executed: 1786762840.320499\n- Baseline: 46.85 MB, 6.235 ms\n- Optimized: 92.05 MB, 5.5585 ms\n- **Size saved: 3.3%** | **Latency gain: 10.9%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata (NFR-09)</summary>\n\n```json\n{\"model_sha256\": \"5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c\", \"model_id\": \"m_6ce295ae6f89\", \"plan_id\": \"edge-lite\", \"techniques\": [\"int8\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1786762846.4438121}\n```\n</details>\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._", "model_m_6df0e94e24ee": {"id": "m_6df0e94e24ee", "project_id": "p_8575cf3c913f", "name": "CIFAR-10 CNN", "framework": "pytorch", "orig_name": "demo_model.pt", "size_bytes": 2287320, "sha256": "3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5", "status": "analyzed", "error": null, "analysis": {"framework": "pytorch", "input_shape": [3, 32, 32], "total_params": 568474, "param_size_mb": 2.2739, "file_size_mb": 2.2873, "total_flops": 45603456, "layer_count": 15, "layers": [{"name": "net.12", "type": "Linear", "params": 524416, "size_bytes": 2097664, "dtype": "float32", "flops": 1048576}, {"name": "net.7", "type": "Conv2d", "params": 27712, "size_bytes": 110848, "dtype": "float32", "flops": 14155776}, {"name": "net.3", "type": "Conv2d", "params": 13872, "size_bytes": 55488, "dtype": "float32", "flops": 28311552}, {"name": "net.14", "type": "Linear", "params": 1290, "size_bytes": 5160, "dtype": "float32", "flops": 2560}, {"name": "net.0", "type": "Conv2d", "params": 896, "size_bytes": 3584, "dtype": "float32", "flops": 1769472}, {"name": "net.8", "type": "BatchNorm2d", "params": 128, "size_bytes": 512, "dtype": "float32", "flops": 32768}, {"name": "net.4", "type": "BatchNorm2d", "params": 96, "size_bytes": 384, "dtype": "float32", "flops": 98304}, {"name": "net.1", "type": "BatchNorm2d", "params": 64, "size_bytes": 256, "dtype": "float32", "flops": 65536}, {"name": "net.2", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 32768}, {"name": "net.5", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 49152}, {"name": "net.6", "type": "MaxPool2d", "params": 0, "size_bytes": 0, "dtype": null, "flops": 12288}, {"name": "net.9", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 16384}, {"name": "net.10", "type": "MaxPool2d", "params": 0, "size_bytes": 0, "dtype": null, "flops": 4096}, {"name": "net.11", "type": "Flatten", "params": 0, "size_bytes": 0, "dtype": null, "flops": 4096}, {"name": "net.13", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 128}], "benchmark": {"latency_ms": 0.626, "p95_ms": 1.2501, "throughput_fps": 1597.4, "runs": 30, "runtime": "pytorch-cpu"}, "arch": "hybrid", "conv_param_share_pct": 7.5, "bottlenecks": {"top_layers": [{"name": "net.12", "type": "Linear", "params": 524416, "size_bytes": 2097664, "dtype": "float32", "flops": 1048576}, {"name": "net.7", "type": "Conv2d", "params": 27712, "size_bytes": 110848, "dtype": "float32", "flops": 14155776}, {"name": "net.3", "type": "Conv2d", "params": 13872, "size_bytes": 55488, "dtype": "float32", "flops": 28311552}], "param_concentration_pct": 99.6, "notes": ["Linear layer 'net.12' holds 92.2% of parameters (524,416) \u2014 primary target for quantization/pruning.", "Conv2d layer 'net.7' holds 4.9% of parameters (27,712) \u2014 primary target for quantization/pruning.", "Conv2d layer 'net.3' holds 2.4% of parameters (13,872) \u2014 primary target for quantization/pruning.", "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."]}, "memory_estimate_mb": 47.8774, "environment": {"python": "3.11.12", "machine": "arm64", "system": "Darwin"}}, "goals": null, "plans": {"objective": "balanced", "target_hardware": "cpu-server", "hardware": {"label": "CPU Server", "memory_mb": 8192, "precisions": ["fp32", "fp16", "int8"], "runtimes": ["PyTorch", "ONNX Runtime"], "preferred": ["int8", "onnx"]}, "valid": [{"plan_id": "deep-cut", "tagline": "Size + speed", "techniques": ["int8", "prune20", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.4548, "size_saved_pct": 80.0, "latency_ms": 0.2575, "latency_gain_pct": 58.9, "memory_mb": 0.6713, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 76.05, "rank": 1, "recommended": true}, {"plan_id": "balanced", "tagline": "Trade-off blend", "techniques": ["int8", "prune20"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)"], "auto_executable": true, "predicted": {"size_mb": 0.4548, "size_saved_pct": 80.0, "latency_ms": 0.2927, "latency_gain_pct": 53.2, "memory_mb": 0.6713, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression."], "score": 74.34, "rank": 2, "recommended": false}, {"plan_id": "distill", "tagline": "Smallest via retraining", "techniques": ["distill"], "technique_labels": ["Knowledge Distillation (guided)"], "auto_executable": false, "predicted": {"size_mb": 0.6822, "size_saved_pct": 70.0, "latency_ms": 0.2191, "latency_gain_pct": 65.0, "memory_mb": 0.955, "memory_saved_pct": 65.0, "accuracy_retention_pct": 97.0}, "reasons": ["Runnable on CPU Server (PyTorch, ONNX Runtime)", "Train a smaller student against this model \u2014 needs training data and multiple retraining cycles."], "score": 72.9, "rank": 3, "recommended": false}, {"plan_id": "edge-lite", "tagline": "Compact + fast", "techniques": ["int8", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.5685, "size_saved_pct": 75.0, "latency_ms": 0.303, "latency_gain_pct": 51.6, "memory_mb": 0.8186, "memory_saved_pct": 70.0, "accuracy_retention_pct": 98.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 71.68, "rank": 4, "recommended": false}, {"plan_id": "half", "tagline": "Precision focused", "techniques": ["fp16", "onnx"], "technique_labels": ["FP16 Half Precision", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 1.1369, "size_saved_pct": 50.0, "latency_ms": 0.4682, "latency_gain_pct": 25.2, "memory_mb": 1.3643, "memory_saved_pct": 50.0, "accuracy_retention_pct": 99.9}, "reasons": ["Matches target runtimes int8, onnx", "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 52.54, "rank": 5, "recommended": false}, {"plan_id": "speed", "tagline": "Latency focused", "techniques": ["prune20", "onnx"], "technique_labels": ["Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 1.8191, "size_saved_pct": 20.0, "latency_ms": 0.4682, "latency_gain_pct": 25.2, "memory_mb": 2.2375, "memory_saved_pct": 18.0, "accuracy_retention_pct": 98.0}, "reasons": ["Matches target runtimes int8, onnx", "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 36.76, "rank": 6, "recommended": false}], "rejected": [{"plan_id": "edge-max", "tagline": "Smallest footprint", "techniques": ["int8", "prune40", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Aggressive Pruning (40%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.3525, "size_saved_pct": 84.5, "latency_ms": 0.2242, "latency_gain_pct": 64.2, "memory_mb": 0.573, "memory_saved_pct": 79.0, "accuracy_retention_pct": 92.6}, "reasons": ["Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.", "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "rejected_because": ["Predicted accuracy retention 92.6% is below your 95.0% minimum."]}, {"plan_id": "max-speed", "tagline": "GPU throughput", "techniques": ["fp16", "tensorrt"], "technique_labels": ["FP16 Half Precision", "TensorRT Build (guided)"], "auto_executable": false, "predicted": {"size_mb": 1.1369, "size_saved_pct": 50.0, "latency_ms": 0.2661, "latency_gain_pct": 57.5, "memory_mb": 1.0915, "memory_saved_pct": 60.0, "accuracy_retention_pct": 99.9}, "reasons": ["Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."], "rejected_because": ["TensorRT requires a GPU server target."]}]}, "uploaded_by": "u_4084a36670b3", "created_at": 1786730648.136788, "updated_at": 1786730648.1996748, "notes": "", "tags": [], "efficiency_score": 87, "runs": [], "jobs": [{"id": "job_675d13eb8336", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.1369119}]}, "history_m_6df0e94e24ee": {"history": [{"label": "original", "kind": "baseline", "size_mb": 2.29, "latency_ms": 0.626, "ts": 1786730648.136788}], "run_count": 0, "best_size_mb": 2.29}, "suggestions_m_6df0e94e24ee": {"suggestions": [{"title": "Best ranked plan: deep-cut", "body": "Size + speed", "action": "Predicted 80.0% smaller, 58.9% faster."}]}, "report_m_6df0e94e24ee": "# ModelSmith Report: CIFAR-10 CNN\n\n- **Model ID:** `m_6df0e94e24ee`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.136788\n- **SHA-256:** `3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5`\n\n## 1. Analysis (FR-04)\n\n| Metric | Value |\n|---|---|\n| Parameters | 568,474 |\n| Parameter size | 2.27 MB |\n| File size | 2.29 MB |\n| Compute | 45.60 MFLOPs/forward |\n| Input shape | 3 \u00d7 32 \u00d7 32 |\n| Architecture class | hybrid |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| net.12 | Linear | 524,416 | 92.2% |\n| net.7 | Conv2d | 27,712 | 4.9% |\n| net.3 | Conv2d | 13,872 | 2.4% |\n| net.14 | Linear | 1,290 | 0.2% |\n| net.0 | Conv2d | 896 | 0.2% |\n| net.8 | BatchNorm2d | 128 | 0.0% |\n| net.4 | BatchNorm2d | 96 | 0.0% |\n| net.1 | BatchNorm2d | 64 | 0.0% |\n\n## 2. Profiling (FR-05)\n\n- Measured latency (CPU): **0.626 ms** mean, 1.2501 ms p95 over 30 runs\n- Throughput: 1597.4 inferences/s\n\n### Bottleneck notes\n\n- Linear layer 'net.12' holds 92.2% of parameters (524,416) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.7' holds 4.9% of parameters (27,712) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.3' holds 2.4% of parameters (13,872) \u2014 primary target for quantization/pruning.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals (FR-06)\n\n- Objective: `balanced`\n- Target hardware: `cpu-server`\n- Minimum accuracy retention: -%\n\n## 4. Ranked optimization plans (FR-07/08/09)\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | deep-cut (Size + speed) | INT8 Dynamic Quantization, Structured Pruning (20%), ONNX Export | 80.0% | 58.9% | 96.5% |\n| 2 | balanced (Trade-off blend) | INT8 Dynamic Quantization, Structured Pruning (20%) | 80.0% | 53.2% | 96.5% |\n| 3 | distill (Smallest via retraining) | Knowledge Distillation (guided) | 70.0% | 65.0% | 97.0% |\n| 4 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 51.6% | 98.5% |\n| 5 | half (Precision focused) | FP16 Half Precision, ONNX Export | 50.0% | 25.2% | 99.9% |\n| 6 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 25.2% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 95.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.\n\n_No optimization runs executed for this model yet._\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._", "model_m_8d95c929ee8a": {"id": "m_8d95c929ee8a", "project_id": "p_8575cf3c913f", "name": "MNIST Digit CNN (MLP-tail)", "framework": "pytorch", "orig_name": "demo_model.pt", "size_bytes": 93837, "sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6", "status": "analyzed", "error": null, "analysis": {"framework": "pytorch", "input_shape": [1, 28, 28], "total_params": 21840, "param_size_mb": 0.0874, "file_size_mb": 0.0938, "total_flops": 970170, "layer_count": 10, "layers": [{"name": "net.7", "type": "Linear", "params": 16050, "size_bytes": 64200, "dtype": "float32", "flops": 32000}, {"name": "net.3", "type": "Conv2d", "params": 5020, "size_bytes": 20080, "dtype": "float32", "flops": 640000}, {"name": "net.9", "type": "Linear", "params": 510, "size_bytes": 2040, "dtype": "float32", "flops": 1000}, {"name": "net.0", "type": "Conv2d", "params": 260, "size_bytes": 1040, "dtype": "float32", "flops": 288000}, {"name": "net.1", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 5760}, {"name": "net.2", "type": "MaxPool2d", "params": 0, "size_bytes": 0, "dtype": null, "flops": 1440}, {"name": "net.4", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 1280}, {"name": "net.5", "type": "MaxPool2d", "params": 0, "size_bytes": 0, "dtype": null, "flops": 320}, {"name": "net.6", "type": "Flatten", "params": 0, "size_bytes": 0, "dtype": null, "flops": 320}, {"name": "net.8", "type": "ReLU", "params": 0, "size_bytes": 0, "dtype": null, "flops": 50}], "benchmark": {"latency_ms": 0.3266, "p95_ms": 1.2453, "throughput_fps": 3062.3, "runs": 30, "runtime": "pytorch-cpu"}, "arch": "hybrid", "conv_param_share_pct": 24.2, "bottlenecks": {"top_layers": [{"name": "net.7", "type": "Linear", "params": 16050, "size_bytes": 64200, "dtype": "float32", "flops": 32000}, {"name": "net.3", "type": "Conv2d", "params": 5020, "size_bytes": 20080, "dtype": "float32", "flops": 640000}, {"name": "net.9", "type": "Linear", "params": 510, "size_bytes": 2040, "dtype": "float32", "flops": 1000}], "param_concentration_pct": 98.8, "notes": ["Linear layer 'net.7' holds 73.5% of parameters (16,050) \u2014 primary target for quantization/pruning.", "Conv2d layer 'net.3' holds 23.0% of parameters (5,020) \u2014 primary target for quantization/pruning.", "Linear layer 'net.9' holds 2.3% of parameters (510) \u2014 primary target for quantization/pruning.", "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."]}, "memory_estimate_mb": 1.0576, "environment": {"python": "3.11.12", "machine": "arm64", "system": "Darwin"}}, "goals": {"objective": "balanced", "target_hardware": "cpu-server", "max_latency_ms": null, "max_size_mb": null, "min_accuracy_pct": 95}, "plans": {"objective": "balanced", "target_hardware": "cpu-server", "hardware": {"label": "CPU Server", "memory_mb": 8192, "precisions": ["fp32", "fp16", "int8"], "runtimes": ["PyTorch", "ONNX Runtime"], "preferred": ["int8", "onnx"]}, "valid": [{"plan_id": "deep-cut", "tagline": "Size + speed", "techniques": ["int8", "prune20", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.0175, "size_saved_pct": 80.0, "latency_ms": 0.1344, "latency_gain_pct": 58.9, "memory_mb": 0.0258, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 76.05, "rank": 1, "recommended": true}, {"plan_id": "balanced", "tagline": "Trade-off blend", "techniques": ["int8", "prune20"], "technique_labels": ["INT8 Dynamic Quantization", "Structured Pruning (20%)"], "auto_executable": true, "predicted": {"size_mb": 0.0175, "size_saved_pct": 80.0, "latency_ms": 0.1527, "latency_gain_pct": 53.2, "memory_mb": 0.0258, "memory_saved_pct": 75.4, "accuracy_retention_pct": 96.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.", "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression."], "score": 74.34, "rank": 2, "recommended": false}, {"plan_id": "distill", "tagline": "Smallest via retraining", "techniques": ["distill"], "technique_labels": ["Knowledge Distillation (guided)"], "auto_executable": false, "predicted": {"size_mb": 0.0262, "size_saved_pct": 70.0, "latency_ms": 0.1143, "latency_gain_pct": 65.0, "memory_mb": 0.0367, "memory_saved_pct": 65.0, "accuracy_retention_pct": 97.0}, "reasons": ["Runnable on CPU Server (PyTorch, ONNX Runtime)", "Train a smaller student against this model: needs training data and multiple retraining cycles."], "score": 72.9, "rank": 3, "recommended": false}, {"plan_id": "edge-lite", "tagline": "Compact + fast", "techniques": ["int8", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.0219, "size_saved_pct": 75.0, "latency_ms": 0.1581, "latency_gain_pct": 51.6, "memory_mb": 0.0315, "memory_saved_pct": 70.0, "accuracy_retention_pct": 98.5}, "reasons": ["Matches target runtimes int8, onnx", "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 71.68, "rank": 4, "recommended": false}, {"plan_id": "half", "tagline": "Precision focused", "techniques": ["fp16", "onnx"], "technique_labels": ["FP16 Half Precision", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.0437, "size_saved_pct": 50.0, "latency_ms": 0.2443, "latency_gain_pct": 25.2, "memory_mb": 0.0524, "memory_saved_pct": 50.0, "accuracy_retention_pct": 99.9}, "reasons": ["Matches target runtimes int8, onnx", "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 52.54, "rank": 5, "recommended": false}, {"plan_id": "speed", "tagline": "Latency focused", "techniques": ["prune20", "onnx"], "technique_labels": ["Structured Pruning (20%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.0699, "size_saved_pct": 20.0, "latency_ms": 0.2443, "latency_gain_pct": 25.2, "memory_mb": 0.086, "memory_saved_pct": 18.0, "accuracy_retention_pct": 98.0}, "reasons": ["Matches target runtimes int8, onnx", "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "score": 36.76, "rank": 6, "recommended": false}], "rejected": [{"plan_id": "edge-max", "tagline": "Smallest footprint", "techniques": ["int8", "prune40", "onnx"], "technique_labels": ["INT8 Dynamic Quantization", "Aggressive Pruning (40%)", "ONNX Export"], "auto_executable": true, "predicted": {"size_mb": 0.0135, "size_saved_pct": 84.5, "latency_ms": 0.117, "latency_gain_pct": 64.2, "memory_mb": 0.022, "memory_saved_pct": 79.0, "accuracy_retention_pct": 92.6}, "reasons": ["Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.", "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.", "Graph-level operator fusion and constant folding in ONNX Runtime."], "rejected_because": ["Predicted accuracy retention 92.6% is below your 95.0% minimum."]}, {"plan_id": "max-speed", "tagline": "GPU throughput", "techniques": ["fp16", "tensorrt"], "technique_labels": ["FP16 Half Precision", "TensorRT Build (guided)"], "auto_executable": false, "predicted": {"size_mb": 0.0437, "size_saved_pct": 50.0, "latency_ms": 0.1388, "latency_gain_pct": 57.5, "memory_mb": 0.042, "memory_saved_pct": 60.0, "accuracy_retention_pct": 99.9}, "reasons": ["Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.", "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."], "rejected_because": ["TensorRT requires a GPU server target."]}]}, "uploaded_by": "u_4084a36670b3", "created_at": 1786730648.109846, "updated_at": 1788219048.610983, "notes": "", "tags": [], "efficiency_score": 89, "runs": [{"id": "run_950a887a9d2d", "model_id": "m_8d95c929ee8a", "plan_id": "deep-cut", "plan_name": "Size + speed", "user_id": "u_4084a36670b3", "status": "success", "steps": [{"technique": "prune20", "label": "Structured Pruning (20%)", "status": "success", "note": "19.9% of weights zeroed (conv filters structured, linear unstructured). Deploy-time channel removal or sparse kernels convert this into real size/latency savings."}, {"technique": "onnx", "label": "ONNX Export", "status": "success", "note": "Exported + validated ONNX graph (opset 13)."}, {"technique": "int8", "label": "INT8 Dynamic Quantization", "status": "success", "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."}], "benchmark": {"baseline": {"size_mb": 0.0938, "latency_ms": 0.1418, "p95_ms": 0.1739, "throughput_fps": 7050.6, "runs": 30, "runtime": "pytorch-cpu"}, "optimized": {"size_mb": 0.135, "latency_ms": 0.1572, "p95_ms": 0.1812, "throughput_fps": 6360.6, "runs": 30, "runtime": "pytorch-cpu", "onnx_artifact": {"latency_ms": 0.0199, "p95_ms": 0.0222, "throughput_fps": 50230.3, "runs": 30, "runtime": "onnxruntime-1.28.0"}}, "size_saved_pct": 51.1, "latency_gain_pct": -10.9, "output_agreement": {"agreement_pct": 100.0, "inputs_checked": 16, "seed": 42}, "note": null}, "artifacts": [{"name": "optimized.onnx", "size_bytes": 89029, "sha256": "650d075d5c0990b9a14fd9d9bb938e12ae6a571f8f93de9f47de34f4ad923cd0", "encrypted": true}, {"name": "optimized.pt", "size_bytes": 45929, "sha256": "d2167b2c4ff77452e7d1657dae7f93c03f30c2062592de32567fa36444b4319b", "encrypted": true}], "repro": {"model_sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6", "model_id": "m_8d95c929ee8a", "plan_id": "deep-cut", "techniques": ["int8", "prune20", "onnx"], "seed": 42, "benchmark_runs": 30, "versions": {"python": "3.11.12", "torch": "2.13.0", "onnx": "1.22.0", "onnxruntime": "1.28.0", "numpy": "2.4.6"}, "platform": {"system": "Darwin", "machine": "arm64", "processor": "arm"}, "executed_at": 1787332707.436662}, "error": null, "created_at": 1787332707.07077, "finished_at": 1787332707.43753}, {"id": "run_99bf6615ba85", "model_id": "m_8d95c929ee8a", "plan_id": "deep-cut", "plan_name": "Size + speed", "user_id": "u_4084a36670b3", "status": "success", "steps": [{"technique": "prune20", "label": "Structured Pruning (20%)", "status": "success", "note": "19.9% of weights zeroed (conv filters structured, linear unstructured). Deploy-time channel removal or sparse kernels convert this into real size/latency savings."}, {"technique": "onnx", "label": "ONNX Export", "status": "success", "note": "Exported + validated ONNX graph (opset 13)."}, {"technique": "int8", "label": "INT8 Dynamic Quantization", "status": "success", "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."}], "benchmark": {"baseline": {"size_mb": 0.0938, "latency_ms": 0.1348, "p95_ms": 0.1463, "throughput_fps": 7419.0, "runs": 30, "runtime": "pytorch-cpu"}, "optimized": {"size_mb": 0.135, "latency_ms": 0.1506, "p95_ms": 0.1733, "throughput_fps": 6639.2, "runs": 30, "runtime": "pytorch-cpu", "onnx_artifact": {"latency_ms": 0.0201, "p95_ms": 0.0228, "throughput_fps": 49799.4, "runs": 30, "runtime": "onnxruntime-1.28.0"}}, "size_saved_pct": 51.1, "latency_gain_pct": -11.7, "output_agreement": {"agreement_pct": 100.0, "inputs_checked": 16, "seed": 42}, "note": null}, "artifacts": [{"name": "optimized.onnx", "size_bytes": 89029, "sha256": "650d075d5c0990b9a14fd9d9bb938e12ae6a571f8f93de9f47de34f4ad923cd0", "encrypted": true}, {"name": "optimized.pt", "size_bytes": 45929, "sha256": "d2167b2c4ff77452e7d1657dae7f93c03f30c2062592de32567fa36444b4319b", "encrypted": true}], "repro": {"model_sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6", "model_id": "m_8d95c929ee8a", "plan_id": "deep-cut", "techniques": ["int8", "prune20", "onnx"], "seed": 42, "benchmark_runs": 30, "versions": {"python": "3.11.12", "torch": "2.13.0", "onnx": "1.22.0", "onnxruntime": "1.28.0", "numpy": "2.4.6"}, "platform": {"system": "Darwin", "machine": "arm64", "processor": "arm"}, "executed_at": 1787332640.655497}, "error": null, "created_at": 1787332639.9894688, "finished_at": 1787332640.656393}], "jobs": [{"id": "job_48fa0f82e231", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1787332707.0708532}, {"id": "job_9f7221706358", "type": "execute", "status": "success", "progress": 100, "message": "completed", "created_at": 1787332639.9898298}, {"id": "job_57d0fa617bac", "type": "analyze", "status": "success", "progress": 100, "message": "completed", "created_at": 1786730648.1099331}]}, "history_m_8d95c929ee8a": {"history": [{"label": "original", "kind": "baseline", "size_mb": 0.09, "latency_ms": 0.3266, "ts": 1786730648.109846}, {"label": "Size + speed", "kind": "success", "run_id": "run_99bf6615ba85", "size_mb": 0.135, "latency_ms": 0.1506, "size_saved_pct": 51.1, "latency_gain_pct": -11.7, "ts": 1787332639.9894688}, {"label": "Size + speed", "kind": "success", "run_id": "run_950a887a9d2d", "size_mb": 0.135, "latency_ms": 0.1572, "size_saved_pct": 51.1, "latency_gain_pct": -10.9, "ts": 1787332707.07077}], "run_count": 2, "best_size_mb": 0.09}, "suggestions_m_8d95c929ee8a": {"suggestions": [{"title": "Best ranked plan: deep-cut", "body": "Size + speed", "action": "Predicted 80.0% smaller, 58.9% faster."}]}, "diff_m_8d95c929ee8a": {"run": {"id": "run_99bf6615ba85", "plan_name": "Size + speed", "created_at": 1787332639.9894688}, "agreement_pct": 100.0, "rows": [{"metric": "Size (MB)", "before": 0.0938, "after": 0.135, "delta": 0.041, "unit": "", "better": "lower"}, {"metric": "Latency (ms)", "before": 0.1348, "after": 0.1506, "delta": 0.016, "unit": "", "better": "lower"}, {"metric": "p95 latency (ms)", "before": 0.1463, "after": 0.1733, "delta": 0.027, "unit": "", "better": "lower"}, {"metric": "Throughput (inf/s)", "before": 7419.0, "after": 6639.2, "delta": -779.8, "unit": "", "better": "higher"}], "summary": {"size_saved_pct": 51.1, "latency_gain_pct": -11.7}}, "report_m_8d95c929ee8a": "# ModelSmith Report: MNIST Digit CNN (MLP-tail)\n\n- **Model ID:** `m_8d95c929ee8a`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.109846\n- **SHA-256:** `edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6`\n\n## 1. Analysis (FR-04)\n\n| Metric | Value |\n|---|---|\n| Parameters | 21,840 |\n| Parameter size | 0.09 MB |\n| File size | 0.09 MB |\n| Compute | 0.97 MFLOPs/forward |\n| Input shape | 1 \u00d7 28 \u00d7 28 |\n| Architecture class | hybrid |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| net.7 | Linear | 16,050 | 73.5% |\n| net.3 | Conv2d | 5,020 | 23.0% |\n| net.9 | Linear | 510 | 2.3% |\n| net.0 | Conv2d | 260 | 1.2% |\n\n## 2. Profiling (FR-05)\n\n- Measured latency (CPU): **0.3266 ms** mean, 1.2453 ms p95 over 30 runs\n- Throughput: 3062.3 inferences/s\n\n### Bottleneck notes\n\n- Linear layer 'net.7' holds 73.5% of parameters (16,050) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.3' holds 23.0% of parameters (5,020) \u2014 primary target for quantization/pruning.\n- Linear layer 'net.9' holds 2.3% of parameters (510) \u2014 primary target for quantization/pruning.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals (FR-06)\n\n- Objective: `balanced`\n- Target hardware: `cpu-server`\n- Minimum accuracy retention: 95%\n\n## 4. Ranked optimization plans (FR-07/08/09)\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | deep-cut (Size + speed) | INT8 Dynamic Quantization, Structured Pruning (20%), ONNX Export | 80.0% | 58.9% | 96.5% |\n| 2 | balanced (Trade-off blend) | INT8 Dynamic Quantization, Structured Pruning (20%) | 80.0% | 53.2% | 96.5% |\n| 3 | distill (Smallest via retraining) | Knowledge Distillation (guided) | 70.0% | 65.0% | 97.0% |\n| 4 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 51.6% | 98.5% |\n| 5 | half (Precision focused) | FP16 Half Precision, ONNX Export | 50.0% | 25.2% | 99.9% |\n| 6 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 25.2% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 95.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.\n\n## 5. Execution history & benchmarks (FR-11/12)\n\n### Run `run_950a887a9d2d`: Size + speed (success)\n\n- Executed: 1787332707.07077\n- Baseline: 0.09 MB, 0.1418 ms\n- Optimized: 0.14 MB, 0.1572 ms\n- **Size saved: 51.1%** | **Latency gain: -10.9%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata (NFR-09)</summary>\n\n```json\n{\"model_sha256\": \"edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6\", \"model_id\": \"m_8d95c929ee8a\", \"plan_id\": \"deep-cut\", \"techniques\": [\"int8\", \"prune20\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1787332707.436662}\n```\n</details>\n\n### Run `run_99bf6615ba85`: Size + speed (success)\n\n- Executed: 1787332639.9894688\n- Baseline: 0.09 MB, 0.1348 ms\n- Optimized: 0.14 MB, 0.1506 ms\n- **Size saved: 51.1%** | **Latency gain: -11.7%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata (NFR-09)</summary>\n\n```json\n{\"model_sha256\": \"edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6\", \"model_id\": \"m_8d95c929ee8a\", \"plan_id\": \"deep-cut\", \"techniques\": [\"int8\", \"prune20\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1787332640.655497}\n```\n</details>\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._"}
+{
+ "_meta": {
+  "captured_at": 1788223277.814492
+ },
+ "health": {
+  "status": "ok",
+  "service": "modelsmith",
+  "version": "1.0.0",
+  "uptime_seconds": 53.0,
+  "checks": {
+   "database": {
+    "ok": true
+   }
+  },
+  "counts": {
+   "users": 9,
+   "models": 3,
+   "jobs": {
+    "success": 7
+   }
+  },
+  "queue_depth": 0,
+  "queue_lag_seconds": 0.0,
+  "data_dir_mb": 315.9,
+  "versions": {
+   "torch": "2.13.0",
+   "onnxruntime": "1.28.0"
+  }
+ },
+ "config": {
+  "max_upload_mb": 500,
+  "benchmark_runs": 30,
+  "token_ttl_hours": 12.0,
+  "job_workers": 2,
+  "version": "1.0.0",
+  "rate_limits": {
+   "general_per_min": 300,
+   "auth_failed_per_min": 20
+  }
+ },
+ "me": {
+  "id": "u_4084a36670b3",
+  "email": "demo@modelsmith.io",
+  "full_name": "Demo Engineer",
+  "role": "member",
+  "is_active": 1,
+  "created_at": 1786730648.0779579
+ },
+ "session": {
+  "issued_at": 1788223277,
+  "expires_at": 1788266477,
+  "seconds_remaining": 43199,
+  "ttl_hours": 12.0
+ },
+ "activity": {
+  "activity": [
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788223277.808484
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788223231.231084
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788222218.480984
+   },
+   {
+    "action": "share",
+    "entity": "model",
+    "entity_id": "m_6ce295ae6f89",
+    "detail": "2gBchA",
+    "created_at": 1788219900.558097
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788219899.5100281
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788219865.880487
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788219865.256066
+   },
+   {
+    "action": "delete",
+    "entity": "project",
+    "entity_id": "p_9199489b6bcf",
+    "detail": "E2E Renamed",
+    "created_at": 1788219048.6686678
+   },
+   {
+    "action": "delete",
+    "entity": "run",
+    "entity_id": "run_b9dac7e2547c",
+    "detail": "Size + speed",
+    "created_at": 1788219048.6619031
+   },
+   {
+    "action": "share",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "ZcEjDH",
+    "created_at": 1788219048.646496
+   },
+   {
+    "action": "unarchive",
+    "entity": "project",
+    "entity_id": "p_9199489b6bcf",
+    "detail": null,
+    "created_at": 1788219048.617352
+   },
+   {
+    "action": "archive",
+    "entity": "project",
+    "entity_id": "p_9199489b6bcf",
+    "detail": null,
+    "created_at": 1788219048.6146402
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788219048.611
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788219048.609039
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "Renamed E2E Model -> MNIST Digit CNN (MLP-tail)",
+    "created_at": 1788219048.576513
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail) -> Renamed E2E Model",
+    "created_at": 1788219048.572261
+   },
+   {
+    "action": "execute_done",
+    "entity": "run",
+    "entity_id": "run_b9dac7e2547c",
+    "detail": "success",
+    "created_at": 1788219046.883381
+   },
+   {
+    "action": "execute",
+    "entity": "run",
+    "entity_id": "run_b9dac7e2547c",
+    "detail": "deep-cut",
+    "created_at": 1788219046.447443
+   },
+   {
+    "action": "analyze",
+    "entity": "model",
+    "entity_id": "m_a05b33f86eb0",
+    "detail": "arch=mlp",
+    "created_at": 1788219044.479441
+   },
+   {
+    "action": "upload",
+    "entity": "model",
+    "entity_id": "m_a05b33f86eb0",
+    "detail": "E2E MLP (817693 bytes)",
+    "created_at": 1788219044.381689
+   },
+   {
+    "action": "set_goals",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "balanced",
+    "created_at": 1788219042.720002
+   },
+   {
+    "action": "set_goals",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "min_size",
+    "created_at": 1788219042.7137558
+   },
+   {
+    "action": "update",
+    "entity": "project",
+    "entity_id": "p_9199489b6bcf",
+    "detail": null,
+    "created_at": 1788219042.6959171
+   },
+   {
+    "action": "create",
+    "entity": "project",
+    "entity_id": "p_9199489b6bcf",
+    "detail": "E2E Test Project",
+    "created_at": 1788219042.6820889
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788219041.394293
+   },
+   {
+    "action": "delete",
+    "entity": "project",
+    "entity_id": "p_3cbabb62c1f7",
+    "detail": "E2E Renamed",
+    "created_at": 1788217228.396089
+   },
+   {
+    "action": "delete",
+    "entity": "run",
+    "entity_id": "run_3a783d505a67",
+    "detail": "Size + speed",
+    "created_at": 1788217228.389534
+   },
+   {
+    "action": "share",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "R8piP7",
+    "created_at": 1788217228.375686
+   },
+   {
+    "action": "unarchive",
+    "entity": "project",
+    "entity_id": "p_3cbabb62c1f7",
+    "detail": null,
+    "created_at": 1788217228.3490062
+   },
+   {
+    "action": "archive",
+    "entity": "project",
+    "entity_id": "p_3cbabb62c1f7",
+    "detail": null,
+    "created_at": 1788217228.3454568
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788217228.341331
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788217228.338785
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "Renamed E2E Model -> MNIST Digit CNN (MLP-tail)",
+    "created_at": 1788217228.3108218
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail) -> Renamed E2E Model",
+    "created_at": 1788217228.3078551
+   },
+   {
+    "action": "execute_done",
+    "entity": "run",
+    "entity_id": "run_3a783d505a67",
+    "detail": "success",
+    "created_at": 1788217226.5909262
+   },
+   {
+    "action": "execute",
+    "entity": "run",
+    "entity_id": "run_3a783d505a67",
+    "detail": "deep-cut",
+    "created_at": 1788217226.190542
+   },
+   {
+    "action": "analyze",
+    "entity": "model",
+    "entity_id": "m_4c015fb61608",
+    "detail": "arch=mlp",
+    "created_at": 1788217224.235289
+   },
+   {
+    "action": "upload",
+    "entity": "model",
+    "entity_id": "m_4c015fb61608",
+    "detail": "E2E MLP (817693 bytes)",
+    "created_at": 1788217224.146446
+   },
+   {
+    "action": "set_goals",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "balanced",
+    "created_at": 1788217222.5526242
+   },
+   {
+    "action": "set_goals",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "min_size",
+    "created_at": 1788217222.5396018
+   },
+   {
+    "action": "update",
+    "entity": "project",
+    "entity_id": "p_3cbabb62c1f7",
+    "detail": null,
+    "created_at": 1788217222.519924
+   },
+   {
+    "action": "create",
+    "entity": "project",
+    "entity_id": "p_3cbabb62c1f7",
+    "detail": "E2E Test Project",
+    "created_at": 1788217222.5072389
+   },
+   {
+    "action": "login",
+    "entity": "user",
+    "entity_id": "u_4084a36670b3",
+    "detail": null,
+    "created_at": 1788217221.2374651
+   },
+   {
+    "action": "delete",
+    "entity": "project",
+    "entity_id": "p_33e07c2be34f",
+    "detail": "E2E Renamed",
+    "created_at": 1788216423.795988
+   },
+   {
+    "action": "delete",
+    "entity": "run",
+    "entity_id": "run_ce2d93bb003f",
+    "detail": "Size + speed",
+    "created_at": 1788216423.789909
+   },
+   {
+    "action": "share",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "64CJvp",
+    "created_at": 1788216423.7707121
+   },
+   {
+    "action": "unarchive",
+    "entity": "project",
+    "entity_id": "p_33e07c2be34f",
+    "detail": null,
+    "created_at": 1788216423.738747
+   },
+   {
+    "action": "archive",
+    "entity": "project",
+    "entity_id": "p_33e07c2be34f",
+    "detail": null,
+    "created_at": 1788216423.7351801
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788216423.727731
+   },
+   {
+    "action": "update",
+    "entity": "model",
+    "entity_id": "m_8d95c929ee8a",
+    "detail": "MNIST Digit CNN (MLP-tail): metadata",
+    "created_at": 1788216423.722934
+   }
+  ]
+ },
+ "dashboard": {
+  "stats": {
+   "projects": 1,
+   "models": 3,
+   "analyzed": 3,
+   "runs": 4,
+   "saved_mb": 0,
+   "storage_mb": 65.6
+  },
+  "recent_jobs": [
+   {
+    "id": "job_48fa0f82e231",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1787332707.0708532
+   },
+   {
+    "id": "job_9f7221706358",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1787332639.9898298
+   },
+   {
+    "id": "job_b582928ce3d8",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786923631.7073019
+   },
+   {
+    "id": "job_f5736aca7b16",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786762840.3223119
+   },
+   {
+    "id": "job_d26dfb8f135d",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.803613
+   },
+   {
+    "id": "job_675d13eb8336",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.1369119
+   },
+   {
+    "id": "job_57d0fa617bac",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.1099331
+   }
+  ],
+  "recent_models": [
+   {
+    "id": "m_6ce295ae6f89",
+    "name": "ResNet-18 (random init)",
+    "status": "analyzed",
+    "framework": "pytorch",
+    "size_bytes": 46848011,
+    "created_at": 1786730648.803227
+   },
+   {
+    "id": "m_6df0e94e24ee",
+    "name": "CIFAR-10 CNN",
+    "status": "analyzed",
+    "framework": "pytorch",
+    "size_bytes": 2287320,
+    "created_at": 1786730648.136788
+   },
+   {
+    "id": "m_8d95c929ee8a",
+    "name": "MNIST Digit CNN (MLP-tail)",
+    "status": "analyzed",
+    "framework": "pytorch",
+    "size_bytes": 93837,
+    "created_at": 1786730648.109846
+   }
+  ],
+  "health": {
+   "status": "ok",
+   "service": "modelsmith",
+   "version": "1.0.0",
+   "uptime_seconds": 53.0,
+   "checks": {
+    "database": {
+     "ok": true
+    }
+   },
+   "counts": {
+    "users": 9,
+    "models": 3,
+    "jobs": {
+     "success": 7
+    }
+   },
+   "queue_depth": 0,
+   "queue_lag_seconds": 0.0,
+   "data_dir_mb": 315.9,
+   "versions": {
+    "torch": "2.13.0",
+    "onnxruntime": "1.28.0"
+   }
+  }
+ },
+ "dashboard_stats": {
+  "status_breakdown": {
+   "analyzed": 3
+  },
+  "frameworks": {
+   "pytorch": 3
+  },
+  "total_params": 12279826,
+  "avg_saved_pct": 108.8
+ },
+ "dashboard_activity": {
+  "days": [
+   {
+    "day": "2026-08-14",
+    "cnt": 3
+   },
+   {
+    "day": "2026-08-15",
+    "cnt": 1
+   },
+   {
+    "day": "2026-08-17",
+    "cnt": 1
+   },
+   {
+    "day": "2026-08-21",
+    "cnt": 2
+   }
+  ]
+ },
+ "insights": {
+  "heaviest_model": {
+   "id": "m_6ce295ae6f89",
+   "name": "ResNet-18 (random init)",
+   "size_bytes": 46848011,
+   "status": "analyzed"
+  },
+  "best_run": {
+   "id": "run_99bf6615ba85",
+   "plan_name": "Size + speed",
+   "model_id": "m_8d95c929ee8a",
+   "model_name": "MNIST Digit CNN (MLP-tail)",
+   "saved": 51.1,
+   "opt_mb": 0.135
+  },
+  "most_active_project": {
+   "id": "p_8575cf3c913f",
+   "name": "Demo Optimization Lab",
+   "jobs": 7
+  },
+  "pending_jobs": 0
+ },
+ "achievements": {
+  "achievements": [
+   {
+    "id": "first_blood",
+    "name": "First Steps",
+    "desc": "Upload your first model",
+    "icon": "\u25c8",
+    "earned": true
+   },
+   {
+    "id": "reader",
+    "name": "Know Your Layers",
+    "desc": "Complete a full analysis",
+    "icon": "\u25ce",
+    "earned": true
+   },
+   {
+    "id": "operator",
+    "name": "Pipeline Operator",
+    "desc": "Execute a plan end to end",
+    "icon": "\u2699",
+    "earned": true
+   },
+   {
+    "id": "half_way",
+    "name": "The 50% Club",
+    "desc": "Cut a model's size by half or more",
+    "icon": "\u2702",
+    "earned": true
+   },
+   {
+    "id": "eighty_club",
+    "name": "The 80% Club",
+    "desc": "Ship something 80% smaller",
+    "icon": "\u2605",
+    "earned": false
+   },
+   {
+    "id": "collector",
+    "name": "Collector",
+    "desc": "Hold five models at once",
+    "icon": "\u25a4",
+    "earned": false
+   },
+   {
+    "id": "forge_master",
+    "name": "Forge Master",
+    "desc": "Land ten successful runs",
+    "icon": "\u265c",
+    "earned": false
+   },
+   {
+    "id": "polyglot",
+    "name": "Polyglot",
+    "desc": "Work in both PyTorch and ONNX",
+    "icon": "\u21c4",
+    "earned": false
+   },
+   {
+    "id": "night_owl",
+    "name": "Night Shift",
+    "desc": "Run a job between midnight and 5am",
+    "icon": "\u263e",
+    "earned": false
+   },
+   {
+    "id": "repeat_customer",
+    "name": "Trust but Verify",
+    "desc": "Execute the same plan twice",
+    "icon": "\u21bb",
+    "earned": true
+   },
+   {
+    "id": "librarian",
+    "name": "Librarian",
+    "desc": "Leave notes on a model",
+    "icon": "\u270e",
+    "earned": true
+   },
+   {
+    "id": "tagger",
+    "name": "Tag, You're It",
+    "desc": "Tag a model for later",
+    "icon": "\ud83c\udff7",
+    "earned": true
+   }
+  ],
+  "earned_count": 7,
+  "total": 12,
+  "counters": {
+   "models": 3,
+   "analyzed": 3,
+   "runs": 4,
+   "best_save": 51.1
+  }
+ },
+ "projects": {
+  "projects": [
+   {
+    "id": "p_8575cf3c913f",
+    "owner_id": "u_4084a36670b3",
+    "name": "Demo Optimization Lab",
+    "description": "Sample project seeded with three models of different shapes to explore the full ModelSmith workflow.",
+    "created_at": 1786730648.078479,
+    "updated_at": 1786730648.078479,
+    "archived": 0,
+    "model_count": 3,
+    "run_count": 4,
+    "status_breakdown": {
+     "analyzed": 3
+    },
+    "total_bytes": 49229168,
+    "latest_activity": 1788219048.610983
+   }
+  ],
+  "has_archived": false
+ },
+ "notifications": {
+  "notifications": [
+   {
+    "id": "n_c95145688bc3",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 0,
+    "created_at": 1788219048.626278
+   },
+   {
+    "id": "n_d8bf80beb3c1",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788219046.8833642
+   },
+   {
+    "id": "n_0a4e992bd722",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788219046.4473379
+   },
+   {
+    "id": "n_a8f491e74fd3",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788219044.4794219
+   },
+   {
+    "id": "n_7bad493b45d6",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788219044.3892329
+   },
+   {
+    "id": "n_a011dca23a31",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 1,
+    "created_at": 1788217228.357486
+   },
+   {
+    "id": "n_c85796c182e6",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788217226.590104
+   },
+   {
+    "id": "n_e6ff6d02ac0b",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788217226.190392
+   },
+   {
+    "id": "n_283a0fd20a48",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788217224.2352672
+   },
+   {
+    "id": "n_5df52ff776b6",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788217224.1476061
+   },
+   {
+    "id": "n_d97b2457587f",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 1,
+    "created_at": 1788216423.7471511
+   },
+   {
+    "id": "n_f66318faad3c",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788216422.119117
+   },
+   {
+    "id": "n_4e3fab9c50a3",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788216421.577308
+   },
+   {
+    "id": "n_bce4cd7c739a",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788216419.647446
+   },
+   {
+    "id": "n_ac31988455c8",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788216419.5438
+   },
+   {
+    "id": "n_7b2b6647de95",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 1,
+    "created_at": 1788214946.4488761
+   },
+   {
+    "id": "n_b0bc1876de63",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788214944.798579
+   },
+   {
+    "id": "n_084d9213692d",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788214944.274833
+   },
+   {
+    "id": "n_e9bb985eabd4",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788214942.285568
+   },
+   {
+    "id": "n_71995e317898",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788214942.233133
+   },
+   {
+    "id": "n_87a0d1c18816",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 1,
+    "created_at": 1788212429.9114408
+   },
+   {
+    "id": "n_a7bc950dfdd1",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788212427.944774
+   },
+   {
+    "id": "n_dcaabccc464e",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788212427.751521
+   },
+   {
+    "id": "n_f6677cd8c1f5",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788212425.737233
+   },
+   {
+    "id": "n_4b36e35dcc76",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788212425.704283
+   },
+   {
+    "id": "n_b6445001e9c5",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "e2e check",
+    "body": "broadcast pipe test",
+    "is_read": 1,
+    "created_at": 1788212408.804231
+   },
+   {
+    "id": "n_b3a7b97e61d7",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Optimization complete",
+    "body": "'Size + speed' on 'MNIST Digit CNN (MLP-tail)': size \u221251.1%",
+    "is_read": 1,
+    "created_at": 1788212407.49674
+   },
+   {
+    "id": "n_516a9b1f7d1f",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Optimization started",
+    "body": "Plan 'Size + speed' executing on 'MNIST Digit CNN (MLP-tail)'",
+    "is_read": 1,
+    "created_at": 1788212406.654546
+   },
+   {
+    "id": "n_9681d265817c",
+    "user_id": "u_4084a36670b3",
+    "kind": "success",
+    "title": "Analysis complete",
+    "body": "'E2E MLP' analyzed: 6 valid plans ranked",
+    "is_read": 1,
+    "created_at": 1788212404.671731
+   },
+   {
+    "id": "n_4d1379d5f8d0",
+    "user_id": "u_4084a36670b3",
+    "kind": "info",
+    "title": "Analysis started",
+    "body": "Model 'E2E MLP' queued for analysis",
+    "is_read": 1,
+    "created_at": 1788212404.611263
+   }
+  ],
+  "unread": 1
+ },
+ "jobs": {
+  "jobs": [
+   {
+    "id": "job_48fa0f82e231",
+    "type": "execute",
+    "ref_id": "run_950a887a9d2d",
+    "model_id": "m_8d95c929ee8a",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1787332707.0708532,
+    "started_at": 1787332707.0739882,
+    "finished_at": 1787332707.438251
+   },
+   {
+    "id": "job_9f7221706358",
+    "type": "execute",
+    "ref_id": "run_99bf6615ba85",
+    "model_id": "m_8d95c929ee8a",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1787332639.9898298,
+    "started_at": 1787332639.992109,
+    "finished_at": 1787332640.6588101
+   },
+   {
+    "id": "job_b582928ce3d8",
+    "type": "execute",
+    "ref_id": "run_80017d17c71c",
+    "model_id": "m_6ce295ae6f89",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1786923631.7073019,
+    "started_at": 1786923631.708263,
+    "finished_at": 1786923639.8045099
+   },
+   {
+    "id": "job_f5736aca7b16",
+    "type": "execute",
+    "ref_id": "run_a6ca85692d4a",
+    "model_id": "m_6ce295ae6f89",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1786762840.3223119,
+    "started_at": 1786762840.323296,
+    "finished_at": 1786762846.7676952
+   },
+   {
+    "id": "job_d26dfb8f135d",
+    "type": "analyze",
+    "ref_id": "m_6ce295ae6f89",
+    "model_id": "m_6ce295ae6f89",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1786730648.803613,
+    "started_at": 1786730648.821876,
+    "finished_at": 1786730649.37711
+   },
+   {
+    "id": "job_675d13eb8336",
+    "type": "analyze",
+    "ref_id": "m_6df0e94e24ee",
+    "model_id": "m_6df0e94e24ee",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1786730648.1369119,
+    "started_at": 1786730648.137876,
+    "finished_at": 1786730648.201507
+   },
+   {
+    "id": "job_57d0fa617bac",
+    "type": "analyze",
+    "ref_id": "m_8d95c929ee8a",
+    "model_id": "m_8d95c929ee8a",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "error": null,
+    "attempts": 1,
+    "created_at": 1786730648.1099331,
+    "started_at": 1786730648.1106281,
+    "finished_at": 1786730648.177283
+   }
+  ]
+ },
+ "search_results": {
+  "results": [
+   {
+    "id": "m_6ce295ae6f89",
+    "name": "ResNet-18 (random init)",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 46848011,
+    "created_at": 1786730648.803227,
+    "project_id": "p_8575cf3c913f",
+    "project": "Demo Optimization Lab"
+   },
+   {
+    "id": "m_6df0e94e24ee",
+    "name": "CIFAR-10 CNN",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 2287320,
+    "created_at": 1786730648.136788,
+    "project_id": "p_8575cf3c913f",
+    "project": "Demo Optimization Lab"
+   },
+   {
+    "id": "m_8d95c929ee8a",
+    "name": "MNIST Digit CNN (MLP-tail)",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 93837,
+    "created_at": 1786730648.109846,
+    "project_id": "p_8575cf3c913f",
+    "project": "Demo Optimization Lab"
+   }
+  ],
+  "total": 3,
+  "scanned": 3
+ },
+ "project_p_8575cf3c913f": {
+  "id": "p_8575cf3c913f",
+  "owner_id": "u_4084a36670b3",
+  "name": "Demo Optimization Lab",
+  "description": "Sample project seeded with three models of different shapes to explore the full ModelSmith workflow.",
+  "created_at": 1786730648.078479,
+  "updated_at": 1786730648.078479,
+  "archived": 0,
+  "models": [
+   {
+    "id": "m_6ce295ae6f89",
+    "name": "ResNet-18 (random init)",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 46848011,
+    "created_at": 1786730648.803227,
+    "sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c",
+    "analyzed": true
+   },
+   {
+    "id": "m_6df0e94e24ee",
+    "name": "CIFAR-10 CNN",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 2287320,
+    "created_at": 1786730648.136788,
+    "sha256": "3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5",
+    "analyzed": true
+   },
+   {
+    "id": "m_8d95c929ee8a",
+    "name": "MNIST Digit CNN (MLP-tail)",
+    "framework": "pytorch",
+    "status": "analyzed",
+    "size_bytes": 93837,
+    "created_at": 1786730648.109846,
+    "sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6",
+    "analyzed": true
+   }
+  ],
+  "model_count": 3,
+  "run_count": 4
+ },
+ "projectstats_p_8575cf3c913f": {
+  "models": 3,
+  "total_bytes": 49229168,
+  "total_params": 12279826,
+  "best_run": {
+   "plan_name": "Size + speed",
+   "saved": 51.1,
+   "opt_mb": 0.135,
+   "model": "MNIST Digit CNN (MLP-tail)"
+  },
+  "heaviest_model": {
+   "name": "ResNet-18 (random init)",
+   "size_bytes": 46848011
+  }
+ },
+ "model_m_6ce295ae6f89": {
+  "id": "m_6ce295ae6f89",
+  "project_id": "p_8575cf3c913f",
+  "name": "ResNet-18 (random init)",
+  "framework": "pytorch",
+  "orig_name": "demo_model.pt",
+  "size_bytes": 46848011,
+  "sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c",
+  "status": "analyzed",
+  "error": null,
+  "analysis": {
+   "framework": "pytorch",
+   "input_shape": [
+    3,
+    32,
+    32
+   ],
+   "total_params": 11689512,
+   "param_size_mb": 46.758,
+   "file_size_mb": 46.848,
+   "total_flops": 75199488,
+   "layer_count": 59,
+   "layers": [
+    {
+     "name": "layer4.0.conv2",
+     "type": "Conv2d",
+     "params": 2359296,
+     "size_bytes": 9437184,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer4.1.conv1",
+     "type": "Conv2d",
+     "params": 2359296,
+     "size_bytes": 9437184,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer4.1.conv2",
+     "type": "Conv2d",
+     "params": 2359296,
+     "size_bytes": 9437184,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer4.0.conv1",
+     "type": "Conv2d",
+     "params": 1179648,
+     "size_bytes": 4718592,
+     "dtype": "float32",
+     "flops": 2359296
+    },
+    {
+     "name": "layer3.0.conv2",
+     "type": "Conv2d",
+     "params": 589824,
+     "size_bytes": 2359296,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer3.1.conv1",
+     "type": "Conv2d",
+     "params": 589824,
+     "size_bytes": 2359296,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer3.1.conv2",
+     "type": "Conv2d",
+     "params": 589824,
+     "size_bytes": 2359296,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "fc",
+     "type": "Linear",
+     "params": 513000,
+     "size_bytes": 2052000,
+     "dtype": "float32",
+     "flops": 1024000
+    },
+    {
+     "name": "layer3.0.conv1",
+     "type": "Conv2d",
+     "params": 294912,
+     "size_bytes": 1179648,
+     "dtype": "float32",
+     "flops": 2359296
+    },
+    {
+     "name": "layer2.0.conv2",
+     "type": "Conv2d",
+     "params": 147456,
+     "size_bytes": 589824,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer2.1.conv1",
+     "type": "Conv2d",
+     "params": 147456,
+     "size_bytes": 589824,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer2.1.conv2",
+     "type": "Conv2d",
+     "params": 147456,
+     "size_bytes": 589824,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer4.0.downsample.0",
+     "type": "Conv2d",
+     "params": 131072,
+     "size_bytes": 524288,
+     "dtype": "float32",
+     "flops": 262144
+    },
+    {
+     "name": "layer2.0.conv1",
+     "type": "Conv2d",
+     "params": 73728,
+     "size_bytes": 294912,
+     "dtype": "float32",
+     "flops": 2359296
+    },
+    {
+     "name": "layer1.0.conv1",
+     "type": "Conv2d",
+     "params": 36864,
+     "size_bytes": 147456,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer1.0.conv2",
+     "type": "Conv2d",
+     "params": 36864,
+     "size_bytes": 147456,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer1.1.conv1",
+     "type": "Conv2d",
+     "params": 36864,
+     "size_bytes": 147456,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer1.1.conv2",
+     "type": "Conv2d",
+     "params": 36864,
+     "size_bytes": 147456,
+     "dtype": "float32",
+     "flops": 4718592
+    },
+    {
+     "name": "layer3.0.downsample.0",
+     "type": "Conv2d",
+     "params": 32768,
+     "size_bytes": 131072,
+     "dtype": "float32",
+     "flops": 262144
+    },
+    {
+     "name": "conv1",
+     "type": "Conv2d",
+     "params": 9408,
+     "size_bytes": 37632,
+     "dtype": "float32",
+     "flops": 4816896
+    },
+    {
+     "name": "layer2.0.downsample.0",
+     "type": "Conv2d",
+     "params": 8192,
+     "size_bytes": 32768,
+     "dtype": "float32",
+     "flops": 262144
+    },
+    {
+     "name": "layer4.0.bn1",
+     "type": "BatchNorm2d",
+     "params": 1024,
+     "size_bytes": 4096,
+     "dtype": "float32",
+     "flops": 1024
+    },
+    {
+     "name": "layer4.0.bn2",
+     "type": "BatchNorm2d",
+     "params": 1024,
+     "size_bytes": 4096,
+     "dtype": "float32",
+     "flops": 1024
+    },
+    {
+     "name": "layer4.0.downsample.1",
+     "type": "BatchNorm2d",
+     "params": 1024,
+     "size_bytes": 4096,
+     "dtype": "float32",
+     "flops": 1024
+    },
+    {
+     "name": "layer4.1.bn1",
+     "type": "BatchNorm2d",
+     "params": 1024,
+     "size_bytes": 4096,
+     "dtype": "float32",
+     "flops": 1024
+    },
+    {
+     "name": "layer4.1.bn2",
+     "type": "BatchNorm2d",
+     "params": 1024,
+     "size_bytes": 4096,
+     "dtype": "float32",
+     "flops": 1024
+    },
+    {
+     "name": "layer3.0.bn1",
+     "type": "BatchNorm2d",
+     "params": 512,
+     "size_bytes": 2048,
+     "dtype": "float32",
+     "flops": 2048
+    },
+    {
+     "name": "layer3.0.bn2",
+     "type": "BatchNorm2d",
+     "params": 512,
+     "size_bytes": 2048,
+     "dtype": "float32",
+     "flops": 2048
+    },
+    {
+     "name": "layer3.0.downsample.1",
+     "type": "BatchNorm2d",
+     "params": 512,
+     "size_bytes": 2048,
+     "dtype": "float32",
+     "flops": 2048
+    },
+    {
+     "name": "layer3.1.bn1",
+     "type": "BatchNorm2d",
+     "params": 512,
+     "size_bytes": 2048,
+     "dtype": "float32",
+     "flops": 2048
+    },
+    {
+     "name": "layer3.1.bn2",
+     "type": "BatchNorm2d",
+     "params": 512,
+     "size_bytes": 2048,
+     "dtype": "float32",
+     "flops": 2048
+    },
+    {
+     "name": "layer2.0.bn1",
+     "type": "BatchNorm2d",
+     "params": 256,
+     "size_bytes": 1024,
+     "dtype": "float32",
+     "flops": 4096
+    },
+    {
+     "name": "layer2.0.bn2",
+     "type": "BatchNorm2d",
+     "params": 256,
+     "size_bytes": 1024,
+     "dtype": "float32",
+     "flops": 4096
+    },
+    {
+     "name": "layer2.0.downsample.1",
+     "type": "BatchNorm2d",
+     "params": 256,
+     "size_bytes": 1024,
+     "dtype": "float32",
+     "flops": 4096
+    },
+    {
+     "name": "layer2.1.bn1",
+     "type": "BatchNorm2d",
+     "params": 256,
+     "size_bytes": 1024,
+     "dtype": "float32",
+     "flops": 4096
+    },
+    {
+     "name": "layer2.1.bn2",
+     "type": "BatchNorm2d",
+     "params": 256,
+     "size_bytes": 1024,
+     "dtype": "float32",
+     "flops": 4096
+    },
+    {
+     "name": "bn1",
+     "type": "BatchNorm2d",
+     "params": 128,
+     "size_bytes": 512,
+     "dtype": "float32",
+     "flops": 32768
+    },
+    {
+     "name": "layer1.0.bn1",
+     "type": "BatchNorm2d",
+     "params": 128,
+     "size_bytes": 512,
+     "dtype": "float32",
+     "flops": 8192
+    },
+    {
+     "name": "layer1.0.bn2",
+     "type": "BatchNorm2d",
+     "params": 128,
+     "size_bytes": 512,
+     "dtype": "float32",
+     "flops": 8192
+    },
+    {
+     "name": "layer1.1.bn1",
+     "type": "BatchNorm2d",
+     "params": 128,
+     "size_bytes": 512,
+     "dtype": "float32",
+     "flops": 8192
+    }
+   ],
+   "benchmark": {
+    "latency_ms": 4.4553,
+    "p95_ms": 6.2506,
+    "throughput_fps": 224.5,
+    "runs": 30,
+    "runtime": "pytorch-cpu"
+   },
+   "arch": "cnn",
+   "conv_param_share_pct": 95.5,
+   "bottlenecks": {
+    "top_layers": [
+     {
+      "name": "layer4.0.conv2",
+      "type": "Conv2d",
+      "params": 2359296,
+      "size_bytes": 9437184,
+      "dtype": "float32",
+      "flops": 4718592
+     },
+     {
+      "name": "layer4.1.conv1",
+      "type": "Conv2d",
+      "params": 2359296,
+      "size_bytes": 9437184,
+      "dtype": "float32",
+      "flops": 4718592
+     },
+     {
+      "name": "layer4.1.conv2",
+      "type": "Conv2d",
+      "params": 2359296,
+      "size_bytes": 9437184,
+      "dtype": "float32",
+      "flops": 4718592
+     }
+    ],
+    "param_concentration_pct": 60.5,
+    "notes": [
+     "Conv2d layer 'layer4.0.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.",
+     "Conv2d layer 'layer4.1.conv1' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.",
+     "Conv2d layer 'layer4.1.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.",
+     "Convolution-heavy: structured pruning + ONNX/TensorRT graph optimization usually give the largest latency gains.",
+     "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."
+    ]
+   },
+   "memory_estimate_mb": 121.9575,
+   "environment": {
+    "python": "3.11.12",
+    "machine": "arm64",
+    "system": "Darwin"
+   }
+  },
+  "goals": {
+   "objective": "min_size",
+   "target_hardware": "mobile",
+   "max_latency_ms": null,
+   "max_size_mb": null,
+   "min_accuracy_pct": 98
+  },
+  "plans": {
+   "objective": "min_size",
+   "target_hardware": "mobile",
+   "hardware": {
+    "label": "Mobile",
+    "memory_mb": 1024,
+    "precisions": [
+     "int8"
+    ],
+    "runtimes": [
+     "TFLite",
+     "Core ML",
+     "SNPE"
+    ],
+    "preferred": [
+     "int8",
+     "onnx"
+    ]
+   },
+   "valid": [
+    {
+     "plan_id": "edge-lite",
+     "tagline": "Compact + fast",
+     "techniques": [
+      "int8",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 11.6895,
+      "size_saved_pct": 75.0,
+      "latency_ms": 2.6509,
+      "latency_gain_pct": 40.5,
+      "memory_mb": 16.8329,
+      "memory_saved_pct": 70.0,
+      "accuracy_retention_pct": 98.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 75.5,
+     "rank": 1,
+     "recommended": true
+    },
+    {
+     "plan_id": "speed",
+     "tagline": "Latency focused",
+     "techniques": [
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 37.4064,
+      "size_saved_pct": 20.0,
+      "latency_ms": 3.1053,
+      "latency_gain_pct": 30.3,
+      "memory_mb": 46.0099,
+      "memory_saved_pct": 18.0,
+      "accuracy_retention_pct": 98.0
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 36.33,
+     "rank": 2,
+     "recommended": false
+    }
+   ],
+   "rejected": [
+    {
+     "plan_id": "edge-max",
+     "tagline": "Smallest footprint",
+     "techniques": [
+      "int8",
+      "prune40",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Aggressive Pruning (40%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 7.2475,
+      "size_saved_pct": 84.5,
+      "latency_ms": 1.8026,
+      "latency_gain_pct": 59.5,
+      "memory_mb": 11.783,
+      "memory_saved_pct": 79.0,
+      "accuracy_retention_pct": 92.6
+     },
+     "reasons": [
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 92.6% is below your 98.0% minimum."
+     ]
+    },
+    {
+     "plan_id": "half",
+     "tagline": "Precision focused",
+     "techniques": [
+      "fp16",
+      "onnx"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 23.379,
+      "size_saved_pct": 50.0,
+      "latency_ms": 3.4083,
+      "latency_gain_pct": 23.5,
+      "memory_mb": 28.0548,
+      "memory_saved_pct": 50.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "rejected_because": [
+      "Mobile does not reliably support FP16."
+     ]
+    },
+    {
+     "plan_id": "balanced",
+     "tagline": "Trade-off blend",
+     "techniques": [
+      "int8",
+      "prune20"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 9.3516,
+      "size_saved_pct": 80.0,
+      "latency_ms": 2.5573,
+      "latency_gain_pct": 42.6,
+      "memory_mb": 13.803,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 96.5% is below your 98.0% minimum."
+     ]
+    },
+    {
+     "plan_id": "max-speed",
+     "tagline": "GPU throughput",
+     "techniques": [
+      "fp16",
+      "tensorrt"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "TensorRT Build (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 23.379,
+      "size_saved_pct": 50.0,
+      "latency_ms": 1.8044,
+      "latency_gain_pct": 59.5,
+      "memory_mb": 22.4438,
+      "memory_saved_pct": 60.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."
+     ],
+     "rejected_because": [
+      "TensorRT requires a GPU server target.",
+      "Mobile does not reliably support FP16."
+     ]
+    },
+    {
+     "plan_id": "deep-cut",
+     "tagline": "Size + speed",
+     "techniques": [
+      "int8",
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 9.3516,
+      "size_saved_pct": 80.0,
+      "latency_ms": 2.1737,
+      "latency_gain_pct": 51.2,
+      "memory_mb": 13.803,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 96.5% is below your 98.0% minimum."
+     ]
+    },
+    {
+     "plan_id": "distill",
+     "tagline": "Smallest via retraining",
+     "techniques": [
+      "distill"
+     ],
+     "technique_labels": [
+      "Knowledge Distillation (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 14.0274,
+      "size_saved_pct": 70.0,
+      "latency_ms": 1.7821,
+      "latency_gain_pct": 60.0,
+      "memory_mb": 19.6384,
+      "memory_saved_pct": 65.0,
+      "accuracy_retention_pct": 97.0
+     },
+     "reasons": [
+      "Train a smaller student against this model \u2014 needs training data and multiple retraining cycles."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 97.0% is below your 98.0% minimum."
+     ]
+    }
+   ]
+  },
+  "uploaded_by": "u_4084a36670b3",
+  "created_at": 1786730648.803227,
+  "updated_at": 1787347183.4563258,
+  "notes": "ResNet baseline for the vision API",
+  "tags": [
+   "vision",
+   "baseline"
+  ],
+  "efficiency_score": 66,
+  "runs": [
+   {
+    "id": "run_80017d17c71c",
+    "model_id": "m_6ce295ae6f89",
+    "plan_id": "edge-lite",
+    "plan_name": "Compact + fast",
+    "user_id": "u_4084a36670b3",
+    "status": "success",
+    "steps": [
+     {
+      "technique": "onnx",
+      "label": "ONNX Export",
+      "status": "success",
+      "note": "Exported + validated ONNX graph (opset 13)."
+     },
+     {
+      "technique": "int8",
+      "label": "INT8 Dynamic Quantization",
+      "status": "success",
+      "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."
+     }
+    ],
+    "benchmark": {
+     "baseline": {
+      "size_mb": 46.848,
+      "latency_ms": 4.7704,
+      "p95_ms": 7.3823,
+      "throughput_fps": 209.6,
+      "runs": 30,
+      "runtime": "pytorch-cpu"
+     },
+     "optimized": {
+      "size_mb": 92.0475,
+      "latency_ms": 5.2176,
+      "p95_ms": 8.0611,
+      "throughput_fps": 191.7,
+      "runs": 30,
+      "runtime": "pytorch-cpu",
+      "onnx_artifact": {
+       "latency_ms": 4.0162,
+       "p95_ms": 7.9758,
+       "throughput_fps": 249.0,
+       "runs": 30,
+       "runtime": "onnxruntime-1.28.0"
+      }
+     },
+     "size_saved_pct": 3.3,
+     "latency_gain_pct": -9.4,
+     "output_agreement": {
+      "agreement_pct": 100.0,
+      "inputs_checked": 16,
+      "seed": 42
+     },
+     "note": null
+    },
+    "artifacts": [
+     {
+      "name": "optimized.onnx",
+      "size_bytes": 46733663,
+      "sha256": "3579bf0115585653e77f13ca9a4508fc5482544d2e51b6b40da8c5dbd2321538",
+      "encrypted": true
+     },
+     {
+      "name": "optimized.pt",
+      "size_bytes": 45313803,
+      "sha256": "aba70524ce6bfbf0086d7bd0d420cc1b897acab3afc4bd8248d913bcdf7e616f",
+      "encrypted": true
+     }
+    ],
+    "repro": {
+     "model_sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c",
+     "model_id": "m_6ce295ae6f89",
+     "plan_id": "edge-lite",
+     "techniques": [
+      "int8",
+      "onnx"
+     ],
+     "seed": 42,
+     "benchmark_runs": 30,
+     "versions": {
+      "python": "3.11.12",
+      "torch": "2.13.0",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.28.0",
+      "numpy": "2.4.6"
+     },
+     "platform": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "processor": "arm"
+     },
+     "executed_at": 1786923639.3579352
+    },
+    "error": null,
+    "created_at": 1786923631.707165,
+    "finished_at": 1786923639.800239
+   },
+   {
+    "id": "run_a6ca85692d4a",
+    "model_id": "m_6ce295ae6f89",
+    "plan_id": "edge-lite",
+    "plan_name": "Compact + fast",
+    "user_id": "u_4084a36670b3",
+    "status": "success",
+    "steps": [
+     {
+      "technique": "onnx",
+      "label": "ONNX Export",
+      "status": "success",
+      "note": "Exported + validated ONNX graph (opset 13)."
+     },
+     {
+      "technique": "int8",
+      "label": "INT8 Dynamic Quantization",
+      "status": "success",
+      "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."
+     }
+    ],
+    "benchmark": {
+     "baseline": {
+      "size_mb": 46.848,
+      "latency_ms": 6.235,
+      "p95_ms": 11.0716,
+      "throughput_fps": 160.4,
+      "runs": 30,
+      "runtime": "pytorch-cpu"
+     },
+     "optimized": {
+      "size_mb": 92.0475,
+      "latency_ms": 5.5585,
+      "p95_ms": 8.327,
+      "throughput_fps": 179.9,
+      "runs": 30,
+      "runtime": "pytorch-cpu",
+      "onnx_artifact": {
+       "latency_ms": 4.0207,
+       "p95_ms": 7.1235,
+       "throughput_fps": 248.7,
+       "runs": 30,
+       "runtime": "onnxruntime-1.28.0"
+      }
+     },
+     "size_saved_pct": 3.3,
+     "latency_gain_pct": 10.9,
+     "output_agreement": {
+      "agreement_pct": 100.0,
+      "inputs_checked": 16,
+      "seed": 42
+     },
+     "note": null
+    },
+    "artifacts": [
+     {
+      "name": "optimized.onnx",
+      "size_bytes": 46733663,
+      "sha256": "3579bf0115585653e77f13ca9a4508fc5482544d2e51b6b40da8c5dbd2321538",
+      "encrypted": true
+     },
+     {
+      "name": "optimized.pt",
+      "size_bytes": 45313803,
+      "sha256": "aba70524ce6bfbf0086d7bd0d420cc1b897acab3afc4bd8248d913bcdf7e616f",
+      "encrypted": true
+     }
+    ],
+    "repro": {
+     "model_sha256": "5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c",
+     "model_id": "m_6ce295ae6f89",
+     "plan_id": "edge-lite",
+     "techniques": [
+      "int8",
+      "onnx"
+     ],
+     "seed": 42,
+     "benchmark_runs": 30,
+     "versions": {
+      "python": "3.11.12",
+      "torch": "2.13.0",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.28.0",
+      "numpy": "2.4.6"
+     },
+     "platform": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "processor": "arm"
+     },
+     "executed_at": 1786762846.4438121
+    },
+    "error": null,
+    "created_at": 1786762840.320499,
+    "finished_at": 1786762846.741312
+   }
+  ],
+  "jobs": [
+   {
+    "id": "job_b582928ce3d8",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786923631.7073019
+   },
+   {
+    "id": "job_f5736aca7b16",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786762840.3223119
+   },
+   {
+    "id": "job_d26dfb8f135d",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.803613
+   }
+  ]
+ },
+ "history_m_6ce295ae6f89": {
+  "history": [
+   {
+    "label": "original",
+    "kind": "baseline",
+    "size_mb": 46.85,
+    "latency_ms": 4.4553,
+    "ts": 1786730648.803227
+   },
+   {
+    "label": "Compact + fast",
+    "kind": "success",
+    "run_id": "run_a6ca85692d4a",
+    "size_mb": 92.0475,
+    "latency_ms": 5.5585,
+    "size_saved_pct": 3.3,
+    "latency_gain_pct": 10.9,
+    "ts": 1786762840.320499
+   },
+   {
+    "label": "Compact + fast",
+    "kind": "success",
+    "run_id": "run_80017d17c71c",
+    "size_mb": 92.0475,
+    "latency_ms": 5.2176,
+    "size_saved_pct": 3.3,
+    "latency_gain_pct": -9.4,
+    "ts": 1786923631.707165
+   }
+  ],
+  "run_count": 2,
+  "best_size_mb": 46.85
+ },
+ "suggestions_m_6ce295ae6f89": {
+  "suggestions": [
+   {
+    "title": "96% of parameters live in convolutions",
+    "body": "Conv-heavy networks respond well to channel pruning combined with INT8. The planner ranks both.",
+    "action": "Compare the prune+quantize plans side by side."
+   },
+   {
+    "title": "Best ranked plan: edge-lite",
+    "body": "Compact + fast",
+    "action": "Predicted 75.0% smaller, 40.5% faster."
+   }
+  ]
+ },
+ "diff_m_6ce295ae6f89": {
+  "run": {
+   "id": "run_a6ca85692d4a",
+   "plan_name": "Compact + fast",
+   "created_at": 1786762840.320499
+  },
+  "agreement_pct": 100.0,
+  "rows": [
+   {
+    "metric": "Size (MB)",
+    "before": 46.848,
+    "after": 92.0475,
+    "delta": 45.2,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "Latency (ms)",
+    "before": 6.235,
+    "after": 5.5585,
+    "delta": -0.676,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "p95 latency (ms)",
+    "before": 11.0716,
+    "after": 8.327,
+    "delta": -2.745,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "Throughput (inf/s)",
+    "before": 160.4,
+    "after": 179.9,
+    "delta": 19.5,
+    "unit": "",
+    "better": "higher"
+   }
+  ],
+  "summary": {
+   "size_saved_pct": 3.3,
+   "latency_gain_pct": 10.9
+  }
+ },
+ "report_m_6ce295ae6f89": "# ModelSmith Report: ResNet-18 (random init)\n\n- **Model ID:** `m_6ce295ae6f89`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.803227\n- **SHA-256:** `5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c`\n\n## 1. Model analysis\n\n| Metric | Value |\n|---|---|\n| Parameters | 11,689,512 |\n| Parameter size | 46.76 MB |\n| File size | 46.85 MB |\n| Compute | 75.20 MFLOPs/forward |\n| Input shape | 3 \u00d7 32 \u00d7 32 |\n| Architecture class | cnn |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| layer4.0.conv2 | Conv2d | 2,359,296 | 20.2% |\n| layer4.1.conv1 | Conv2d | 2,359,296 | 20.2% |\n| layer4.1.conv2 | Conv2d | 2,359,296 | 20.2% |\n| layer4.0.conv1 | Conv2d | 1,179,648 | 10.1% |\n| layer3.0.conv2 | Conv2d | 589,824 | 5.0% |\n| layer3.1.conv1 | Conv2d | 589,824 | 5.0% |\n| layer3.1.conv2 | Conv2d | 589,824 | 5.0% |\n| fc | Linear | 513,000 | 4.4% |\n\n## 2. Benchmark profile\n\n- Measured latency (CPU): **4.4553 ms** mean, 6.2506 ms p95 over 30 runs\n- Throughput: 224.5 inferences/s\n\n### Bottleneck notes\n\n- Conv2d layer 'layer4.0.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'layer4.1.conv1' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'layer4.1.conv2' holds 20.2% of parameters (2,359,296) \u2014 primary target for quantization/pruning.\n- Convolution-heavy: structured pruning + ONNX/TensorRT graph optimization usually give the largest latency gains.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals\n\n- Objective: `min_size`\n- Target hardware: `mobile`\n- Minimum accuracy retention: 98%\n\n## 4. Ranked optimization plans\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 40.5% | 98.5% |\n| 2 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 30.3% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 98.0% minimum.\n- `half`: Mobile does not reliably support FP16.\n- `balanced`: Predicted accuracy retention 96.5% is below your 98.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.; Mobile does not reliably support FP16.\n- `deep-cut`: Predicted accuracy retention 96.5% is below your 98.0% minimum.\n- `distill`: Predicted accuracy retention 97.0% is below your 98.0% minimum.\n\n## 5. Execution history & benchmarks\n\n### Run `run_80017d17c71c`: Compact + fast (success)\n\n- Executed: 1786923631.707165\n- Baseline: 46.85 MB, 4.7704 ms\n- Optimized: 92.05 MB, 5.2176 ms\n- **Size saved: 3.3%** | **Latency gain: -9.4%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata</summary>\n\n```json\n{\"model_sha256\": \"5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c\", \"model_id\": \"m_6ce295ae6f89\", \"plan_id\": \"edge-lite\", \"techniques\": [\"int8\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1786923639.3579352}\n```\n</details>\n\n### Run `run_a6ca85692d4a`: Compact + fast (success)\n\n- Executed: 1786762840.320499\n- Baseline: 46.85 MB, 6.235 ms\n- Optimized: 92.05 MB, 5.5585 ms\n- **Size saved: 3.3%** | **Latency gain: 10.9%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata</summary>\n\n```json\n{\"model_sha256\": \"5c14158b26a4ff8b04a0a7abd7b3a858daff1dfb95405bd7bf1b7e8812112b0c\", \"model_id\": \"m_6ce295ae6f89\", \"plan_id\": \"edge-lite\", \"techniques\": [\"int8\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1786762846.4438121}\n```\n</details>\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._",
+ "model_m_6df0e94e24ee": {
+  "id": "m_6df0e94e24ee",
+  "project_id": "p_8575cf3c913f",
+  "name": "CIFAR-10 CNN",
+  "framework": "pytorch",
+  "orig_name": "demo_model.pt",
+  "size_bytes": 2287320,
+  "sha256": "3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5",
+  "status": "analyzed",
+  "error": null,
+  "analysis": {
+   "framework": "pytorch",
+   "input_shape": [
+    3,
+    32,
+    32
+   ],
+   "total_params": 568474,
+   "param_size_mb": 2.2739,
+   "file_size_mb": 2.2873,
+   "total_flops": 45603456,
+   "layer_count": 15,
+   "layers": [
+    {
+     "name": "net.12",
+     "type": "Linear",
+     "params": 524416,
+     "size_bytes": 2097664,
+     "dtype": "float32",
+     "flops": 1048576
+    },
+    {
+     "name": "net.7",
+     "type": "Conv2d",
+     "params": 27712,
+     "size_bytes": 110848,
+     "dtype": "float32",
+     "flops": 14155776
+    },
+    {
+     "name": "net.3",
+     "type": "Conv2d",
+     "params": 13872,
+     "size_bytes": 55488,
+     "dtype": "float32",
+     "flops": 28311552
+    },
+    {
+     "name": "net.14",
+     "type": "Linear",
+     "params": 1290,
+     "size_bytes": 5160,
+     "dtype": "float32",
+     "flops": 2560
+    },
+    {
+     "name": "net.0",
+     "type": "Conv2d",
+     "params": 896,
+     "size_bytes": 3584,
+     "dtype": "float32",
+     "flops": 1769472
+    },
+    {
+     "name": "net.8",
+     "type": "BatchNorm2d",
+     "params": 128,
+     "size_bytes": 512,
+     "dtype": "float32",
+     "flops": 32768
+    },
+    {
+     "name": "net.4",
+     "type": "BatchNorm2d",
+     "params": 96,
+     "size_bytes": 384,
+     "dtype": "float32",
+     "flops": 98304
+    },
+    {
+     "name": "net.1",
+     "type": "BatchNorm2d",
+     "params": 64,
+     "size_bytes": 256,
+     "dtype": "float32",
+     "flops": 65536
+    },
+    {
+     "name": "net.2",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 32768
+    },
+    {
+     "name": "net.5",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 49152
+    },
+    {
+     "name": "net.6",
+     "type": "MaxPool2d",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 12288
+    },
+    {
+     "name": "net.9",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 16384
+    },
+    {
+     "name": "net.10",
+     "type": "MaxPool2d",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 4096
+    },
+    {
+     "name": "net.11",
+     "type": "Flatten",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 4096
+    },
+    {
+     "name": "net.13",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 128
+    }
+   ],
+   "benchmark": {
+    "latency_ms": 0.626,
+    "p95_ms": 1.2501,
+    "throughput_fps": 1597.4,
+    "runs": 30,
+    "runtime": "pytorch-cpu"
+   },
+   "arch": "hybrid",
+   "conv_param_share_pct": 7.5,
+   "bottlenecks": {
+    "top_layers": [
+     {
+      "name": "net.12",
+      "type": "Linear",
+      "params": 524416,
+      "size_bytes": 2097664,
+      "dtype": "float32",
+      "flops": 1048576
+     },
+     {
+      "name": "net.7",
+      "type": "Conv2d",
+      "params": 27712,
+      "size_bytes": 110848,
+      "dtype": "float32",
+      "flops": 14155776
+     },
+     {
+      "name": "net.3",
+      "type": "Conv2d",
+      "params": 13872,
+      "size_bytes": 55488,
+      "dtype": "float32",
+      "flops": 28311552
+     }
+    ],
+    "param_concentration_pct": 99.6,
+    "notes": [
+     "Linear layer 'net.12' holds 92.2% of parameters (524,416) \u2014 primary target for quantization/pruning.",
+     "Conv2d layer 'net.7' holds 4.9% of parameters (27,712) \u2014 primary target for quantization/pruning.",
+     "Conv2d layer 'net.3' holds 2.4% of parameters (13,872) \u2014 primary target for quantization/pruning.",
+     "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."
+    ]
+   },
+   "memory_estimate_mb": 47.8774,
+   "environment": {
+    "python": "3.11.12",
+    "machine": "arm64",
+    "system": "Darwin"
+   }
+  },
+  "goals": null,
+  "plans": {
+   "objective": "balanced",
+   "target_hardware": "cpu-server",
+   "hardware": {
+    "label": "CPU Server",
+    "memory_mb": 8192,
+    "precisions": [
+     "fp32",
+     "fp16",
+     "int8"
+    ],
+    "runtimes": [
+     "PyTorch",
+     "ONNX Runtime"
+    ],
+    "preferred": [
+     "int8",
+     "onnx"
+    ]
+   },
+   "valid": [
+    {
+     "plan_id": "deep-cut",
+     "tagline": "Size + speed",
+     "techniques": [
+      "int8",
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.4548,
+      "size_saved_pct": 80.0,
+      "latency_ms": 0.2575,
+      "latency_gain_pct": 58.9,
+      "memory_mb": 0.6713,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 76.05,
+     "rank": 1,
+     "recommended": true
+    },
+    {
+     "plan_id": "balanced",
+     "tagline": "Trade-off blend",
+     "techniques": [
+      "int8",
+      "prune20"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.4548,
+      "size_saved_pct": 80.0,
+      "latency_ms": 0.2927,
+      "latency_gain_pct": 53.2,
+      "memory_mb": 0.6713,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression."
+     ],
+     "score": 74.34,
+     "rank": 2,
+     "recommended": false
+    },
+    {
+     "plan_id": "distill",
+     "tagline": "Smallest via retraining",
+     "techniques": [
+      "distill"
+     ],
+     "technique_labels": [
+      "Knowledge Distillation (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 0.6822,
+      "size_saved_pct": 70.0,
+      "latency_ms": 0.2191,
+      "latency_gain_pct": 65.0,
+      "memory_mb": 0.955,
+      "memory_saved_pct": 65.0,
+      "accuracy_retention_pct": 97.0
+     },
+     "reasons": [
+      "Runnable on CPU Server (PyTorch, ONNX Runtime)",
+      "Train a smaller student against this model \u2014 needs training data and multiple retraining cycles."
+     ],
+     "score": 72.9,
+     "rank": 3,
+     "recommended": false
+    },
+    {
+     "plan_id": "edge-lite",
+     "tagline": "Compact + fast",
+     "techniques": [
+      "int8",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.5685,
+      "size_saved_pct": 75.0,
+      "latency_ms": 0.303,
+      "latency_gain_pct": 51.6,
+      "memory_mb": 0.8186,
+      "memory_saved_pct": 70.0,
+      "accuracy_retention_pct": 98.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 71.68,
+     "rank": 4,
+     "recommended": false
+    },
+    {
+     "plan_id": "half",
+     "tagline": "Precision focused",
+     "techniques": [
+      "fp16",
+      "onnx"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 1.1369,
+      "size_saved_pct": 50.0,
+      "latency_ms": 0.4682,
+      "latency_gain_pct": 25.2,
+      "memory_mb": 1.3643,
+      "memory_saved_pct": 50.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 52.54,
+     "rank": 5,
+     "recommended": false
+    },
+    {
+     "plan_id": "speed",
+     "tagline": "Latency focused",
+     "techniques": [
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 1.8191,
+      "size_saved_pct": 20.0,
+      "latency_ms": 0.4682,
+      "latency_gain_pct": 25.2,
+      "memory_mb": 2.2375,
+      "memory_saved_pct": 18.0,
+      "accuracy_retention_pct": 98.0
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Removes low-magnitude (near-zero contribution) channels \u2014 actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 36.76,
+     "rank": 6,
+     "recommended": false
+    }
+   ],
+   "rejected": [
+    {
+     "plan_id": "edge-max",
+     "tagline": "Smallest footprint",
+     "techniques": [
+      "int8",
+      "prune40",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Aggressive Pruning (40%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.3525,
+      "size_saved_pct": 84.5,
+      "latency_ms": 0.2242,
+      "latency_gain_pct": 64.2,
+      "memory_mb": 0.573,
+      "memory_saved_pct": 79.0,
+      "accuracy_retention_pct": 92.6
+     },
+     "reasons": [
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales \u2014 the standard ~4x size cut for dense layers.",
+      "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 92.6% is below your 95.0% minimum."
+     ]
+    },
+    {
+     "plan_id": "max-speed",
+     "tagline": "GPU throughput",
+     "techniques": [
+      "fp16",
+      "tensorrt"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "TensorRT Build (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 1.1369,
+      "size_saved_pct": 50.0,
+      "latency_ms": 0.2661,
+      "latency_gain_pct": 57.5,
+      "memory_mb": 1.0915,
+      "memory_saved_pct": 60.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."
+     ],
+     "rejected_because": [
+      "TensorRT requires a GPU server target."
+     ]
+    }
+   ]
+  },
+  "uploaded_by": "u_4084a36670b3",
+  "created_at": 1786730648.136788,
+  "updated_at": 1786730648.1996748,
+  "notes": "",
+  "tags": [],
+  "efficiency_score": 87,
+  "runs": [],
+  "jobs": [
+   {
+    "id": "job_675d13eb8336",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.1369119
+   }
+  ]
+ },
+ "history_m_6df0e94e24ee": {
+  "history": [
+   {
+    "label": "original",
+    "kind": "baseline",
+    "size_mb": 2.29,
+    "latency_ms": 0.626,
+    "ts": 1786730648.136788
+   }
+  ],
+  "run_count": 0,
+  "best_size_mb": 2.29
+ },
+ "suggestions_m_6df0e94e24ee": {
+  "suggestions": [
+   {
+    "title": "Best ranked plan: deep-cut",
+    "body": "Size + speed",
+    "action": "Predicted 80.0% smaller, 58.9% faster."
+   }
+  ]
+ },
+ "report_m_6df0e94e24ee": "# ModelSmith Report: CIFAR-10 CNN\n\n- **Model ID:** `m_6df0e94e24ee`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.136788\n- **SHA-256:** `3478f8fb87db806cf74bf3b20ad1cc1a9e95f1e7fc1046fe7532648779b40fc5`\n\n## 1. Model analysis\n\n| Metric | Value |\n|---|---|\n| Parameters | 568,474 |\n| Parameter size | 2.27 MB |\n| File size | 2.29 MB |\n| Compute | 45.60 MFLOPs/forward |\n| Input shape | 3 \u00d7 32 \u00d7 32 |\n| Architecture class | hybrid |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| net.12 | Linear | 524,416 | 92.2% |\n| net.7 | Conv2d | 27,712 | 4.9% |\n| net.3 | Conv2d | 13,872 | 2.4% |\n| net.14 | Linear | 1,290 | 0.2% |\n| net.0 | Conv2d | 896 | 0.2% |\n| net.8 | BatchNorm2d | 128 | 0.0% |\n| net.4 | BatchNorm2d | 96 | 0.0% |\n| net.1 | BatchNorm2d | 64 | 0.0% |\n\n## 2. Benchmark profile\n\n- Measured latency (CPU): **0.626 ms** mean, 1.2501 ms p95 over 30 runs\n- Throughput: 1597.4 inferences/s\n\n### Bottleneck notes\n\n- Linear layer 'net.12' holds 92.2% of parameters (524,416) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.7' holds 4.9% of parameters (27,712) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.3' holds 2.4% of parameters (13,872) \u2014 primary target for quantization/pruning.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals\n\n- Objective: `balanced`\n- Target hardware: `cpu-server`\n- Minimum accuracy retention: -%\n\n## 4. Ranked optimization plans\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | deep-cut (Size + speed) | INT8 Dynamic Quantization, Structured Pruning (20%), ONNX Export | 80.0% | 58.9% | 96.5% |\n| 2 | balanced (Trade-off blend) | INT8 Dynamic Quantization, Structured Pruning (20%) | 80.0% | 53.2% | 96.5% |\n| 3 | distill (Smallest via retraining) | Knowledge Distillation (guided) | 70.0% | 65.0% | 97.0% |\n| 4 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 51.6% | 98.5% |\n| 5 | half (Precision focused) | FP16 Half Precision, ONNX Export | 50.0% | 25.2% | 99.9% |\n| 6 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 25.2% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 95.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.\n\n_No optimization runs executed for this model yet._\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._",
+ "model_m_8d95c929ee8a": {
+  "id": "m_8d95c929ee8a",
+  "project_id": "p_8575cf3c913f",
+  "name": "MNIST Digit CNN (MLP-tail)",
+  "framework": "pytorch",
+  "orig_name": "demo_model.pt",
+  "size_bytes": 93837,
+  "sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6",
+  "status": "analyzed",
+  "error": null,
+  "analysis": {
+   "framework": "pytorch",
+   "input_shape": [
+    1,
+    28,
+    28
+   ],
+   "total_params": 21840,
+   "param_size_mb": 0.0874,
+   "file_size_mb": 0.0938,
+   "total_flops": 970170,
+   "layer_count": 10,
+   "layers": [
+    {
+     "name": "net.7",
+     "type": "Linear",
+     "params": 16050,
+     "size_bytes": 64200,
+     "dtype": "float32",
+     "flops": 32000
+    },
+    {
+     "name": "net.3",
+     "type": "Conv2d",
+     "params": 5020,
+     "size_bytes": 20080,
+     "dtype": "float32",
+     "flops": 640000
+    },
+    {
+     "name": "net.9",
+     "type": "Linear",
+     "params": 510,
+     "size_bytes": 2040,
+     "dtype": "float32",
+     "flops": 1000
+    },
+    {
+     "name": "net.0",
+     "type": "Conv2d",
+     "params": 260,
+     "size_bytes": 1040,
+     "dtype": "float32",
+     "flops": 288000
+    },
+    {
+     "name": "net.1",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 5760
+    },
+    {
+     "name": "net.2",
+     "type": "MaxPool2d",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 1440
+    },
+    {
+     "name": "net.4",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 1280
+    },
+    {
+     "name": "net.5",
+     "type": "MaxPool2d",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 320
+    },
+    {
+     "name": "net.6",
+     "type": "Flatten",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 320
+    },
+    {
+     "name": "net.8",
+     "type": "ReLU",
+     "params": 0,
+     "size_bytes": 0,
+     "dtype": null,
+     "flops": 50
+    }
+   ],
+   "benchmark": {
+    "latency_ms": 0.3266,
+    "p95_ms": 1.2453,
+    "throughput_fps": 3062.3,
+    "runs": 30,
+    "runtime": "pytorch-cpu"
+   },
+   "arch": "hybrid",
+   "conv_param_share_pct": 24.2,
+   "bottlenecks": {
+    "top_layers": [
+     {
+      "name": "net.7",
+      "type": "Linear",
+      "params": 16050,
+      "size_bytes": 64200,
+      "dtype": "float32",
+      "flops": 32000
+     },
+     {
+      "name": "net.3",
+      "type": "Conv2d",
+      "params": 5020,
+      "size_bytes": 20080,
+      "dtype": "float32",
+      "flops": 640000
+     },
+     {
+      "name": "net.9",
+      "type": "Linear",
+      "params": 510,
+      "size_bytes": 2040,
+      "dtype": "float32",
+      "flops": 1000
+     }
+    ],
+    "param_concentration_pct": 98.8,
+    "notes": [
+     "Linear layer 'net.7' holds 73.5% of parameters (16,050) \u2014 primary target for quantization/pruning.",
+     "Conv2d layer 'net.3' holds 23.0% of parameters (5,020) \u2014 primary target for quantization/pruning.",
+     "Linear layer 'net.9' holds 2.3% of parameters (510) \u2014 primary target for quantization/pruning.",
+     "All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step."
+    ]
+   },
+   "memory_estimate_mb": 1.0576,
+   "environment": {
+    "python": "3.11.12",
+    "machine": "arm64",
+    "system": "Darwin"
+   }
+  },
+  "goals": {
+   "objective": "balanced",
+   "target_hardware": "cpu-server",
+   "max_latency_ms": null,
+   "max_size_mb": null,
+   "min_accuracy_pct": 95
+  },
+  "plans": {
+   "objective": "balanced",
+   "target_hardware": "cpu-server",
+   "hardware": {
+    "label": "CPU Server",
+    "memory_mb": 8192,
+    "precisions": [
+     "fp32",
+     "fp16",
+     "int8"
+    ],
+    "runtimes": [
+     "PyTorch",
+     "ONNX Runtime"
+    ],
+    "preferred": [
+     "int8",
+     "onnx"
+    ]
+   },
+   "valid": [
+    {
+     "plan_id": "deep-cut",
+     "tagline": "Size + speed",
+     "techniques": [
+      "int8",
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0175,
+      "size_saved_pct": 80.0,
+      "latency_ms": 0.1344,
+      "latency_gain_pct": 58.9,
+      "memory_mb": 0.0258,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 76.05,
+     "rank": 1,
+     "recommended": true
+    },
+    {
+     "plan_id": "balanced",
+     "tagline": "Trade-off blend",
+     "techniques": [
+      "int8",
+      "prune20"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Structured Pruning (20%)"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0175,
+      "size_saved_pct": 80.0,
+      "latency_ms": 0.1527,
+      "latency_gain_pct": 53.2,
+      "memory_mb": 0.0258,
+      "memory_saved_pct": 75.4,
+      "accuracy_retention_pct": 96.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.",
+      "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression."
+     ],
+     "score": 74.34,
+     "rank": 2,
+     "recommended": false
+    },
+    {
+     "plan_id": "distill",
+     "tagline": "Smallest via retraining",
+     "techniques": [
+      "distill"
+     ],
+     "technique_labels": [
+      "Knowledge Distillation (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 0.0262,
+      "size_saved_pct": 70.0,
+      "latency_ms": 0.1143,
+      "latency_gain_pct": 65.0,
+      "memory_mb": 0.0367,
+      "memory_saved_pct": 65.0,
+      "accuracy_retention_pct": 97.0
+     },
+     "reasons": [
+      "Runnable on CPU Server (PyTorch, ONNX Runtime)",
+      "Train a smaller student against this model: needs training data and multiple retraining cycles."
+     ],
+     "score": 72.9,
+     "rank": 3,
+     "recommended": false
+    },
+    {
+     "plan_id": "edge-lite",
+     "tagline": "Compact + fast",
+     "techniques": [
+      "int8",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0219,
+      "size_saved_pct": 75.0,
+      "latency_ms": 0.1581,
+      "latency_gain_pct": 51.6,
+      "memory_mb": 0.0315,
+      "memory_saved_pct": 70.0,
+      "accuracy_retention_pct": 98.5
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 71.68,
+     "rank": 4,
+     "recommended": false
+    },
+    {
+     "plan_id": "half",
+     "tagline": "Precision focused",
+     "techniques": [
+      "fp16",
+      "onnx"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0437,
+      "size_saved_pct": 50.0,
+      "latency_ms": 0.2443,
+      "latency_gain_pct": 25.2,
+      "memory_mb": 0.0524,
+      "memory_saved_pct": 50.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 52.54,
+     "rank": 5,
+     "recommended": false
+    },
+    {
+     "plan_id": "speed",
+     "tagline": "Latency focused",
+     "techniques": [
+      "prune20",
+      "onnx"
+     ],
+     "technique_labels": [
+      "Structured Pruning (20%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0699,
+      "size_saved_pct": 20.0,
+      "latency_ms": 0.2443,
+      "latency_gain_pct": 25.2,
+      "memory_mb": 0.086,
+      "memory_saved_pct": 18.0,
+      "accuracy_retention_pct": 98.0
+     },
+     "reasons": [
+      "Matches target runtimes int8, onnx",
+      "Removes low-magnitude (near-zero contribution) channels: actual compute reduction, not just compression.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "score": 36.76,
+     "rank": 6,
+     "recommended": false
+    }
+   ],
+   "rejected": [
+    {
+     "plan_id": "edge-max",
+     "tagline": "Smallest footprint",
+     "techniques": [
+      "int8",
+      "prune40",
+      "onnx"
+     ],
+     "technique_labels": [
+      "INT8 Dynamic Quantization",
+      "Aggressive Pruning (40%)",
+      "ONNX Export"
+     ],
+     "auto_executable": true,
+     "predicted": {
+      "size_mb": 0.0135,
+      "size_saved_pct": 84.5,
+      "latency_ms": 0.117,
+      "latency_gain_pct": 64.2,
+      "memory_mb": 0.022,
+      "memory_saved_pct": 79.0,
+      "accuracy_retention_pct": 92.6
+     },
+     "reasons": [
+      "Compresses Linear/LSTM weights to 8-bit with per-channel scales: the standard ~4x size cut for dense layers.",
+      "Deeper sparsity for heavily over-parameterized models; higher accuracy risk than the 20% variant.",
+      "Graph-level operator fusion and constant folding in ONNX Runtime."
+     ],
+     "rejected_because": [
+      "Predicted accuracy retention 92.6% is below your 95.0% minimum."
+     ]
+    },
+    {
+     "plan_id": "max-speed",
+     "tagline": "GPU throughput",
+     "techniques": [
+      "fp16",
+      "tensorrt"
+     ],
+     "technique_labels": [
+      "FP16 Half Precision",
+      "TensorRT Build (guided)"
+     ],
+     "auto_executable": false,
+     "predicted": {
+      "size_mb": 0.0437,
+      "size_saved_pct": 50.0,
+      "latency_ms": 0.1388,
+      "latency_gain_pct": 57.5,
+      "memory_mb": 0.042,
+      "memory_saved_pct": 60.0,
+      "accuracy_retention_pct": 99.9
+     },
+     "reasons": [
+      "Halves every weight; near-lossless accuracy, biggest wins on GPU runtimes.",
+      "NVIDIA kernel fusion + mixed precision; requires a GPU machine to build."
+     ],
+     "rejected_because": [
+      "TensorRT requires a GPU server target."
+     ]
+    }
+   ]
+  },
+  "uploaded_by": "u_4084a36670b3",
+  "created_at": 1786730648.109846,
+  "updated_at": 1788219048.610983,
+  "notes": "",
+  "tags": [],
+  "efficiency_score": 89,
+  "runs": [
+   {
+    "id": "run_950a887a9d2d",
+    "model_id": "m_8d95c929ee8a",
+    "plan_id": "deep-cut",
+    "plan_name": "Size + speed",
+    "user_id": "u_4084a36670b3",
+    "status": "success",
+    "steps": [
+     {
+      "technique": "prune20",
+      "label": "Structured Pruning (20%)",
+      "status": "success",
+      "note": "19.9% of weights zeroed (conv filters structured, linear unstructured). Deploy-time channel removal or sparse kernels convert this into real size/latency savings."
+     },
+     {
+      "technique": "onnx",
+      "label": "ONNX Export",
+      "status": "success",
+      "note": "Exported + validated ONNX graph (opset 13)."
+     },
+     {
+      "technique": "int8",
+      "label": "INT8 Dynamic Quantization",
+      "status": "success",
+      "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."
+     }
+    ],
+    "benchmark": {
+     "baseline": {
+      "size_mb": 0.0938,
+      "latency_ms": 0.1418,
+      "p95_ms": 0.1739,
+      "throughput_fps": 7050.6,
+      "runs": 30,
+      "runtime": "pytorch-cpu"
+     },
+     "optimized": {
+      "size_mb": 0.135,
+      "latency_ms": 0.1572,
+      "p95_ms": 0.1812,
+      "throughput_fps": 6360.6,
+      "runs": 30,
+      "runtime": "pytorch-cpu",
+      "onnx_artifact": {
+       "latency_ms": 0.0199,
+       "p95_ms": 0.0222,
+       "throughput_fps": 50230.3,
+       "runs": 30,
+       "runtime": "onnxruntime-1.28.0"
+      }
+     },
+     "size_saved_pct": 51.1,
+     "latency_gain_pct": -10.9,
+     "output_agreement": {
+      "agreement_pct": 100.0,
+      "inputs_checked": 16,
+      "seed": 42
+     },
+     "note": null
+    },
+    "artifacts": [
+     {
+      "name": "optimized.onnx",
+      "size_bytes": 89029,
+      "sha256": "650d075d5c0990b9a14fd9d9bb938e12ae6a571f8f93de9f47de34f4ad923cd0",
+      "encrypted": true
+     },
+     {
+      "name": "optimized.pt",
+      "size_bytes": 45929,
+      "sha256": "d2167b2c4ff77452e7d1657dae7f93c03f30c2062592de32567fa36444b4319b",
+      "encrypted": true
+     }
+    ],
+    "repro": {
+     "model_sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6",
+     "model_id": "m_8d95c929ee8a",
+     "plan_id": "deep-cut",
+     "techniques": [
+      "int8",
+      "prune20",
+      "onnx"
+     ],
+     "seed": 42,
+     "benchmark_runs": 30,
+     "versions": {
+      "python": "3.11.12",
+      "torch": "2.13.0",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.28.0",
+      "numpy": "2.4.6"
+     },
+     "platform": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "processor": "arm"
+     },
+     "executed_at": 1787332707.436662
+    },
+    "error": null,
+    "created_at": 1787332707.07077,
+    "finished_at": 1787332707.43753
+   },
+   {
+    "id": "run_99bf6615ba85",
+    "model_id": "m_8d95c929ee8a",
+    "plan_id": "deep-cut",
+    "plan_name": "Size + speed",
+    "user_id": "u_4084a36670b3",
+    "status": "success",
+    "steps": [
+     {
+      "technique": "prune20",
+      "label": "Structured Pruning (20%)",
+      "status": "success",
+      "note": "19.9% of weights zeroed (conv filters structured, linear unstructured). Deploy-time channel removal or sparse kernels convert this into real size/latency savings."
+     },
+     {
+      "technique": "onnx",
+      "label": "ONNX Export",
+      "status": "success",
+      "note": "Exported + validated ONNX graph (opset 13)."
+     },
+     {
+      "technique": "int8",
+      "label": "INT8 Dynamic Quantization",
+      "status": "success",
+      "note": "Linear/LSTM layers quantized to INT8 with per-channel scales."
+     }
+    ],
+    "benchmark": {
+     "baseline": {
+      "size_mb": 0.0938,
+      "latency_ms": 0.1348,
+      "p95_ms": 0.1463,
+      "throughput_fps": 7419.0,
+      "runs": 30,
+      "runtime": "pytorch-cpu"
+     },
+     "optimized": {
+      "size_mb": 0.135,
+      "latency_ms": 0.1506,
+      "p95_ms": 0.1733,
+      "throughput_fps": 6639.2,
+      "runs": 30,
+      "runtime": "pytorch-cpu",
+      "onnx_artifact": {
+       "latency_ms": 0.0201,
+       "p95_ms": 0.0228,
+       "throughput_fps": 49799.4,
+       "runs": 30,
+       "runtime": "onnxruntime-1.28.0"
+      }
+     },
+     "size_saved_pct": 51.1,
+     "latency_gain_pct": -11.7,
+     "output_agreement": {
+      "agreement_pct": 100.0,
+      "inputs_checked": 16,
+      "seed": 42
+     },
+     "note": null
+    },
+    "artifacts": [
+     {
+      "name": "optimized.onnx",
+      "size_bytes": 89029,
+      "sha256": "650d075d5c0990b9a14fd9d9bb938e12ae6a571f8f93de9f47de34f4ad923cd0",
+      "encrypted": true
+     },
+     {
+      "name": "optimized.pt",
+      "size_bytes": 45929,
+      "sha256": "d2167b2c4ff77452e7d1657dae7f93c03f30c2062592de32567fa36444b4319b",
+      "encrypted": true
+     }
+    ],
+    "repro": {
+     "model_sha256": "edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6",
+     "model_id": "m_8d95c929ee8a",
+     "plan_id": "deep-cut",
+     "techniques": [
+      "int8",
+      "prune20",
+      "onnx"
+     ],
+     "seed": 42,
+     "benchmark_runs": 30,
+     "versions": {
+      "python": "3.11.12",
+      "torch": "2.13.0",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.28.0",
+      "numpy": "2.4.6"
+     },
+     "platform": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "processor": "arm"
+     },
+     "executed_at": 1787332640.655497
+    },
+    "error": null,
+    "created_at": 1787332639.9894688,
+    "finished_at": 1787332640.656393
+   }
+  ],
+  "jobs": [
+   {
+    "id": "job_48fa0f82e231",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1787332707.0708532
+   },
+   {
+    "id": "job_9f7221706358",
+    "type": "execute",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1787332639.9898298
+   },
+   {
+    "id": "job_57d0fa617bac",
+    "type": "analyze",
+    "status": "success",
+    "progress": 100,
+    "message": "completed",
+    "created_at": 1786730648.1099331
+   }
+  ]
+ },
+ "history_m_8d95c929ee8a": {
+  "history": [
+   {
+    "label": "original",
+    "kind": "baseline",
+    "size_mb": 0.09,
+    "latency_ms": 0.3266,
+    "ts": 1786730648.109846
+   },
+   {
+    "label": "Size + speed",
+    "kind": "success",
+    "run_id": "run_99bf6615ba85",
+    "size_mb": 0.135,
+    "latency_ms": 0.1506,
+    "size_saved_pct": 51.1,
+    "latency_gain_pct": -11.7,
+    "ts": 1787332639.9894688
+   },
+   {
+    "label": "Size + speed",
+    "kind": "success",
+    "run_id": "run_950a887a9d2d",
+    "size_mb": 0.135,
+    "latency_ms": 0.1572,
+    "size_saved_pct": 51.1,
+    "latency_gain_pct": -10.9,
+    "ts": 1787332707.07077
+   }
+  ],
+  "run_count": 2,
+  "best_size_mb": 0.09
+ },
+ "suggestions_m_8d95c929ee8a": {
+  "suggestions": [
+   {
+    "title": "Best ranked plan: deep-cut",
+    "body": "Size + speed",
+    "action": "Predicted 80.0% smaller, 58.9% faster."
+   }
+  ]
+ },
+ "diff_m_8d95c929ee8a": {
+  "run": {
+   "id": "run_99bf6615ba85",
+   "plan_name": "Size + speed",
+   "created_at": 1787332639.9894688
+  },
+  "agreement_pct": 100.0,
+  "rows": [
+   {
+    "metric": "Size (MB)",
+    "before": 0.0938,
+    "after": 0.135,
+    "delta": 0.041,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "Latency (ms)",
+    "before": 0.1348,
+    "after": 0.1506,
+    "delta": 0.016,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "p95 latency (ms)",
+    "before": 0.1463,
+    "after": 0.1733,
+    "delta": 0.027,
+    "unit": "",
+    "better": "lower"
+   },
+   {
+    "metric": "Throughput (inf/s)",
+    "before": 7419.0,
+    "after": 6639.2,
+    "delta": -779.8,
+    "unit": "",
+    "better": "higher"
+   }
+  ],
+  "summary": {
+   "size_saved_pct": 51.1,
+   "latency_gain_pct": -11.7
+  }
+ },
+ "report_m_8d95c929ee8a": "# ModelSmith Report: MNIST Digit CNN (MLP-tail)\n\n- **Model ID:** `m_8d95c929ee8a`\n- **Framework:** pytorch\n- **Uploaded:** 1786730648.109846\n- **SHA-256:** `edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6`\n\n## 1. Model analysis\n\n| Metric | Value |\n|---|---|\n| Parameters | 21,840 |\n| Parameter size | 0.09 MB |\n| File size | 0.09 MB |\n| Compute | 0.97 MFLOPs/forward |\n| Input shape | 1 \u00d7 28 \u00d7 28 |\n| Architecture class | hybrid |\n\n### Layer breakdown (top contributors)\n\n| Layer | Type | Params | Share |\n|---|---|---|---|\n| net.7 | Linear | 16,050 | 73.5% |\n| net.3 | Conv2d | 5,020 | 23.0% |\n| net.9 | Linear | 510 | 2.3% |\n| net.0 | Conv2d | 260 | 1.2% |\n\n## 2. Benchmark profile\n\n- Measured latency (CPU): **0.3266 ms** mean, 1.2453 ms p95 over 30 runs\n- Throughput: 3062.3 inferences/s\n\n### Bottleneck notes\n\n- Linear layer 'net.7' holds 73.5% of parameters (16,050) \u2014 primary target for quantization/pruning.\n- Conv2d layer 'net.3' holds 23.0% of parameters (5,020) \u2014 primary target for quantization/pruning.\n- Linear layer 'net.9' holds 2.3% of parameters (510) \u2014 primary target for quantization/pruning.\n- All weights stored in FP32 \u2014 precision reduction directly halves memory footprint per conversion step.\n\n## 3. Deployment goals\n\n- Objective: `balanced`\n- Target hardware: `cpu-server`\n- Minimum accuracy retention: 95%\n\n## 4. Ranked optimization plans\n\n| # | Plan | Techniques | Size \u2193 | Latency \u2193 | Acc. retention |\n|---|---|---|---|---|---|\n| 1 | deep-cut (Size + speed) | INT8 Dynamic Quantization, Structured Pruning (20%), ONNX Export | 80.0% | 58.9% | 96.5% |\n| 2 | balanced (Trade-off blend) | INT8 Dynamic Quantization, Structured Pruning (20%) | 80.0% | 53.2% | 96.5% |\n| 3 | distill (Smallest via retraining) | Knowledge Distillation (guided) | 70.0% | 65.0% | 97.0% |\n| 4 | edge-lite (Compact + fast) | INT8 Dynamic Quantization, ONNX Export | 75.0% | 51.6% | 98.5% |\n| 5 | half (Precision focused) | FP16 Half Precision, ONNX Export | 50.0% | 25.2% | 99.9% |\n| 6 | speed (Latency focused) | Structured Pruning (20%), ONNX Export | 20.0% | 25.2% | 98.0% |\n\n_Filtered out by compatibility/accuracy rules:_\n- `edge-max`: Predicted accuracy retention 92.6% is below your 95.0% minimum.\n- `max-speed`: TensorRT requires a GPU server target.\n\n## 5. Execution history & benchmarks\n\n### Run `run_950a887a9d2d`: Size + speed (success)\n\n- Executed: 1787332707.07077\n- Baseline: 0.09 MB, 0.1418 ms\n- Optimized: 0.14 MB, 0.1572 ms\n- **Size saved: 51.1%** | **Latency gain: -10.9%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata</summary>\n\n```json\n{\"model_sha256\": \"edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6\", \"model_id\": \"m_8d95c929ee8a\", \"plan_id\": \"deep-cut\", \"techniques\": [\"int8\", \"prune20\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1787332707.436662}\n```\n</details>\n\n### Run `run_99bf6615ba85`: Size + speed (success)\n\n- Executed: 1787332639.9894688\n- Baseline: 0.09 MB, 0.1348 ms\n- Optimized: 0.14 MB, 0.1506 ms\n- **Size saved: 51.1%** | **Latency gain: -11.7%** | Output agreement: 100.0\n- Artifacts: optimized.onnx, optimized.pt\n\n<details><summary>Reproducibility metadata</summary>\n\n```json\n{\"model_sha256\": \"edd9be05a1455f6045757937fc01716376c648d338c21ddc8a6c83aeb4b833a6\", \"model_id\": \"m_8d95c929ee8a\", \"plan_id\": \"deep-cut\", \"techniques\": [\"int8\", \"prune20\", \"onnx\"], \"seed\": 42, \"benchmark_runs\": 30, \"versions\": {\"python\": \"3.11.12\", \"torch\": \"2.13.0\", \"onnx\": \"1.22.0\", \"onnxruntime\": \"1.28.0\", \"numpy\": \"2.4.6\"}, \"platform\": {\"system\": \"Darwin\", \"machine\": \"arm64\", \"processor\": \"arm\"}, \"executed_at\": 1787332640.655497}\n```\n</details>\n\n---\n_Generated by ModelSmith \u00b7 Intelligent AI Model Optimization & Deployment Platform._"
+}

@@ -230,7 +230,7 @@ function _snapRoute(path, opts = {}) {
   if (p === "/api/health") return S.health;
   if (p === "/api/config") return S.config;
   if (p === "/api/auth/me" && opts.method === "PATCH")
-    throw new Error("Profile editing needs the full deployment");
+    throw new Error("Profile editing needs a live workspace; the demo is read-only.");
   if (p === "/api/auth/me") return S.me;
   if (p === "/api/auth/me/session") return S.session;
   if (p === "/api/auth/me/activity") return S.activity;
@@ -251,7 +251,7 @@ function _snapRoute(path, opts = {}) {
     return { jobs };
   }
   if (p === "/api/projects" && opts.method === "POST")
-    throw new Error("Creating projects needs the full deployment");
+    throw new Error("Creating projects needs a live workspace; the demo is read-only.");
   if (p === "/api/projects/export/json") return { data: (S.projects.projects || []).map(p2 => ({ ...p2 })) };
   if (p === "/api/projects") return S.projects;
   const proj = p.match(/^\/api\/projects\/([\w-]+)$/);
@@ -279,7 +279,7 @@ function _snapRoute(path, opts = {}) {
   const mod = p.match(/^\/api\/models\/([\w-]+)$/);
   if (mod) {
     if (opts.method === "PATCH" || opts.method === "DELETE")
-      throw new Error("This action needs the full deployment");
+      throw new Error("This action changes data, and the demo is read-only by design.");
     return S["model_" + mod[1]];
   }
   const hist = p.match(/^\/api\/models\/([\w-]+)\/history$/);
@@ -301,9 +301,9 @@ function _snapRoute(path, opts = {}) {
     return null;
   }
   if (p === "/api/models/upload")
-    throw new Error("Uploading models needs the full deployment. Run the repo locally with ./run.sh");
+    throw new Error("Uploading needs a live workspace. This demo carries a captured snapshot, so new files cannot be added here.");
   if (/POST|PATCH|DELETE|PUT/.test(opts.method || "GET"))
-    throw new Error("This action needs the full deployment. Run the repo locally with ./run.sh");
+    throw new Error("This action changes data, and the demo is read-only by design.");
   return null;
 }
 
@@ -314,10 +314,10 @@ api = async function(path, opts = {}) {
     await (window.MS_SNAPSHOT ? Promise.resolve() : SNAPSHOT_READY);
     const method = (opts.method || "GET").toUpperCase();
     if (method !== "GET") {
-      throw new Error("Read-only demo. Run the repo locally for the full pipeline.");
+      throw new Error("The demo is a read-only snapshot. Actions that change data are available in a live workspace.");
     }
     const data = _snapRoute(path, opts);
-    if (data == null) throw new Error("Not available in this demo snapshot");
+    if (data == null) throw new Error("Not part of this demo snapshot");
     return data;
   }
   return _realApi(path, opts);
@@ -448,7 +448,7 @@ function shell({ active, crumbs = "", actions = "" }, contentHTML) {
     <div class="demo-banner">
       <span class="demo-banner-dot"></span>
       Read-only demo of a captured workspace
-      <span class="demo-banner-note">Run <code>./run.sh</code> from the repo for the live pipeline</span>
+      <span class="demo-banner-note">A live workspace accepts uploads and runs real optimizations</span>
       <a class="demo-banner-link" href="https://github.com/MohammedAnasNathani/modelsmith" target="_blank" rel="noopener">Source →</a>
     </div>
     <div class="bg-fx"></div>
@@ -1892,7 +1892,7 @@ function renderAnalysisTab(body, m) {
   <div class="bento">
     <div class="tile span5">
       <div class="t-head"><span class="t-title">Parameter distribution</span>
-        <div class="right"><span class="pill accent">FR-04</span></div></div>
+        <div class="right"><span class="pill accent">per layer</span></div></div>
       <div class="chart-box" id="paramDonut" style="display:flex;justify-content:center"></div>
     </div>
     <div class="tile span7">
@@ -1914,7 +1914,7 @@ function renderAnalysisTab(body, m) {
       </table></div>
     </div>
     <div class="tile span12">
-      <div class="t-head"><span class="t-title">Profiler notes</span><div class="right"><span class="pill accent">FR-05</span></div></div>
+      <div class="t-head"><span class="t-title">Profiler notes</span><div class="right"><span class="pill accent">auto-generated</span></div></div>
       <ul class="notes">${(bn.notes || []).map(n => `<li>${esc(n)}</li>`).join("")}</ul>
     </div>
   </div>`;
@@ -1968,7 +1968,7 @@ function renderPlansTab(body, m) {
   <div class="bento">
     <div class="tile span12">
       <div class="t-head"><span class="t-title">Deployment goals</span>
-        <div class="right"><span class="pill accent">FR-06</span>
+        <div class="right"><span class="pill accent">live</span>
         <span class="tag-mini">plans re-rank instantly</span></div></div>
       <div class="compare-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:0">
         <label class="field" style="margin:0"><span>Objective</span>
@@ -2023,7 +2023,7 @@ function renderPlansTab(body, m) {
     ${(plans.rejected || []).length ? `
     <div class="tile span12">
       <div class="t-head"><span class="t-title">Filtered out: with reasons</span>
-        <div class="right"><span class="pill">FR-08 explainability</span></div></div>
+        <div class="right"><span class="pill">nothing hidden</span></div></div>
       <div class="tbl-wrap"><table class="tbl">
         <tr><th>Plan</th><th>Techniques</th><th>Why it was removed</th></tr>
         ${plans.rejected.map(p => `<tr><td class="mono">${esc(p.plan_id)}</td>
@@ -2224,7 +2224,7 @@ function renderRunsTab(body, m) {
             ${(r.artifacts || []).map(a => `<button class="btn small" data-dl="${esc(a.name)}" data-run="${r.id}">⬇ ${esc(a.name)} · ${fmtBytes(a.size_bytes)}</button>`).join("")}
             <button class="btn small ghost" data-script="${r.id}" title="Download a Python script that reproduces this run">⬇ repro .py</button>
             <div style="flex:1"></div>
-            <span class="pill" title="reproducibility metadata (NFR-09)">repro · torch ${esc((r.repro?.versions?.torch || "").split("+")[0])} · seed ${r.repro?.seed ?? "-"} · ${esc(r.repro?.platform?.machine || "")}</span>
+            <span class="pill" title="Reproduction metadata for this exact run">repro · torch ${esc((r.repro?.versions?.torch || "").split("+")[0])} · seed ${r.repro?.seed ?? "-"} · ${esc(r.repro?.platform?.machine || "")}</span>
           </div>
         </div>
       </div>` : ""}
@@ -2291,7 +2291,7 @@ async function renderReportTab(body, m) {
     const md = await resp.text();
     body.innerHTML = `<div class="tile span12">
       <div class="t-head"><span class="t-title">Full report</span>
-        <div class="right"><span class="pill accent">FR-14</span>
+        <div class="right"><span class="pill accent">markdown</span>
         <span class="tag-mini">same content as the downloadable .md</span></div></div>
       <pre class="report">${esc(md)}</pre></div>`;
   } catch (e) { toast(e.message, true); }
@@ -2333,7 +2333,7 @@ async function viewAdmin() {
         </table></div>
       </div>
       <div class="tile span5">
-        <div class="t-head"><span class="t-title">Recent jobs</span><div class="right"><span class="pill">NFR-03</span></div></div>
+        <div class="t-head"><span class="t-title">Recent jobs</span><div class="right"><span class="pill">queue</span></div></div>
         ${ov.recent_jobs.map(j => `
           <div class="feed-item">
             <span class="feed-dot" style="background:${j.status === "success" ? "var(--good)" : j.status === "failed" ? "var(--bad)" : "var(--accent)"}"></span>
@@ -2345,7 +2345,7 @@ async function viewAdmin() {
         <div class="t-head"><span class="t-title">Audit log</span>
           <div class="right">
             <button class="btn small ghost" id="auditExport">⬇ Export CSV</button>
-            <span class="pill accent">NFR-08</span></div></div>
+            <span class="pill accent">every action</span></div></div>
         <div class="tbl-wrap"><table class="tbl">
           <tr><th>Action</th><th>Entity</th><th>User</th><th>Detail</th><th>When</th></tr>
           ${ov.audit_log.map(a => `<tr><td class="mono">${esc(a.action)}</td>
@@ -2530,7 +2530,7 @@ async function viewSettings() {
 
       <div class="tile span6">
         <div class="t-head"><span class="t-title">Your activity</span>
-          <div class="right"><span class="pill accent">NFR-08</span></div></div>
+          <div class="right"><span class="pill accent">your history</span></div></div>
         <div id="activityList" style="max-height:300px;overflow-y:auto">
           <div class="skel-bar" style="width:70%"></div>
           <div class="skel-bar" style="width:50%;margin-top:10px"></div>

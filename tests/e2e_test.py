@@ -180,7 +180,8 @@ import urllib.request as ur
 rq = ur.Request(f"{BASE}/api/models/{mid}/report"); rq.add_header("Authorization", f"Bearer {demo_tok}")
 with ur.urlopen(rq) as resp:
     md = resp.read().decode()
-check("report markdown generated", "ModelSmith Report" in md and "Analysis" in md and "Execution history" in md)
+check("report markdown generated", "ModelSmith Report" in md and "Model analysis" in md and "Execution history" in md)
+check("report free of internal requirement IDs", not any(x in md for x in ("FR-", "NFR-")))
 
 print("== 9. Notifications (FR-14) ==")
 s, r, _ = req("GET", "/api/notifications", token=demo_tok)

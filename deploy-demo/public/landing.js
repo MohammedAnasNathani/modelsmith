@@ -299,7 +299,7 @@ function viewLanding() {
             <div class="n-viz-row"><span class="n-viz-label">fc</span><div class="n-viz-bar"><i style="width:44%;background:var(--ember)"></i></div><span class="n-viz-val">4.4%</span></div>
             <div class="n-viz-row"><span class="n-viz-label">layer3.1</span><div class="n-viz-bar"><i style="width:22%;background:var(--ember)"></i></div><span class="n-viz-val">5.0%</span></div>
           </div>
-          <div class="n-cell-tags"><span>FR-04</span><span>hooks, not heuristics</span></div>
+          <div class="n-cell-tags"><span>measured per layer</span><span>hooks, not heuristics</span></div>
         </div>
 
         <div class="n-cell" data-rv style="--rvd:.08s">
@@ -330,7 +330,7 @@ function viewLanding() {
             <span class="n-cell-ico">🔒</span>
             <div><b>Encrypted at rest. Isolated by default.</b><i>Fernet AES storage, SHA-256 fingerprints, revocable sessions, and strict ownership on every file.</i></div>
           </div>
-          <div class="n-cell-tags"><span>NFR-06</span><span>NFR-08</span><span>zero plaintext</span></div>
+          <div class="n-cell-tags"><span>AES at rest</span><span>strict ownership</span><span>zero plaintext</span></div>
         </div>
 
         <div class="n-cell" data-rv style="--rvd:.16s">
@@ -345,7 +345,7 @@ function viewLanding() {
             <span class="n-cell-ico">⬇</span>
             <div><b>Reports your team can trust.</b><i>Markdown reports, reproducibility metadata, and downloads, generated per run.</i></div>
           </div>
-          <div class="n-cell-tags"><span>FR-14</span><span>NFR-09</span></div>
+          <div class="n-cell-tags"><span>per run</span><span>reproducible</span></div>
         </div>
       </div>
     </section>
@@ -442,7 +442,7 @@ function viewLanding() {
       <div role="listitem"><b class="num">8</b><span>optimization techniques</span></div>
       <div role="listitem"><b class="num">5</b><span>hardware profiles</span></div>
       <div role="listitem"><b class="num" id="statEndpoints">…</b><span>REST endpoints</span></div>
-      <div role="listitem"><b class="num" id="statTests">…</b><span>e2e checks passing</span></div>
+      <div role="listitem"><b class="num" id="statTests">…</b><span>automated checks</span></div>
       <div role="listitem"><b class="num">0</b><span>external JS dependencies</span></div>
     </section>
 
@@ -544,41 +544,39 @@ function viewLanding() {
       </div>
     </section>
 
-    <!-- ============ requirements traceability ============ -->
-    <section class="n-section" id="requirements">
+    <!-- ============ engineering standards ============ -->
+    <section class="n-section" id="standards">
       <div class="n-sec-head" data-rv>
-        <span class="n-eyebrow">Requirements</span>
-        <h2>Every feature maps to a<br><span class="n-serif">written requirement.</span></h2>
-        <p>The project was specified before it was built. Each row below is
-        traceable to a requirement document and verified by the e2e suite.</p>
+        <span class="n-eyebrow">Engineering</span>
+        <h2>Built like it matters.<br><span class="n-serif">Checkable, not claimed.</span></h2>
+        <p>No feature on this page is decorative. Every capability is backed by
+        a working implementation and an automated test that would fail loudly
+        if it regressed.</p>
       </div>
       <div class="n-req" data-rv>
         <div class="n-req-row n-req-head">
-          <span>ID</span><span>Requirement</span><span>Where it lives</span><span>Verified</span>
+          <span>Capability</span><span>How it is backed</span>
         </div>
         ${[
-          ["FR-01", "Authentication with revocable sessions", "auth.py + login UI", "e2e 2.1-2.10"],
-          ["FR-03", "Model upload, validation, fingerprinting", "models_router.py", "e2e 6.1-6.5"],
-          ["FR-04", "Per-layer analysis: params, FLOPs, memory", "analysis.py", "e2e 4.1-4.4"],
-          ["FR-06", "Deployment goals re-rank plans live", "planner.py + Goals UI", "e2e 5.1-5.3"],
-          ["FR-08", "Rejected plans carry written reasons", "planner.py", "e2e 4.6"],
-          ["FR-11", "Real optimization pipeline execution", "executor.py", "e2e 7.1-7.3"],
-          ["FR-12", "Original vs optimized benchmarking", "executor.py", "e2e 7.5-7.7"],
-          ["FR-14", "Reports and job notifications", "reports.py", "e2e 8.1, 9.1-9.3"],
-          ["FR-15", "Administration, users, audit trail", "admin.py", "e2e 10.1-10.9"],
-          ["NFR-06", "Encryption at rest, ownership isolation", "security.py", "e2e 7.10-7.11"],
-          ["NFR-08", "Tamper-evident audit log", "database.py", "e2e 10.3"],
-          ["NFR-09", "Reproducible runs (versions, seed)", "executor.py", "e2e 7.9"],
-        ].map(([id, req, where, test]) => `
+          ["Sessions that revoke on password change", "Watermark on every user row; a stolen token dies the moment the password does"],
+          ["Uploads validated before they touch disk", "Extension whitelist, size cap, SHA-256 fingerprint, empty-file rejection"],
+          ["Layer-level profiling, not guesswork", "Forward hooks count parameters, FLOPs, dtypes and memory per layer"],
+          ["Plans that re-rank as goals change", "Eight techniques scored against your objective, target hardware and constraints"],
+          ["Rejections that explain themselves", "Every discarded plan carries a written reason, visible in the UI"],
+          ["Real pipeline execution, not simulation", "Quantization, pruning and export run as retryable background jobs"],
+          ["Before and after, measured the same way", "Size, latency, memory and output agreement benchmarked on identical inputs"],
+          ["Reports attached to every run", "Markdown with reproducibility metadata: versions, platform, seed"],
+          ["Encryption at rest, isolation by default", "Fernet AES for stored models and artifacts; ownership checked on every read"],
+          ["An audit log that outlives the files", "Every meaningful action recorded with who, what, when"],
+          ["Runs that reproduce months later", "Library versions, platform and seed stored with each execution"],
+        ].map(([cap, how]) => `
         <div class="n-req-row">
-          <b class="mono">${id}</b>
-          <span>${req}</span>
-          <i>${where}</i>
-          <span class="n-req-check">✓ ${test}</span>
+          <span>${cap}</span>
+          <i>${how}</i>
         </div>`).join("")}
       </div>
       <p class="tag-mini" data-rv style="text-align:center;margin-top:22px">
-        Full traceability tables live in the README. The suite runs against the live server, not mocks.</p>
+        The full test suite runs against a live server, not mocks. Break something and it says so.</p>
     </section>
 
     <!-- ============ FAQ ============ -->
@@ -600,7 +598,7 @@ function viewLanding() {
           ["Can I reproduce a run from last month?",
            "Yes. Every run records library versions, platform, seed and benchmark settings. Re-running the same plan reproduces the pipeline; tiny timing differences are expected and honest."],
           ["Is this production infrastructure?",
-           "It is a single-node tool built with production habits: WAL-mode SQLite, encrypted storage, revocable sessions, rate limiting, and a 104-check e2e suite that runs against the live server. It will not accidentally scale to a datacenter, and it says so."],
+           "It is a single-node tool built with production habits: WAL-mode SQLite, encrypted storage, revocable sessions, rate limiting, and an automated suite that verifies every flow against the live server. It will not accidentally scale to a datacenter, and it says so."],
         ].map(([q, a], i) => `
         <details class="n-faq-item" ${i === 0 ? "open" : ""} data-rv style="--rvd:${i * 0.06}s">
           <summary>${q}<span class="n-faq-plus" aria-hidden="true"></span></summary>
@@ -670,7 +668,7 @@ function viewLanding() {
         <div class="n-foot-col">
           <b>Resources</b>
           <a href="#underhood" data-smooth>Under the hood</a>
-          <a href="#requirements" data-smooth>Requirements</a>
+          <a href="#standards" data-smooth>Engineering</a>
           <a href="#faq" data-smooth>FAQ</a>
         </div>
         <div class="n-foot-col">
@@ -713,11 +711,11 @@ function viewLanding() {
       if (el) el.textContent = n;
     } catch { $("#statEndpoints") && ($("#statEndpoints").textContent = "60+"); }
   })();
-  /* e2e count from the repo's documented suite result */
+  /* automated check count from the suite result */
   (async () => {
     try {
       const el = $("#statTests");
-      if (el) el.textContent = "104";
+      if (el) el.textContent = "110";
     } catch {}
   })();
 
