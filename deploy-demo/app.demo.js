@@ -580,12 +580,14 @@ async function refreshBellDot() {
 
 /* ---------------- command palette ---------------- */
 function openCommandPalette() {
+  const restoreFocus = document.activeElement;
   const back = document.createElement("div");
   back.className = "cmdk";
-  back.innerHTML = `<div class="cmdk-list">
+  back.innerHTML = `<div class="cmdk-list" role="dialog" aria-label="Command palette">
     <div class="cmdk-search"><span class="glyph">⌘</span>
-      <input placeholder="Type a command or search…" id="cmdkInput"></div>
-    <div style="max-height:46vh;overflow-y:auto;padding-bottom:6px" id="cmdkScroll"></div>
+      <input placeholder="Type a command or search…" id="cmdkInput"
+        role="combobox" aria-expanded="true" aria-controls="cmdkScroll" aria-autocomplete="list"></div>
+    <div style="max-height:46vh;overflow-y:auto;padding-bottom:6px" id="cmdkScroll" role="listbox"></div>
     <div class="cmdk-foot">
       <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
       <span><kbd>↵</kbd> select</span>
@@ -593,7 +595,8 @@ function openCommandPalette() {
       <span style="margin-left:auto">ModelSmith</span>
     </div></div>`;
   document.body.appendChild(back);
-  back.addEventListener("click", e => { if (e.target === back) back.remove(); });
+  const close = () => { back.remove(); restoreFocus?.focus?.(); };
+  back.addEventListener("click", e => { if (e.target === back) close(); });
 
   const baseCommands = [
     { ico: "◈", label: "Go to Dashboard", group: "Navigate", run: () => (location.hash = "#/dashboard") },
@@ -617,13 +620,17 @@ function openCommandPalette() {
     scroll.innerHTML = Object.entries(groups).map(([g, list]) => `
       <div class="cmdk-group">${esc(g)}</div>
       ${list.map(i => `
-        <div class="cmdk-item ${i._idx === state.cmdkIndex ? "sel" : ""}" data-i="${i._idx}">
+        <div class="cmdk-item ${i._idx === state.cmdkIndex ? "sel" : ""}" data-i="${i._idx}"
+             id="cmdkOpt${i._idx}" role="option" aria-selected="${i._idx === state.cmdkIndex}">
           <span class="ico">${i.ico}</span><span>${esc(i.label)}</span>
           ${i.hint ? `<span class="hint">${esc(i.hint)}</span>` : ""}
         </div>`).join("")}`).join("")
       || '<div class="cmdk-item"><span class="ico">∅</span>No matches</div>';
+    const input2 = $("#cmdkInput", back);
+    if (input2) input2.setAttribute("aria-activedescendant",
+      state.cmdkIndex < items.length ? "cmdkOpt" + state.cmdkIndex : "");
     $$(".cmdk-item[data-i]", back).forEach(el => {
-      el.onclick = () => { items[+el.dataset.i].run(); back.remove(); };
+      el.onclick = () => { items[+el.dataset.i].run(); close(); };
       el.onmouseenter = () => {
         state.cmdkIndex = +el.dataset.i;
         $$(".cmdk-item", back).forEach(x => x.classList.remove("sel"));
@@ -707,8 +714,9 @@ function openCommandPalette() {
   input.onkeydown = e => {
     if (e.key === "ArrowDown") { state.cmdkIndex = Math.min(state.cmdkIndex + 1, Math.min(items.length, 12) - 1); draw(); }
     else if (e.key === "ArrowUp") { state.cmdkIndex = Math.max(state.cmdkIndex - 1, 0); draw(); }
-    else if (e.key === "Enter" && items[state.cmdkIndex]) { items[state.cmdkIndex].run(); back.remove(); }
-    else if (e.key === "Escape") back.remove();
+    else if (e.key === "Enter" && items[state.cmdkIndex]) { items[state.cmdkIndex].run(); close(); }
+    else if (e.key === "Escape") close();
+    else if (e.key === "Tab") e.preventDefault();
   };
   build("");
 }
