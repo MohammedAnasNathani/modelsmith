@@ -59,8 +59,11 @@ async def upload_model(
     ext = Path(orig_name).suffix.lower()
     if ext not in ALLOWED_EXTS:
         raise HTTPException(422, f"Unsupported file type '{ext}'. Allowed: {sorted(ALLOWED_EXTS)}")
-    if not name.strip():
+    name = name.strip()
+    if not name:
         raise HTTPException(422, "Model name is required")
+    if len(name) > 120:
+        raise HTTPException(422, "Model name must be 120 characters or fewer")
 
     shape = None
     if input_shape.strip():

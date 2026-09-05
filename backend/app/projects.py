@@ -40,12 +40,17 @@ def create_project(body: dict, user: dict = Depends(current_user)):
     name = str(body.get("name", "")).strip()
     if not name:
         raise HTTPException(422, "Project name is required")
+    if len(name) > 120:
+        raise HTTPException(422, "Project name must be 120 characters or fewer")
+    description = str(body.get("description", "")).strip()
+    if len(description) > 500:
+        raise HTTPException(422, "Description must be 500 characters or fewer")
     pid = new_id("p")
     with db() as conn:
         conn.execute(
             "INSERT INTO projects (id, owner_id, name, description, created_at, updated_at)"
             " VALUES (?,?,?,?,?,?)",
-            (pid, user["id"], name, str(body.get("description", "")).strip(), now(), now()),
+            (pid, user["id"], name, description, now(), now()),
         )
         audit(conn, user["id"], "create", "project", pid, name)
     return {"id": pid, "name": name}
@@ -131,7 +136,10 @@ def update_project(project_id: str, body: dict, user: dict = Depends(current_use
                 raise HTTPException(422, "Name must be 1-80 characters")
             sets.append("name=?"); args.append(name)
         if "description" in body:
-            sets.append("description=?"); args.append(str(body["description"]).strip())
+            description = str(body["description"]).strip()
+            if len(description) > 500:
+                raise HTTPException(422, "Description must be 500 characters or fewer")
+            sets.append("description=?"); args.append(description)
         if "archived" in body:
             sets.append("archived=?"); args.append(1 if body["archived"] else 0)
         args.append(project_id)
