@@ -1,0 +1,143 @@
+{
+ "captured_at": "2026-09-23",
+ "endpoints": 70,
+ "checks": 153,
+ "max_upload_mb": 500,
+ "model": {
+  "id": "m_8d95c929ee8a",
+  "name": "MNIST Digit CNN (MLP-tail)",
+  "file": "demo_model.pt",
+  "size_mb": 0.1,
+  "dtype": "fp32",
+  "layers": 10,
+  "params": 21840,
+  "flops": 970170,
+  "arch": "hybrid"
+ },
+ "layers": [
+  {
+   "name": "net.7",
+   "type": "Linear",
+   "params": 16050,
+   "flops": 32000
+  },
+  {
+   "name": "net.3",
+   "type": "Conv2d",
+   "params": 5020,
+   "flops": 640000
+  },
+  {
+   "name": "net.9",
+   "type": "Linear",
+   "params": 510,
+   "flops": 1000
+  },
+  {
+   "name": "net.0",
+   "type": "Conv2d",
+   "params": 260,
+   "flops": 288000
+  }
+ ],
+ "layers_top": [
+  {
+   "name": "net.7",
+   "share": 73.5
+  },
+  {
+   "name": "net.3",
+   "share": 23.0
+  },
+  {
+   "name": "net.9",
+   "share": 2.3
+  },
+  {
+   "name": "net.0",
+   "share": 1.2
+  }
+ ],
+ "analysis_summary": {},
+ "run": {
+  "id": "run_b5c698f18c92",
+  "short_id": "run_b5c698f1",
+  "plan": "Smallest via retraining",
+  "duration_s": 1,
+  "artifact": "optimized.pt",
+  "artifact_mb": 0.0,
+  "saved_pct": 68.3,
+  "latency_gain_pct": 72.3,
+  "agreement_pct": 100.0,
+  "p95_before": 0.9187,
+  "p95_after": 0.1248,
+  "size_before_mb": 0.0938,
+  "size_after_mb": 0.0297,
+  "steps": [
+   {
+    "label": "Training epoch 1",
+    "detail": "distillation loss 0.0063"
+   },
+   {
+    "label": "Training epoch 2",
+    "detail": "distillation loss 0.001"
+   },
+   {
+    "label": "Training epoch 3",
+    "detail": "distillation loss 0.0005"
+   },
+   {
+    "label": "Training epoch 4",
+    "detail": "distillation loss 0.0005"
+   },
+   {
+    "label": "Training epoch 5",
+    "detail": "distillation loss 0.0004"
+   },
+   {
+    "label": "Training epoch 6",
+    "detail": "distillation loss 0.0004"
+   },
+   {
+    "label": "Knowledge Distillation (real training)",
+    "detail": "Real training: distilled student (half-width), 6 epochs, los"
+   }
+  ]
+ },
+ "plan_radar": [
+  {
+   "name": "INT8 Dynamic Quantization + Structured Pruning + ONNX Export",
+   "color": "#ffb224",
+   "values": [
+    1.33,
+    0.98,
+    0.82,
+    1.26,
+    1.0
+   ]
+  },
+  {
+   "name": "INT8 Dynamic Quantization + Structured Pruning",
+   "color": "#ff6b2c",
+   "values": [
+    1.33,
+    0.89,
+    0.82,
+    1.26,
+    1.0
+   ]
+  },
+  {
+   "name": "Knowledge Distillation",
+   "color": "#4ade80",
+   "values": [
+    1.17,
+    1.08,
+    0.85,
+    1.08,
+    1.0
+   ]
+  }
+ ],
+ "techniques": 8
+}
