@@ -1,0 +1,16 @@
+services:
+  modelsmith:
+    build: .
+    container_name: modelsmith
+    ports:
+      - "8100:8100"
+    environment:
+      MODELSMITH_DATA: /data
+      MODELSMITH_SEED: "1"
+      MODELSMITH_MAX_UPLOAD_MB: "500"
+    volumes:
+      - ms-data:/data
+    restart: unless-stopped
+
+volumes:
+  ms-data:

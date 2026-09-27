@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/docs", "destination": "/index.html" },
+    { "source": "/api/health", "destination": "/api-snapshot-load.js" }
+  ],
+  "headers": [
+    { "source": "/api-snapshot.json", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=3600" } ] }
+  ]
+}
