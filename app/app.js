@@ -1032,6 +1032,10 @@ async function viewLogin(register = false) {
         if (cfg.url) candidates.push(String(cfg.url).replace(/\/$/, ""));
       } catch {}
       if (API_BASE()) candidates.push(API_BASE());
+    // Last resort: the demo machine keeps this exact localtunnel address
+    // alive, so the app still finds a backend even if the published list is
+    // stale (tunnel urls rotate, this one does not).
+    candidates.push("https://modelsmith-review-2026.loca.lt");
       for (const url of [...new Set(candidates)]) {
         try {
           // Two endpoints, not one: a half-dead tunnel can still answer the
