@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ModelSmith - Analyze once. Optimize smart. Deploy anywhere.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f2e8; --bg2:#efe8da; --paper:#fffdf8; --paper2:#f5efe3; --paper3:#ece4d3;
+    --line:#e2d8c4; --line2:#d0c3a8; --line3:#b3a37f;
+    --ink:#241d10; --ink2:#4a4133; --dim:#6b5f49; --faint:#98876c;
+    --accent:#c77800; --accent2:#e08900; --ember:#d95b1e;
+    --good:#1a7f4b; --bad:#c03434; --warn:#9a7a1a;
+    --dark:#161209; --dark2:#1d1710;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --disp:"Bricolage Grotesque","Space Grotesk",var(--sans);
+    --serif:"Instrument Serif",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 10px 30px rgba(90,70,30,.10);
+    --shadow-lg:0 1px 0 rgba(255,255,255,.8) inset, 0 20px 60px rgba(90,70,30,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(1200px 600px at 82% -10%, rgba(199,120,0,.07), transparent 55%),
+      radial-gradient(900px 500px at -8% 108%, rgba(217,91,30,.05), transparent 55%);}
+  #deck{position:fixed;inset:0;display:grid;place-items:center;z-index:1}
+  #stage{width:1280px;height:720px;position:relative;transform-origin:center center}
+  .slide{position:absolute;inset:0;padding:44px 56px 52px;display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transition:opacity .3s ease,transform .3s ease;transform:translateY(8px)}
+  .slide.active{opacity:1;visibility:visible;transform:none}
+
+  /* frame */
+  .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:22px;flex:0 0 auto}
+  .kicker{font:600 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+  h1{font-family:var(--disp);font-size:34px;line-height:1.14;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ember)}
+  .snum{font:600 10.5px/1 var(--mono);color:var(--faint);letter-spacing:.16em;white-space:nowrap;padding-top:4px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--ink)}
+  .brand .mk{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent2),var(--accent));
+    display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800}
+  .foot{position:absolute;left:56px;right:56px;bottom:18px;display:flex;justify-content:space-between;
+    font:500 10px/1 var(--mono);color:var(--faint);letter-spacing:.1em}
+
+  /* content blocks */
+  .lead{font-size:15px;line-height:1.6;color:var(--dim);max-width:960px}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 17px;box-shadow:var(--shadow)}
+  .card.warm{background:linear-gradient(180deg,#fff8ea,#fffdf8);border-color:#f0dcb4}
+  .card.dark{background:linear-gradient(180deg,var(--dark2),var(--dark));border-color:#3a3119;color:#f4efe3}
+  .card.dark .ct{color:#f8e9c8}
+  .card h3{font-family:var(--disp);font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:7px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .card.dark h3{color:#ffe6b0}
+  .card p{font-size:12.5px;line-height:1.55;color:var(--dim)}
+  .card.dark p{color:#c8bda4}
+  .ct{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--ink)}
+  .num{font-family:var(--disp);font-size:27px;font-weight:750;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .num small{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--faint);letter-spacing:0}
+  .mono{font-family:var(--mono);font-size:11px;color:var(--accent)}
+  .muted{color:var(--dim)}
+  .good{color:var(--good)}.bad{color:var(--bad)}
+  ul.ticks{list-style:none;display:flex;flex-direction:column;gap:8px}
+  ul.ticks li{font-size:12.5px;line-height:1.5;color:var(--dim);padding-left:17px;position:relative}
+  ul.ticks li:before{content:'';position:absolute;left:2px;top:6px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  ul.ticks li b{color:var(--ink);font-weight:600}
+  .pill{display:inline-flex;align-items:center;font:600 10.5px/1 var(--mono);padding:6px 10px;border-radius:999px;
+    border:1px solid var(--line2);background:var(--paper);color:var(--dim)}
+  .pill.hot{border-color:#edc98a;background:#fff6e4;color:#9a5f00}
+  .row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .note{font-size:11.5px;color:var(--faint);font-family:var(--mono)}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:12px}
+  table.tbl th{text-align:left;font:600 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line2)}
+  table.tbl td{padding:7px 10px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+  table.tbl td b{color:var(--ink);font-weight:600}
+  table.tbl td.n{font-family:var(--mono);color:#9a5f00;white-space:nowrap}
+  table.tbl tr:last-child td{border-bottom:none}
+  table.tbl tr.hi td{background:#fdf6e6}
+
+  pre.code{background:var(--dark);border-radius:12px;padding:13px 15px;font:11.5px/1.62 var(--mono);
+    color:#e6dcc6;overflow:hidden}
+  pre.code .k{color:#ffc95e}pre.code .s{color:#8fd9a8}pre.code .c{color:#7d7360}
+
+  .bar{height:9px;border-radius:6px;background:var(--paper3);overflow:hidden;margin-top:8px}
+  .bar>i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent2),var(--accent));width:0;
+    transition:width .8s var(--ease)}
+  .bar.g>i{background:linear-gradient(90deg,#3fbf74,var(--good))}
+  .bar.v>i{background:linear-gradient(90deg,#a08cf5,#7c6cf0)}
+
+  /* title slide */
+  .ttl{display:flex;flex-direction:column;justify-content:center;height:100%;gap:20px}
+  .ttl h2{font-family:var(--disp);font-size:74px;line-height:1.02;font-weight:800;letter-spacing:-.04em}
+  .ttl h2 em{font-family:var(--serif);font-style:italic;font-weight:400;
+    background:linear-gradient(100deg,var(--ember),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .ttl p{font-size:17px;line-height:1.55;color:var(--dim);max-width:720px}
+
+  /* hud */
+  #hud{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:13px;
+    background:rgba(255,253,248,.9);border:1px solid var(--line2);backdrop-filter:blur(12px);border-radius:999px;padding:7px 13px;
+    box-shadow:var(--shadow)}
+  #hud button{background:none;border:0;color:var(--dim);cursor:pointer;font-size:14px;padding:2px 5px;border-radius:7px;font-family:var(--sans)}
+  #hud button:hover{color:var(--accent);background:var(--paper2)}
+  #counter{font:600 10.5px/1 var(--mono);color:var(--dim);min-width:54px;text-align:center}
+  #dots{display:flex;gap:5px}
+  #dots i{width:6px;height:6px;border-radius:50%;background:#ded2ba;cursor:pointer;transition:all .2s}
+  #dots i.on{background:var(--accent);width:15px;border-radius:4px}
+  #prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--ember),var(--accent));z-index:50;transition:width .3s var(--ease)}
+  .hint{position:fixed;right:16px;bottom:18px;z-index:40;font:500 10px/1 var(--mono);color:var(--faint);letter-spacing:.06em}
+  #ov{position:fixed;inset:0;z-index:60;background:rgba(247,242,232,.97);display:none;padding:30px;overflow:auto}
+  #ov.on{display:block}
+  #ov h4{font-family:var(--disp);font-size:15px;color:var(--dim);margin-bottom:16px;font-weight:600}
+  #ovg{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .ovc{border:1px solid var(--line2);border-radius:12px;padding:12px;background:var(--paper);cursor:pointer;text-align:left;font-family:var(--sans)}
+  .ovc:hover{border-color:var(--accent);background:#fff8ea}
+  .ovc .on2{font:600 9px/1 var(--mono);color:var(--faint);letter-spacing:.14em}
+  .ovc .ot{font-size:12px;font-weight:600;margin-top:6px;line-height:1.35;color:var(--ink)}
+  svg text{font-family:var(--sans)}
+  .dg{width:100%;height:auto;display:block}
+  @media print{
+    html,body{overflow:visible;background:#fff}
+    #hud,#prog,.hint,#ov{display:none!important}
+    #deck{position:static;display:block}
+    #stage{width:1280px;height:720px;transform:none!important}
+    .slide{position:relative;opacity:1!important;visibility:visible!important;transform:none!important;
+      page-break-after:always;height:720px;border-bottom:1px solid #ddd}
+  }
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="deck"><div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide">
+  <div class="ttl">
+    <div class="brand"><div class="mk">M</div> ModelSmith <span class="pill hot" style="margin-left:6px">Final year project</span></div>
+    <h2>Analyze once.<br>Optimize <em>smart.</em><br>Deploy anywhere.</h2>
+    <p>A platform that measures a trained neural network, works out how to make it smaller for a chosen device,
+      runs that plan for real, and proves the smaller model still behaves like the original.</p>
+    <div class="row">
+      <span class="pill">PyTorch</span><span class="pill">ONNX Runtime</span><span class="pill">FastAPI</span>
+      <span class="pill">SQLite</span><span class="pill">AWS EC2</span><span class="pill">INT8, Pruning, Distillation</span>
+    </div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>LIVE DEMO: modelsmith-alpha.vercel.app</span></div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">01 · The problem</div>
+      <h1>Training a model is easy.<br>Making it <em>fit</em> is the hard part.</h1></div>
+    <div class="snum">02 / 16</div>
+  </div>
+  <div class="grid g3" style="margin-bottom:16px">
+    <div class="card"><h3>1. We cannot see where the size is</h3>
+      <p>Our ResNet-18 has 11.7 million parameters and most of them sit in a few layers. Without measuring, we are optimizing blind.</p></div>
+    <div class="card"><h3>2. Choosing a method is guesswork</h3>
+      <p>Quantize, prune, distill, export to ONNX. Each one costs some accuracy, and combinations multiply the options.</p></div>
+    <div class="card"><h3>3. Nothing proves it still works</h3>
+      <p>After compression nothing tells us whether the smaller model gives the same answers. Broken models can ship quietly.</p></div>
+  </div>
+  <div class="grid g2" style="align-items:stretch">
+    <div class="card warm">
+      <h3>The manual loop today</h3>
+      <ul class="ticks" style="margin-top:6px">
+        <li>Read the paper, guess a method</li>
+        <li>Write an ad hoc script for one model</li>
+        <li>Run it, hope accuracy survives</li>
+        <li>Repeat for every model and every device</li>
+      </ul>
+      <p style="margin-top:10px"><b>Days of work, no record of what was tried.</b></p>
+    </div>
+    <div class="card">
+      <h3>What we built instead</h3>
+      <ul class="ticks" style="margin-top:6px">
+        <li>One pipeline: upload, analyze, plan, execute, download</li>
+        <li>Plans are <b>ranked and explained</b>, rejected ones say why</li>
+        <li>Every number is <b>measured on the machine that ran it</b></li>
+        <li>The output is <b>verified against the original</b> before it counts</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>01 · THE PROBLEM</span></div>
+</section>
+
+<!-- 3 PIPELINE DIAGRAM -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">02 · The pipeline</div>
+      <h1>Five stages, one <em>continuous</em> flow</h1></div>
+    <div class="snum">03 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 232" role="img" aria-label="Pipeline diagram">
+    <defs>
+      <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="#c77800"/>
+      </marker>
+      <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#8a6a2a" flood-opacity="0.12"/>
+      </filter>
+    </defs>
+    <g filter="url(#sh)">
+      <rect x="0" y="20" width="208" height="122" rx="15" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="240" y="20" width="208" height="122" rx="15" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="480" y="20" width="208" height="122" rx="15" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="720" y="20" width="208" height="122" rx="15" fill="#fff8ea" stroke="#edc98a"/>
+      <rect x="960" y="20" width="208" height="122" rx="15" fill="#fffdf8" stroke="#e2d8c4"/>
+    </g>
+    <g font-size="13" font-weight="700" fill="#241d10">
+      <text x="104" y="66" text-anchor="middle">Upload</text>
+      <text x="344" y="66" text-anchor="middle">Analyze</text>
+      <text x="584" y="66" text-anchor="middle">Plan</text>
+      <text x="824" y="66" text-anchor="middle">Execute</text>
+      <text x="1064" y="66" text-anchor="middle">Download</text>
+    </g>
+    <g font-size="11" fill="#6b5f49">
+      <text x="104" y="88" text-anchor="middle">a .pt or .onnx file</text>
+      <text x="104" y="105" text-anchor="middle">stored encrypted</text>
+      <text x="344" y="88" text-anchor="middle">parameters, FLOPs,</text>
+      <text x="344" y="105" text-anchor="middle">timing, bottlenecks</text>
+      <text x="584" y="88" text-anchor="middle">best technique mix</text>
+      <text x="584" y="105" text-anchor="middle">for your target device</text>
+      <text x="824" y="88" text-anchor="middle">real compression</text>
+      <text x="824" y="105" text-anchor="middle">plus benchmarking</text>
+      <text x="1064" y="88" text-anchor="middle">optimized model</text>
+      <text x="1064" y="105" text-anchor="middle">and a report</text>
+    </g>
+    <g fill="#efe8da">
+      <circle cx="20" cy="36" r="12"/><circle cx="260" cy="36" r="12"/>
+      <circle cx="500" cy="36" r="12"/><circle cx="740" cy="36" r="12"/><circle cx="980" cy="36" r="12"/>
+    </g>
+    <g font-size="11" font-weight="700" fill="#9a5f00" font-family="JetBrains Mono, monospace">
+      <text x="20" y="40" text-anchor="middle">1</text><text x="260" y="40" text-anchor="middle">2</text>
+      <text x="500" y="40" text-anchor="middle">3</text><text x="740" y="40" text-anchor="middle">4</text>
+      <text x="980" y="40" text-anchor="middle">5</text>
+    </g>
+    <g stroke="#c77800" stroke-width="1.6" marker-end="url(#ar)">
+      <line x1="212" y1="81" x2="234" y2="81"/>
+      <line x1="452" y1="81" x2="474" y2="81"/>
+      <line x1="692" y1="81" x2="714" y2="81"/>
+      <line x1="932" y1="81" x2="954" y2="81"/>
+    </g>
+    <rect x="0" y="170" width="1168" height="46" rx="12" fill="#f5efe3" stroke="#e2d8c4"/>
+    <text x="20" y="198" font-size="12" fill="#6b5f49">Each stage writes its result to the database, so any run can be replayed later and nothing depends on a chat session staying open.</text>
+  </svg>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>Jobs run in the background</h3>
+      <p>Analysis and execution are queued jobs with live progress, so the page never freezes and you can close the tab.</p></div>
+    <div class="card"><h3>Failures are visible</h3>
+      <p>A broken job retries once, then reports the real error. It can never be marked successful by accident.</p></div>
+    <div class="card"><h3>Everything is stored</h3>
+      <p>Models, plans, runs, artifacts and logs are persisted, with SHA-256 fingerprints for the uploaded file.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>02 · THE PIPELINE</span></div>
+</section>
+
+<!-- 4 ARCHITECTURE -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">03 · Architecture</div><h1>How the pieces <em>fit together</em></h1></div>
+    <div class="snum">04 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 300" role="img" aria-label="Architecture diagram">
+    <defs>
+      <marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="#b3a37f"/>
+      </marker>
+    </defs>
+    <g filter="url(#sh)">
+      <rect x="0" y="16" width="210" height="104" rx="14" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="266" y="16" width="240" height="104" rx="14" fill="#fff8ea" stroke="#edc98a"/>
+      <rect x="562" y="16" width="230" height="104" rx="14" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="848" y="16" width="320" height="104" rx="14" fill="#161209" stroke="#3a3119"/>
+      <rect x="266" y="186" width="240" height="96" rx="14" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="562" y="186" width="230" height="96" rx="14" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="848" y="186" width="320" height="96" rx="14" fill="#f5efe3" stroke="#d0c3a8" stroke-dasharray="5 4"/>
+    </g>
+    <g font-size="13" font-weight="700" fill="#241d10">
+      <text x="105" y="46" text-anchor="middle">Browser</text>
+      <text x="386" y="46" text-anchor="middle">API (FastAPI)</text>
+      <text x="677" y="46" text-anchor="middle">Job runner</text>
+    </g>
+    <g font-size="11" fill="#6b5f49">
+      <text x="105" y="68" text-anchor="middle">plain HTML, CSS and</text>
+      <text x="105" y="84" text-anchor="middle">JavaScript, hosted free</text>
+      <text x="386" y="68" text-anchor="middle">60+ endpoints, checks the</text>
+      <text x="386" y="84" text-anchor="middle">token on every request</text>
+      <text x="677" y="68" text-anchor="middle">2 worker threads,</text>
+      <text x="677" y="84" text-anchor="middle">retry once on failure</text>
+    </g>
+    <text x="1008" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="#ffe6b0">Worker (PyTorch, ONNX)</text>
+    <g font-size="11" fill="#c8bda4">
+      <text x="1008" y="68" text-anchor="middle">quantize, prune, export,</text>
+      <text x="1008" y="84" text-anchor="middle">distill and benchmark</text>
+      <text x="1008" y="102" text-anchor="middle">on real tensors</text>
+    </g>
+    <g font-size="13" font-weight="700" fill="#241d10">
+      <text x="386" y="216" text-anchor="middle">Database (SQLite)</text>
+      <text x="677" y="216" text-anchor="middle">Artifacts</text>
+    </g>
+    <g font-size="11" fill="#6b5f49">
+      <text x="386" y="238" text-anchor="middle">11 tables, write-ahead log,</text>
+      <text x="386" y="254" text-anchor="middle">foreign keys switched on</text>
+      <text x="677" y="238" text-anchor="middle">optimized .pt and .onnx</text>
+      <text x="677" y="254" text-anchor="middle">stored encrypted on disk</text>
+    </g>
+    <text x="1008" y="216" text-anchor="middle" font-size="13" font-weight="700" fill="#4a4133">Your machine or AWS EC2</text>
+    <g font-size="11" fill="#6b5f49">
+      <text x="1008" y="238" text-anchor="middle">downloads the model with a one time token,</text>
+      <text x="1008" y="254" text-anchor="middle">compresses it locally, posts the result back</text>
+    </g>
+    <g stroke="#b3a37f" stroke-width="1.5" marker-end="url(#ar2)">
+      <line x1="214" y1="68" x2="258" y2="68"/>
+      <line x1="510" y1="68" x2="554" y2="68"/>
+      <line x1="796" y1="68" x2="840" y2="68"/>
+      <line x1="677" y1="124" x2="677" y2="180"/>
+      <line x1="1008" y1="124" x2="1008" y2="180"/>
+      <line x1="386" y1="120" x2="386" y2="180"/>
+    </g>
+    <text x="520" y="140" font-size="10.5" fill="#98876c" font-family="JetBrains Mono, monospace">plans and runs</text>
+    <text x="1020" y="156" font-size="10.5" fill="#98876c" font-family="JetBrains Mono, monospace">model + token</text>
+  </svg>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><h3>No external queue needed</h3>
+      <p>The job runner lives inside the API process, so the whole project ships as one container and still survives restarts.</p></div>
+    <div class="card"><h3>The front end can move</h3>
+      <p>The site is static and finds the API at runtime, so the page and the compute can live in different places.</p></div>
+    <div class="card"><h3>Two ways to execute</h3>
+      <p>The same plan runs on our workers or on your own hardware, and both produce the identical report format.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>03 · ARCHITECTURE</span></div>
+</section>
+
+<!-- 5 ANALYZE -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">04 · Stage 2, analyze</div>
+      <h1>We measure the model <em>layer by layer</em></h1></div>
+    <div class="snum">05 / 16</div>
+  </div>
+  <div class="grid g2" style="gap:16px">
+    <div>
+      <div class="card" style="margin-bottom:12px"><h3>What we collect</h3>
+        <table class="tbl" style="margin-top:4px">
+          <tr><th>Measure</th><th>How we get it</th></tr>
+          <tr><td><b>Parameters</b></td><td>counted per layer, and their size in bytes</td></tr>
+          <tr><td><b>FLOPs</b></td><td>computed per layer type with forward hooks</td></tr>
+          <tr><td><b>Latency</b></td><td>5 warm up runs, then 30 timed runs, reported as the mean</td></tr>
+          <tr><td><b>p95 latency</b></td><td>the slow tail, so we do not hide bad cases</td></tr>
+          <tr><td><b>Throughput</b></td><td>inferences per second from the same sample</td></tr>
+          <tr><td><b>Bottlenecks</b></td><td>top three layers by parameters, with the share they hold</td></tr>
+        </table>
+      </div>
+      <div class="card warm"><h3>Why this matters</h3>
+        <p>It tells us which layer is actually expensive. On our MNIST model one layer holds most of the weights,
+          so that is where any compression effort has to go.</p></div>
+    </div>
+    <div>
+      <div class="card"><h3>Example: parameter share by layer</h3>
+        <svg class="dg" viewBox="0 0 520 190" role="img" aria-label="Parameter share by layer">
+          <g font-size="11.5" fill="#4a4133" font-family="JetBrains Mono, monospace">
+            <text x="0" y="30">net.7</text><text x="0" y="66">net.3</text>
+            <text x="0" y="102">net.9</text><text x="0" y="138">net.0</text>
+          </g>
+          <rect x="60" y="18" width="360" height="16" rx="8" fill="#ece4d3"/>
+          <rect x="60" y="18" width="265" height="16" rx="8" fill="#d95b1e"/>
+          <rect x="60" y="54" width="360" height="16" rx="8" fill="#ece4d3"/>
+          <rect x="60" y="54" width="83" height="16" rx="8" fill="#c77800"/>
+          <rect x="60" y="90" width="360" height="16" rx="8" fill="#ece4d3"/>
+          <rect x="60" y="90" width="9" height="16" rx="4" fill="#b3a37f"/>
+          <rect x="60" y="126" width="360" height="16" rx="8" fill="#ece4d3"/>
+          <rect x="60" y="126" width="5" height="16" rx="2" fill="#b3a37f"/>
+          <g font-size="11" fill="#6b5f49" font-family="JetBrains Mono, monospace">
+            <text x="432" y="31">73.5%</text><text x="432" y="67">23.0%</text>
+            <text x="432" y="103">2.3%</text><text x="432" y="139">1.2%</text>
+          </g>
+          <rect x="0" y="158" width="420" height="26" rx="8" fill="#f5efe3"/>
+          <text x="12" y="175" font-size="11" fill="#9a5f00">One layer carries most of the weight. That is the pruning and quantization target.</text>
+        </svg>
+      </div>
+      <div class="card" style="margin-top:12px"><h3>Benchmark rule</h3>
+        <p>Timings always come from real forward passes on the machine that ran the job, never from a datasheet.
+          If a runtime cannot do something (for example FP16 on a plain CPU) we say so instead of inventing a number.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>04 · ANALYZE</span></div>
+</section>
+
+<!-- 6 TECHNIQUES -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">05 · Stage 3, plan</div>
+      <h1>The seven techniques we <em>know how</em> to run</h1></div>
+    <div class="snum">06 / 16</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <table class="tbl">
+      <tr><th>Technique</th><th>What it does, in plain words</th><th>Size after</th><th>Accuracy kept</th><th>Runs here</th></tr>
+      <tr class="hi"><td><b>INT8 quantization</b></td><td>stores weights with 8 bits instead of 32, about four times smaller</td><td class="n">25%</td><td class="n">98.5%</td><td class="n">yes</td></tr>
+      <tr><td><b>FP16 half precision</b></td><td>stores weights with 16 bits, half the size, tiny quality loss</td><td class="n">50%</td><td class="n">99.9%</td><td class="n">yes</td></tr>
+      <tr><td><b>Pruning 20%</b></td><td>removes the least useful filters, so real work is skipped</td><td class="n">80%</td><td class="n">98.0%</td><td class="n">yes</td></tr>
+      <tr><td><b>Pruning 40%</b></td><td>the same idea, pushed harder, with more risk to accuracy</td><td class="n">62%</td><td class="n">94.0%</td><td class="n">yes</td></tr>
+      <tr><td><b>ONNX export</b></td><td>re-expresses the model as a graph so ONNX Runtime can fuse operations</td><td class="n">100%</td><td class="n">100%</td><td class="n">yes</td></tr>
+      <tr><td><b>Distillation</b></td><td>trains a smaller student network to copy the teacher, the most aggressive option</td><td class="n">30%</td><td class="n">97.0%</td><td class="n">yes</td></tr>
+      <tr><td><b>TensorRT build</b></td><td>builds a GPU specific engine, needs an NVIDIA card</td><td class="n">100%</td><td class="n">100%</td><td class="n">guided</td></tr>
+    </table>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h3>Hardware profiles</h3>
+      <p>Five targets: CPU server, GPU server, edge device, mobile, and web browser. Each one declares its memory budget and
+        which precisions and runtimes it can actually run.</p></div>
+    <div class="card"><h3>Why profiles matter</h3>
+      <p>TensorRT is rejected unless the target is a GPU server. INT8 is rejected on a profile that cannot do integer math.
+        The planner never recommends something the device cannot run.</p></div>
+    <div class="card warm"><h3>Read this table carefully</h3>
+      <p>The size and accuracy columns are <b>planning estimates</b>, not measured results. Real numbers appear after
+        execution, and we keep the two clearly separate.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>05 · PLAN</span></div>
+</section>
+
+<!-- 7 PLANNER ALGORITHM -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">06 · The algorithm</div>
+      <h1>From eight candidates to <em>one recommendation</em></h1></div>
+    <div class="snum">07 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 250" role="img" aria-label="Planner algorithm diagram">
+    <defs>
+      <marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="#c77800"/>
+      </marker>
+      <marker id="ar4" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="#c03434"/>
+      </marker>
+    </defs>
+    <g filter="url(#sh)">
+      <rect x="0" y="60" width="176" height="74" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="218" y="60" width="176" height="74" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="436" y="60" width="176" height="74" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="654" y="60" width="176" height="74" rx="13" fill="#fff8ea" stroke="#edc98a"/>
+      <rect x="872" y="60" width="176" height="74" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="1090" y="60" width="78" height="74" rx="13" fill="#161209" stroke="#3a3119"/>
+      <rect x="218" y="188" width="570" height="52" rx="12" fill="#fdf0ee" stroke="#e8c4c0"/>
+    </g>
+    <g font-size="12" font-weight="700" fill="#241d10">
+      <text x="88" y="90" text-anchor="middle">Eight candidate</text>
+      <text x="88" y="106" text-anchor="middle">combinations</text>
+      <text x="306" y="90" text-anchor="middle">Does the hardware</text>
+      <text x="306" y="106" text-anchor="middle">support it?</text>
+      <text x="524" y="90" text-anchor="middle">Predicted accuracy</text>
+      <text x="524" y="106" text-anchor="middle">above the floor?</text>
+      <text x="742" y="90" text-anchor="middle">Score with the</text>
+      <text x="742" y="106" text-anchor="middle">objective weights</text>
+      <text x="960" y="90" text-anchor="middle">Sort by score,</text>
+      <text x="960" y="106" text-anchor="middle">mark the best</text>
+    </g>
+    <text x="1129" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#ffe6b0">Plan</text>
+    <text x="1129" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#ffe6b0">ready</text>
+    <text x="503" y="219" text-anchor="middle" font-size="11.5" fill="#a3302a">Rejected plans are kept and shown with the reason, for example "exceeds the accuracy floor"</text>
+    <g stroke="#c77800" stroke-width="1.6" marker-end="url(#ar3)">
+      <line x1="180" y1="97" x2="212" y2="97"/>
+      <line x1="398" y1="97" x2="430" y2="97"/>
+      <line x1="616" y1="97" x2="648" y2="97"/>
+      <line x1="834" y1="97" x2="866" y2="97"/>
+      <line x1="1052" y1="97" x2="1084" y2="97"/>
+      <line x1="306" y1="138" x2="306" y2="184"/>
+      <line x1="524" y1="138" x2="524" y2="184"/>
+    </g>
+    <g font-size="10" fill="#c03434" font-family="JetBrains Mono, monospace">
+      <text x="312" y="162">no</text><text x="530" y="162">no</text>
+    </g>
+  </svg>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card dark">
+      <h3>The scoring formula</h3>
+      <pre class="code" style="margin-top:6px;background:#0f0c06">score = <span class="k">w_size</span> * size_saved
+      + <span class="k">w_latency</span> * latency_gain
+      + <span class="k">w_memory</span> * memory_saved
+      + <span class="k">w_accuracy</span> * accuracy_kept</pre>
+      <p style="margin-top:8px">The weights come from the objective you choose. Balanced uses 0.30, 0.30, 0.20, 0.20.
+        Ask for "smallest size" and size gets 0.55, so the ranking changes instantly.</p>
+    </div>
+    <div class="card">
+      <h3>Predicting before running</h3>
+      <pre class="code" style="margin-top:6px">size    = base_size    * product(size_factor)
+latency = base_latency * product(latency_factor[arch])
+memory  = base_size    * product(mem_factor) * 1.2
+accuracy= product(accuracy_factor)</pre>
+      <p style="margin-top:8px">Latency factors depend on the architecture, because a CNN and a small MLP do not respond to INT8
+        in the same way. The 1.2 on memory accounts for runtime overhead.</p>
+    </div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>06 · THE ALGORITHM</span></div>
+</section>
+
+<!-- 8 WORKED EXAMPLE -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">07 · A worked example</div>
+      <h1>What the planner <em>actually suggests</em></h1></div>
+    <div class="snum">08 / 16</div>
+  </div>
+  <div class="grid g3" style="margin-bottom:16px">
+    <div class="card warm">
+      <h3>edge-lite</h3>
+      <p class="note" style="margin-bottom:8px">INT8 + ONNX export</p>
+      <div class="num">75%<small> smaller</small></div>
+      <div class="bar"><i data-w="75"></i></div>
+      <p style="margin-top:10px">Keeps about 98.5% of accuracy. The safe choice for a small device.</p>
+    </div>
+    <div class="card warm">
+      <h3>edge-max</h3>
+      <p class="note" style="margin-bottom:8px">INT8 + pruning 40% + ONNX</p>
+      <div class="num">84.5%<small> smaller</small></div>
+      <div class="bar"><i data-w="84.5"></i></div>
+      <p style="margin-top:10px">Keeps about 92.6%. Best size, but it eats into accuracy.</p>
+    </div>
+    <div class="card">
+      <h3>Measured, after execution</h3>
+      <p class="note" style="margin-bottom:8px">distillation plan, our demo CNN</p>
+      <div class="num good">68.3%<small> smaller</small></div>
+      <div class="bar g"><i data-w="68.3"></i></div>
+      <p style="margin-top:10px">Real file on disk, plus 16.3% lower latency and verified output agreement.</p>
+    </div>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Why the ranking is trustworthy</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>The estimate is <b>transparent</b>: you can see which multipliers produced it</li>
+        <li>Anything the device cannot run is <b>filtered out before scoring</b></li>
+        <li>Every plan carries <b>written reasons</b>, including the rejected ones</li>
+        <li>After execution the predicted and real numbers sit next to each other</li>
+      </ul></div>
+    <div class="card dark"><h3>What we say honestly</h3>
+      <p style="margin-top:4px">Planning uses declared factors, so a plan is a prediction. Only execution produces measured results.
+        That separation is deliberate: it stops us from presenting a guess as a fact, and it gives us a calibration loop for the next version.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>07 · WORKED EXAMPLE</span></div>
+</section>
+
+<!-- 9 EXECUTE -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">08 · Stage 4, execute</div>
+      <h1>The order of the steps is <em>part of the method</em></h1></div>
+    <div class="snum">09 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 128" role="img" aria-label="Execution order diagram">
+    <defs><marker id="ar5" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="#c77800"/></marker></defs>
+    <g filter="url(#sh)">
+      <rect x="0" y="14" width="256" height="76" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="290" y="14" width="256" height="76" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="580" y="14" width="256" height="76" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="870" y="14" width="298" height="76" rx="13" fill="#fff8ea" stroke="#edc98a"/>
+    </g>
+    <g font-size="12.5" font-weight="700" fill="#241d10">
+      <text x="128" y="42" text-anchor="middle">1. Prune</text>
+      <text x="418" y="42" text-anchor="middle">2. Export to ONNX</text>
+      <text x="708" y="42" text-anchor="middle">3. INT8 or FP16</text>
+      <text x="1019" y="42" text-anchor="middle">4. Distillation (optional)</text>
+    </g>
+    <g font-size="11" fill="#6b5f49">
+      <text x="128" y="64" text-anchor="middle">remove weights while the</text>
+      <text x="128" y="80" text-anchor="middle">model is still dense</text>
+      <text x="418" y="64" text-anchor="middle">capture the graph before</text>
+      <text x="418" y="80" text-anchor="middle">precision is lowered</text>
+      <text x="708" y="64" text-anchor="middle">shrink the numbers on the</text>
+      <text x="708" y="80" text-anchor="middle">PyTorch copy</text>
+      <text x="1019" y="64" text-anchor="middle">retraining produces the final file,</text>
+      <text x="1019" y="80" text-anchor="middle">so it runs last</text>
+    </g>
+    <g stroke="#c77800" stroke-width="1.6" marker-end="url(#ar5)">
+      <line x1="260" y1="52" x2="284" y2="52"/>
+      <line x1="550" y1="52" x2="574" y2="52"/>
+      <line x1="840" y1="52" x2="864" y2="52"/>
+    </g>
+    <text x="584" y="118" text-anchor="middle" font-size="11" fill="#98876c">Pruning first matters: once weights are quantized, structured pruning can no longer identify whole filters to remove.</text>
+  </svg>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>What each step really does</h3>
+      <pre class="code" style="margin-top:6px"><span class="c"># quantization: per channel INT8</span>
+torch.quantization.<span class="k">quantize_dynamic</span>(
+  model, {Linear, LSTM, GRU, RNN}, dtype=torch.qint8)
+
+<span class="c"># pruning: real filter removal, made permanent</span>
+<span class="k">ln_structured</span>(conv, amount, n=2, dim=0)
+<span class="k">l1_unstructured</span>(linear, amount)
+prune.<span class="k">remove</span>(module, "weight")
+
+<span class="c"># export, validated before it is accepted</span>
+torch.onnx.<span class="k">export</span>(model, dummy, opset_version=13)
+onnx.checker.<span class="k">check_model</span>(graph)</pre>
+    </div>
+    <div class="card">
+      <h3>Distillation is a real training run</h3>
+      <pre class="code" style="margin-top:6px"><span class="c"># student is half the width of the teacher</span>
+student = build_student(teacher)
+<span class="c"># 6 epochs, 512 samples, batch 32, temperature 2</span>
+loss = <span class="k">KLDiv</span>(log_softmax(s/T), log_softmax(t/T)) * T*T
+Adam(lr=1e-3)  <span class="c">-> per epoch loss is recorded</span></pre>
+      <ul class="ticks" style="margin-top:10px">
+        <li>The smaller student is <b>genuinely cheaper</b>, not just stored differently</li>
+        <li>Loss history is returned with the run so you can see it converge</li>
+        <li>If a student cannot be built, we fall back instead of failing</li>
+        <li><b>No artifacts, no success:</b> a run without output is refused</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>08 · EXECUTE</span></div>
+</section>
+
+<!-- 10 VERIFY -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">09 · Stage 5, verify</div>
+      <h1>Smaller is only useful if it <em>still agrees</em></h1></div>
+    <div class="snum">10 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 210" role="img" aria-label="Verification diagram">
+    <defs><marker id="ar6" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="#1a7f4b"/></marker></defs>
+    <g filter="url(#sh)">
+      <rect x="0" y="24" width="230" height="64" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="0" y="112" width="230" height="64" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="330" y="62" width="240" height="76" rx="13" fill="#fff8ea" stroke="#edc98a"/>
+      <rect x="670" y="62" width="220" height="76" rx="13" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="990" y="62" width="178" height="76" rx="13" fill="#e9f6ef" stroke="#a8d8bf"/>
+    </g>
+    <g font-size="12.5" font-weight="700" fill="#241d10">
+      <text x="115" y="52" text-anchor="middle">Original model</text>
+      <text x="115" y="140" text-anchor="middle">Optimized model</text>
+      <text x="450" y="92" text-anchor="middle">Run both on the same</text>
+      <text x="450" y="109" text-anchor="middle">16 seeded inputs</text>
+      <text x="780" y="92" text-anchor="middle">Compare the outputs</text>
+      <text x="780" y="109" text-anchor="middle">per input</text>
+      <text x="1079" y="92" text-anchor="middle">Agreement percent</text>
+      <text x="1079" y="109" text-anchor="middle">saved with the run</text>
+    </g>
+    <g font-size="11" fill="#6b5f49">
+      <text x="115" y="72" text-anchor="middle">exactly the uploaded file</text>
+      <text x="115" y="160" text-anchor="middle">the compressed output</text>
+      <text x="450" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace">fixed seed 42, so it repeats</text>
+      <text x="780" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace">argmax, or allclose 0.05</text>
+      <text x="1079" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace">100% on our demo runs</text>
+    </g>
+    <g stroke="#1a7f4b" stroke-width="1.6" marker-end="url(#ar6)">
+      <path d="M234 56 C 290 56, 290 92, 324 96" fill="none"/>
+      <path d="M234 144 C 290 144, 290 108, 324 104" fill="none"/>
+      <line x1="574" y1="100" x2="664" y2="100"/>
+      <line x1="894" y1="100" x2="984" y2="100"/>
+    </g>
+  </svg>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>Same inputs, same seed</h3>
+      <p>Both models get identical random inputs generated with a fixed seed, so the comparison is repeatable on any machine.</p></div>
+    <div class="card"><h3>Two kinds of check</h3>
+      <p>Classifiers are compared by their predicted class. Other outputs are compared with a small numeric tolerance.</p></div>
+    <div class="card warm"><h3>The honest part</h3>
+      <p>Agreement is a behavioural check, not a test set accuracy. We label it that way everywhere in the interface
+        instead of pretending it is a benchmark score.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>09 · VERIFY</span></div>
+</section>
+
+<!-- 11 RESULTS -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">10 · Results</div><h1>Numbers from the <em>running system</em></h1></div>
+    <div class="snum">11 / 16</div>
+  </div>
+  <div class="grid g3" style="margin-bottom:15px">
+    <div class="card warm"><div class="num good">68.3%<small> smaller</small></div>
+      <p style="margin-top:8px">Distillation run on our demo CNN: the artifact went from 93.8 KB to 29.7 KB.</p>
+      <div class="bar g"><i data-w="68.3"></i></div></div>
+    <div class="card warm"><div class="num good">16.3%<small> faster</small></div>
+      <p style="margin-top:8px">Same run, same machine: mean latency went from 0.129 ms to 0.108 ms.</p>
+      <div class="bar g"><i data-w="16.3"></i></div></div>
+    <div class="card"><div class="num">51.1%<small> smaller</small></div>
+      <p style="margin-top:8px">The "deep cut" plan (INT8, pruning, ONNX) produced both a .pt and a .onnx file.</p>
+      <div class="bar"><i data-w="51.1"></i></div></div>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Models the platform analyzed</h3>
+      <table class="tbl" style="margin-top:4px">
+        <tr><th>Model</th><th>Parameters</th><th>Latency</th><th>On disk</th></tr>
+        <tr><td><b>MNIST CNN</b></td><td class="n">21,840</td><td class="n">0.33 ms</td><td class="n">93.8 KB</td></tr>
+        <tr><td><b>CIFAR-10 CNN</b></td><td class="n">568,474</td><td class="n">0.63 ms</td><td class="n">2.29 MB</td></tr>
+        <tr><td><b>ResNet-18</b></td><td class="n">11,689,512</td><td class="n">4.46 ms</td><td class="n">46.8 MB</td></tr>
+      </table>
+      <p style="margin-top:9px">Measured by the platform itself, then rounded for this slide.</p></div>
+    <div class="card"><h3>What the results taught us</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li><b>Size reduction is the reliable win.</b> It follows directly from precision and pruning ratios.</li>
+        <li><b>Latency depends on the hardware.</b> On a tiny CPU model, ONNX Runtime overhead can outweigh graph fusion,
+          and we report that instead of hiding it.</li>
+        <li><b>Distillation gave the best trade off</b> here, because the student is genuinely smaller.</li>
+        <li><b>Predicted versus measured</b> can be compared after every run, which is the calibration loop we want next.</li>
+      </ul></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>10 · RESULTS</span></div>
+</section>
+
+<!-- 12 CLOUD -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">11 · Run it anywhere</div>
+      <h1>Our hardware, or <em>yours</em></h1></div>
+    <div class="snum">12 / 16</div>
+  </div>
+  <svg class="dg" viewBox="0 0 1168 226" role="img" aria-label="Two ways to execute">
+    <defs><marker id="ar7" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="#b3a37f"/></marker></defs>
+    <rect x="470" y="8" width="228" height="46" rx="12" fill="#161209"/>
+    <text x="584" y="37" text-anchor="middle" font-size="13" font-weight="700" fill="#ffe6b0">One plan, two places to run it</text>
+    <g filter="url(#sh)">
+      <rect x="60" y="92" width="440" height="112" rx="14" fill="#fffdf8" stroke="#e2d8c4"/>
+      <rect x="668" y="92" width="440" height="112" rx="14" fill="#fff8ea" stroke="#edc98a"/>
+    </g>
+    <text x="280" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#241d10">Option A: on the platform</text>
+    <g font-size="11.5" fill="#6b5f49">
+      <text x="280" y="146" text-anchor="middle">the job runs in our worker threads,</text>
+      <text x="280" y="164" text-anchor="middle">no setup for the user at all</text>
+      <text x="280" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" fill="#9a5f00">fastest to start, shares our CPU</text>
+    </g>
+    <text x="888" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#241d10">Option B: on your infrastructure</text>
+    <g font-size="11.5" fill="#6b5f49">
+      <text x="888" y="146" text-anchor="middle">we mint a one time token, your machine downloads</text>
+      <text x="888" y="164" text-anchor="middle">the model, compresses it, posts the result back</text>
+      <text x="888" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" fill="#9a5f00">your data and your GPU never leave your side</text>
+    </g>
+    <g stroke="#b3a37f" stroke-width="1.5" marker-end="url(#ar7)">
+      <path d="M584 54 L584 70 M584 70 L280 70 L280 88" fill="none"/>
+      <path d="M584 70 L888 70 L888 88" fill="none"/>
+    </g>
+  </svg>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>AWS launch, built in</h3>
+      <p>The interface starts an EC2 instance with boto3, takes the current Amazon Linux 2023 image from SSM,
+        gives it a 30 GB disk, and sets it to terminate on shutdown so it cannot bill forever.</p></div>
+    <div class="card"><h3>Credentials stay yours</h3>
+      <p>Keys are used for that single call and are never written to the database. Missing permission and bad keys
+        come back as clear errors, not vague failures.</p></div>
+    <div class="card warm"><h3>Why this matters in practice</h3>
+      <p>Companies rarely want to upload model weights to someone else's server. This design lets them keep the
+        compute and the data, while still using our planner and our verification.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>11 · RUN IT ANYWHERE</span></div>
+</section>
+
+<!-- 13 SECURITY -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">12 · Engineering quality</div>
+      <h1>Built like a <em>product</em>, not a demo</h1></div>
+    <div class="snum">13 / 16</div>
+  </div>
+  <div class="grid g4" style="margin-bottom:14px">
+    <div class="card"><h3>Traffic</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>Rate limits on requests and on failed logins</li>
+        <li>Security headers on every response</li>
+        <li>Request IDs for tracing</li>
+      </ul></div>
+    <div class="card"><h3>Identity</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>Signed tokens, 12 hour lifetime</li>
+        <li>Per token revocation, and sign out everywhere</li>
+        <li>Password hashing with 120,000 rounds</li>
+      </ul></div>
+    <div class="card"><h3>Data</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>Uploads and artifacts encrypted at rest</li>
+        <li>Write-ahead log with foreign keys on</li>
+        <li>One click database backup</li>
+      </ul></div>
+    <div class="card"><h3>Access</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>Member and admin roles</li>
+        <li>Ownership checked on every resource</li>
+        <li>Audit log of actions, exportable</li>
+      </ul></div>
+  </div>
+  <div class="grid g4" style="margin-bottom:14px">
+    <div class="card warm"><div class="num">153</div><p style="margin-top:6px">end to end checks that run against a live server, in 21 sections</p></div>
+    <div class="card"><div class="num">60+</div><p style="margin-top:6px">REST endpoints across five routers</p></div>
+    <div class="card"><div class="num">11</div><p style="margin-top:6px">database tables with foreign key integrity</p></div>
+    <div class="card"><div class="num">22</div><p style="margin-top:6px">optimization runs completed in the demo workspace</p></div>
+  </div>
+  <div class="card"><h3>What the test suite proves</h3>
+    <p>It boots a real server, registers users, uploads a model, waits for real jobs to finish, then checks the artifacts.
+      It covers the full runner protocol, AWS error handling, cross user access attempts, oversized input, forged tokens
+      and the rate limiter. Result: 153 passed, 0 failed.</p></div>
+  <div class="foot"><span>MODELSMITH</span><span>12 · ENGINEERING QUALITY</span></div>
+</section>
+
+<!-- 14 DEMO -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">13 · Live demonstration</div><h1>Three minutes, <em>start to artifact</em></h1></div>
+    <div class="snum">14 / 16</div>
+  </div>
+  <div class="grid g2" style="gap:16px">
+    <div class="card dark">
+      <h3>Open this</h3>
+      <p style="font-size:14px;color:#ffe6b0;margin-top:6px;font-family:JetBrains Mono, monospace">modelsmith-alpha.vercel.app</p>
+      <p style="margin-top:8px">Sign in with <span class="mono" style="color:#ffc95e">demo@modelsmith.io</span> and the sample password.
+        The workspace already holds three analyzed models and completed runs, so nothing has to finish live.</p>
+      <p style="margin-top:8px">If a page shows no data, reload once: the site looks for a working backend among three tunnels.</p>
+    </div>
+    <div class="card">
+      <h3>The click path</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li><b>Dashboard:</b> totals, recent runs, and cumulative impact</li>
+        <li><b>Open the MNIST model:</b> parameters, timing and the bottleneck layer</li>
+        <li><b>Analysis tab:</b> per layer table and the measurements behind it</li>
+        <li><b>Goals and plans:</b> switch the objective to smallest size and watch the ranking reorder</li>
+        <li><b>Execute:</b> job progress, then the before and after table with agreement</li>
+        <li><b>Download:</b> the optimized artifact, then the generated report</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:15px">
+    <div class="card"><h3>If they ask "is it really compressing?"</h3>
+      <p>Show the artifact size next to the original file, and the measured latency for both on the same machine.</p></div>
+    <div class="card"><h3>If they ask "what if a plan fails?"</h3>
+      <p>Failed jobs retry once, then show the real error. A run is never marked successful without an artifact.</p></div>
+    <div class="card"><h3>If the network plays up</h3>
+      <p>The same demo runs on the laptop at 127.0.0.1:8100, with the same data and the same interface.</p></div>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>13 · LIVE DEMO</span></div>
+</section>
+
+<!-- 15 LIMITS -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">14 · Limits and next steps</div><h1>What we would do <em>next</em></h1></div>
+    <div class="snum">15 / 16</div>
+  </div>
+  <div class="grid g2" style="gap:16px">
+    <div class="card"><h3>Limits we state openly</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li>Latency is measured on the machine that runs the job, CPU only in this deployment</li>
+        <li>Accuracy retention during planning is an estimate, not a measurement from a test set</li>
+        <li>FP16 and TensorRT only pay off fully on GPU runtimes</li>
+        <li>Storage is a single SQLite file, which is right for this scale and not a cluster</li>
+      </ul></div>
+    <div class="card warm"><h3>Next steps</h3>
+      <ul class="ticks" style="margin-top:4px">
+        <li><b>Dataset backed accuracy testing</b> before and after each plan</li>
+        <li><b>Real TensorRT builds</b> on GPU runners with on device timing</li>
+        <li><b>Calibration:</b> feed measured results back to correct the planner's factors</li>
+        <li><b>Batch mode</b> across many models, with a cost estimate per plan</li>
+        <li><b>Run the optimized model in the browser</b> to show it live, client side</li>
+      </ul></div>
+  </div>
+  <div class="card dark" style="margin-top:16px;text-align:center;padding:20px">
+    <h3 style="justify-content:center;font-size:16px">Analyze once. Optimize smart. Deploy anywhere.</h3>
+    <p style="margin-top:6px">Thank you. Questions welcome, and the live platform, the API documentation and the 153 check test suite
+      are all available during the session.</p>
+  </div>
+  <div class="foot"><span>MODELSMITH</span><span>14 · LIMITS AND NEXT STEPS</span></div>
+</section>
+
+<!-- 16 GLOSSARY -->
+<section class="slide">
+  <div class="hd">
+    <div><div class="kicker">15 · Plain language reference</div><h1>The words, explained <em>simply</em></h1></div>
+    <div class="snum">16 / 16</div>
+  </div>
+  <div class="grid g2" style="gap:14px">
+    <div class="card">
+      <table class="tbl">
+        <tr><th>Term</th><th>What it means here</th></tr>
+        <tr><td><b>Parameter</b></td><td>one learned number inside the model. More parameters usually means a bigger file.</td></tr>
+        <tr><td><b>FLOPs</b></td><td>floating point operations, a rough count of the arithmetic needed for one prediction.</td></tr>
+        <tr><td><b>Quantization</b></td><td>storing the numbers with fewer bits. 8 bits instead of 32 makes the file about four times smaller.</td></tr>
+        <tr><td><b>Pruning</b></td><td>deleting the least useful weights or filters so the model does less work.</td></tr>
+        <tr><td><b>Distillation</b></td><td>training a small model to imitate a large one.</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>Term</th><th>What it means here</th></tr>
+        <tr><td><b>ONNX</b></td><td>a common file format for models, so different runtimes can load the same graph.</td></tr>
+        <tr><td><b>TensorRT</b></td><td>NVIDIA's GPU runtime. It builds an engine that is specific to one graphics card.</td></tr>
+        <tr><td><b>Structured pruning</b></td><td>removing whole filters, which saves real time, not just space.</td></tr>
+        <tr><td><b>Output agreement</b></td><td>how often the compressed model gives the same answer as the original on the same inputs.</td></tr>
+        <tr><td><b>Artifact</b></td><td>the file we produce at the end, either a .pt or an .onnx model.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card warm" style="margin-top:14px"><h3>The one sentence version</h3>
+    <p>We measure a model properly, choose a compression plan that suits the device with clear reasons, run it for real,
+      and check that the smaller model still behaves like the original.</p></div>
+  <div class="foot"><span>MODELSMITH</span><span>15 · PLAIN LANGUAGE REFERENCE</span></div>
+</section>
+
+</div></div>
+
+<div id="hud">
+  <button id="prev" title="Previous">&#8249;</button>
+  <div id="counter">1 / 16</div>
+  <button id="next" title="Next">&#8250;</button>
+  <div id="dots"></div>
+  <button id="ovbtn" title="Overview (O)">&#9638;</button>
+  <button id="fsbtn" title="Fullscreen (F)">&#9974;</button>
+</div>
+<div class="hint">arrows to navigate, O for overview, F for fullscreen, P to print</div>
+<div id="ov"><h4>Overview. Click any slide, or press O to close.</h4><div id="ovg"></div></div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var stage = document.getElementById('stage');
+  var dots = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  var prog = document.getElementById('prog');
+  var ov = document.getElementById('ov');
+  var ovg = document.getElementById('ovg');
+  var i = 0;
+
+  function titleOf(s){
+    var t = s.querySelector('h1, h2');
+    return (t ? t.textContent : 'Slide').replace(/\s+/g, ' ').trim().slice(0, 68);
+  }
+  slides.forEach(function(s, n){
+    var d = document.createElement('i');
+    d.onclick = function(){ go(n); };
+    dots.appendChild(d);
+    var c = document.createElement('button');
+    c.className = 'ovc';
+    c.innerHTML = '<div class="on2">SLIDE ' + String(n + 1).padStart(2, '0') + '</div><div class="ot">'
+      + titleOf(s).replace(/[<>&]/g, '') + '</div>';
+    c.onclick = function(){ ov.classList.remove('on'); go(n); };
+    ovg.appendChild(c);
+  });
+
+  function fit(){
+    var s = Math.min(window.innerWidth / 1280, (window.innerHeight - 68) / 720);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  function go(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('on', k === i); });
+    counter.textContent = (i + 1) + ' / ' + slides.length;
+    prog.style.width = ((i + 1) / slides.length * 100) + '%';
+    slides[i].querySelectorAll('.bar > i').forEach(function(b){
+      b.style.width = '0';
+      setTimeout(function(){ b.style.width = (b.dataset.w || '50') + '%'; }, 60);
+    });
+    location.hash = 's' + (i + 1);
+  }
+  function next(){ go(i + 1); }
+  function prev(){ go(i - 1); }
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if (k === 'ArrowRight' || k === ' ' || k === 'PageDown' || k === 'Enter'){ e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp'){ e.preventDefault(); prev(); }
+    else if (k === 'ArrowDown'){ e.preventDefault(); next(); }
+    else if (k === 'ArrowUp'){ e.preventDefault(); prev(); }
+    else if (k === 'Home'){ e.preventDefault(); go(0); }
+    else if (k === 'End'){ e.preventDefault(); go(slides.length - 1); }
+    else if (k === 'o' || k === 'O'){ ov.classList.toggle('on'); }
+    else if (k === 'f' || k === 'F'){ document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+    else if (k === 'p' || k === 'P'){ window.print(); }
+    else if (k === 'Escape'){ ov.classList.remove('on'); }
+  });
+  document.getElementById('next').onclick = next;
+  document.getElementById('prev').onclick = prev;
+  document.getElementById('ovbtn').onclick = function(){ ov.classList.toggle('on'); };
+  document.getElementById('fsbtn').onclick = function(){
+    document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  };
+  window.addEventListener('resize', fit);
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 55){ dx < 0 ? next() : prev(); }
+    x0 = null;
+  });
+
+  fit();
+  var m = (location.hash || '').match(/^#s(\d+)$/);
+  go(m ? parseInt(m[1], 10) - 1 : 0);
+})();
+</script>
+</body>
+</html>
