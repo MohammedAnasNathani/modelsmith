@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ModelSmith - Viva preparation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0805; --paper:#161209; --paper2:#1d1710; --line:#2a2314; --line2:#3d341f;
+  --ink:#f4efe3; --dim:#b0a691; --faint:#776c58; --accent:#ffb224; --accent2:#ffc95e; --ember:#ff6b2c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.62;
+  background-image:radial-gradient(1200px 620px at 82% -12%,rgba(255,178,36,.10),transparent 58%),
+                   radial-gradient(900px 520px at -8% 108%,rgba(255,107,44,.07),transparent 58%)}
+.wrap{max-width:820px;margin:0 auto;padding:48px 24px 90px}
+h1{font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:40px;line-height:1.1;letter-spacing:-.02em;margin:0 0 18px}
+h2{font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:24px;letter-spacing:-.01em;margin:38px 0 12px;
+  padding-top:18px;border-top:1px solid var(--line)}
+h3{font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:17px;margin:22px 0 8px;color:#e5d9c0}
+p{margin:10px 0;font-size:15px;color:var(--dim)}
+strong{color:var(--ink)}
+code{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:#241a08;border:1px solid #55482a;
+  border-radius:5px;padding:1px 5px;color:var(--accent2)}
+pre{background:#0f0c06;border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:10px;
+  padding:12px 14px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:#e6dcc6;overflow-x:auto}
+ul,ol{margin:10px 0 10px 4px;padding-left:20px;font-size:15px;color:var(--dim)}
+li{margin:5px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  padding:9px 12px;border-bottom:1px solid var(--line);font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #221c12;font-size:13.5px;color:var(--dim)}
+tr:last-child td{border-bottom:none}
+hr{border:0;border-top:1px dashed var(--line);margin:34px 0}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:26px;font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:700}
+.mk{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#ffc95e,#ffb224);display:grid;place-items:center;color:#1a1206;font-size:14px;font-weight:800}
+@media print{
+  :root{--bg:#ffffff;--paper:#fffdf8;--line:#e2d8c4;--line2:#d0c3a8;--ink:#241d10;--dim:#5b5347;--faint:#98876c;--accent:#c77800;--accent2:#9a5f00;--ember:#d95b1e}
+  body{background:#fff;background-image:none}
+  h3{color:#3a3226}
+  code{background:#fff6e4;border-color:#eedfbe;color:#9a5f00}
+  td{border-bottom-color:#f0e9d9}
+  .wrap{padding:0 0 20px}
+  h2{page-break-after:avoid}
+  table{page-break-inside:avoid}
+}
+</style></head>
+<body><div class="wrap">
+<div class="brand"><div class="mk">M</div> ModelSmith - review day runbook</div>
+<h1>ModelSmith: review day runbook</h1>
+<p>Everything below is running right now and verified. Read section 1 in the morning, then section 3 while you present.</p>
+<hr>
+<h2>0. What is already running (do not touch it)</h2>
+<table>
+<tr><th>Thing</th><th>Detail</th></tr>
+<tr><td>Backend</td><td>FastAPI + PyTorch on this laptop, port 8100, started by a launchd agent</td></tr>
+<tr><td>Supervisor</td><td>Checks every 30 seconds, restarts the backend, self-heals a broken environment, keeps three tunnels up</td></tr>
+<tr><td>Keep awake</td><td><code>caffeinate</code> holds sleep off while the laptop is on and logged in</td></tr>
+<tr><td>Tunnels</td><td>localhost.run, Cloudflare and localtunnel. The site tries each one in turn</td></tr>
+<tr><td>Hosted pages</td><td>App, deck and viva page on GitHub Pages, which never depend on this laptop</td></tr>
+</table>
+<p>Two rules that keep this alive:</p>
+<ol><li>Keep the laptop <strong>plugged in and the lid open</strong>. Closing the lid on battery sleeps the machine and every tunnel dies with it.</li><li>If you restart the laptop, <strong>log in to your account</strong> and wait about two minutes. launchd starts the supervisor at login, then the backend takes up to 90 seconds to boot.</li></ol>
+<hr>
+<h2>1. Morning check, 60 seconds</h2>
+<ol><li>Open <strong>https://mohammedanasnathani.github.io/modelsmith/app</strong></li><li>Sign in with <code>demo@modelsmith.io</code> and <code>demo12345</code></li><li>You should land on the dashboard and see <strong>3 / 3 models analyzed</strong>, <strong>16 optimizations run</strong>, and the cumulative impact chart</li></ol>
+<p><strong>If the dashboard is empty or looks stuck:</strong> reload once and give it five seconds. The page tries each known backend address in turn.</p>
+<p><strong>If it is still empty:</strong> open Safari on this laptop and go to <code>http://127.0.0.1:8100</code>. If that shows the dashboard, the app is fine and only the tunnel is unhappy, so present from the laptop. If that is also empty, tell me before the review, or run this in the browser console on the site and reload:</p>
+<pre>localStorage.setItem(&#x27;ms_api_base&#x27;,&#x27;https://modelsmith-review-2026.loca.lt&#x27;); location.reload()</pre>
+<hr>
+<h2>2. Have these three tabs open</h2>
+<table>
+<tr><th>Tab</th><th>Link</th><th>Use</th></tr>
+<tr><td>Deck</td><td>https://mohammedanasnathani.github.io/modelsmith</td><td>your slides, arrows to move, <code>F</code> for fullscreen</td></tr>
+<tr><td>App</td><td>https://mohammedanasnathani.github.io/modelsmith/app</td><td>the live demonstration</td></tr>
+<tr><td>Viva sheet</td><td>https://mohammedanasnathani.github.io/modelsmith/viva.html</td><td>keep on your phone for questions</td></tr>
+</table>
+<hr>
+<h2>3. The demonstration script</h2>
+<h3>Part 1, the pitch, 2 minutes (deck slides 1 to 3)</h3>
+<p><strong>Say:</strong> &quot;A model that trains well on a workstation usually does not fit where it has to run. Making it smaller is specialist work done by hand, and nothing tells you whether the smaller model still behaves correctly. We built the whole loop as one pipeline: upload, analyze, plan, execute, and verify.&quot;</p>
+<p><strong>Click through:</strong> slide 2 for the problem, slide 3 for the five stage pipeline. Point at the diagram and name the stages out loud. Do not read the slides.</p>
+<h3>Part 2, the live platform, 4 minutes</h3>
+<table>
+<tr><th>Step</th><th>What you click</th><th>What they should see</th><th>What you say</th></tr>
+<tr><td>1</td><td>Dashboard in the app tab</td><td>3 / 3 models analyzed, 16 runs, cumulative impact chart rising to 928%</td><td>&quot;These counters read from executed runs stored in the database, not from mock data.&quot;</td></tr>
+<tr><td>2</td><td>Projects, then open <strong>MNIST Digit CNN</strong></td><td>Model header with 21,840 parameters, readiness score, per layer breakdown</td><td>&quot;One layer holds 73.5% of all parameters, so that is where compression has to act.&quot;</td></tr>
+<tr><td>3</td><td>Tab <strong>Analysis &amp; Profile</strong></td><td>Per layer table, measured latency 0.33 ms, p95, throughput, FLOPs</td><td>&quot;Latency is measured here: five warm up passes then thirty timed runs.&quot;</td></tr>
+<tr><td>4</td><td>Tab <strong>Goals &amp; Plans</strong></td><td>Pareto chart and six ranked plans, top one is <code>deep-cut</code></td><td>&quot;Change the objective to smallest size and the ranking re-orders instantly.&quot; Demo the accuracy slider next to it and watch plans drop out.</td></tr>
+<tr><td>5</td><td>Open <strong>Overview</strong>, the Before / after table</td><td>Size 0.0938 MB to 0.0297 MB, latency down, throughput up, <strong>output agreement 100%</strong></td><td>&quot;This is a previous run of the same model. The agreement row is the proof that the compressed model still gives the same answers.&quot;</td></tr>
+</table>
+<h3>Part 3, the money shot, execute a plan live</h3>
+<p>Start this early in the talk, because it takes about 40 seconds.</p>
+<ol><li>On the model page go to <strong>Goals &amp; Plans</strong></li><li>Click <strong>Execute</strong> on the top plan</li><li>Switch to <strong>Executions</strong> and stay there</li></ol>
+<p><strong>Say:</strong> &quot;The job is running for real. It is pruning the model first, then exporting to ONNX, then quantizing to INT8. The stages and the percentage come from the worker.&quot;</p>
+<p>You should watch it move through <code>Applying ONNX Export</code> and finish at <code>success 100%</code>, then the run card shows the before and after numbers, the agreement percentage, and download buttons for <code>optimized.pt</code> and <code>optimized.onnx</code>.</p>
+<p><strong>Then:</strong> click Download on one artifact and open the <strong>Report</strong> tab to show the markdown summary. Say: &quot;This report is what you can paste into a thesis appendix.&quot;</p>
+<p>If a judge asks you to prove it is real, the two strongest facts are the artifact file size next to the original, and the agreement row measured on sixteen seeded inputs.</p>
+<h3>Part 4, cloud and close, 1 minute (slides 11 to 15)</h3>
+<p><strong>Say:</strong> &quot;The same plan can run on our workers or on your own machine. For AWS we launch an EC2 instance with boto3, take the current Amazon Linux image from SSM, and set it to terminate on shutdown so it cannot bill forever. Your keys are used for that one call and never stored. One hundred and fifty three automated checks run against a live server, all passing. What we have not measured yet is real accuracy against a labelled test set, and that is the first item on the roadmap.&quot;</p>
+<p>Finish on slide 15 and the thank you card.</p>
+<hr>
+<h2>4. If something breaks mid-demo</h2>
+<table>
+<tr><th>Symptom</th><th>Do this</th></tr>
+<tr><td>Page loads, data is missing</td><td>Reload once, wait five seconds</td></tr>
+<tr><td>Empty again after the reload</td><td>Present from <code>http://127.0.0.1:8100</code> on the laptop, same login and same data</td></tr>
+<tr><td>A job shows failed</td><td>Read the error out loud, it is real; then show the previous successful run instead</td></tr>
+<tr><td>The deck will not advance</td><td>Click the arrows at the bottom, or press the dot for the slide you want</td></tr>
+<tr><td>Projector cuts off the bottom of slides</td><td>Press <code>F</code> for fullscreen, the deck scales to the screen</td></tr>
+<tr><td>Everything is slow</td><td>Say &quot;this demo machine is CPU only&quot;, then show the stored results</td></tr>
+</table>
+<hr>
+<h2>5. Three questions you will probably get</h2>
+<p><strong>&quot;Is the compression real or simulated?&quot;</strong> Real. Pruning removes weights with structured L2 pruning on convolutions and makes the masks permanent, INT8 uses torch&#x27;s dynamic quantization, and distillation runs six epochs of Adam training against the teacher. The artifact sizes are measured after writing.</p>
+<p><strong>&quot;How do you know the smaller model still works?&quot;</strong> Both models run on the same sixteen seeded inputs and we compare the outputs, by predicted class for classifiers and with a small numeric tolerance otherwise. That is output agreement, which we label honestly as a behavioural check and not as test set accuracy.</p>
+<p><strong>&quot;Why is the planner trustworthy?&quot;</strong> It predicts with visible factors, filters anything the target hardware cannot run, scores with published weights, and keeps rejected plans with the reason they were rejected. Nothing is a black box, and every number after execution is measured.</p>
+<p>The viva sheet has about fourteen more, with full answers.</p>
+<hr>
+<h2>6. Numbers you can quote (all verified today)</h2>
+<table>
+<tr><th>Fact</th><th>Value</th></tr>
+<tr><td>Demo model analyzed</td><td>MNIST CNN, 21,840 parameters, 0.33 ms, hybrid architecture</td></tr>
+<tr><td>Largest model analyzed</td><td>ResNet-18, 11,689,512 parameters, 4.46 ms, 46.8 MB</td></tr>
+<tr><td>Best measured size reduction</td><td>68.3% (distillation), with 16.3% lower latency</td></tr>
+<tr><td>Latest executed run</td><td>deep-cut plan, 51.1% size reduction, 100% output agreement, produced .pt and .onnx</td></tr>
+<tr><td>Techniques</td><td>7, across 8 candidate combinations and 5 hardware profiles</td></tr>
+<tr><td>Benchmark method</td><td>5 warm up runs, then 30 timed runs, p95 reported</td></tr>
+<tr><td>Test suite</td><td>153 checks in 21 sections, all passing</td></tr>
+<tr><td>Security</td><td>12 hour tokens, 120,000 round password hashing, encrypted artifacts at rest</td></tr>
+</table>
+<hr>
+<h2>7. While you present</h2>
+<ul><li>Open the deck first, share the screen, then switch to the app tab for the live part</li><li>Say the numbers out loud, do not read sentences from the slides</li><li>Let the executed job run while you talk, so it finishes while you are still on the model page</li><li>If a judge asks something you do not know, say &quot;we did not measure that&quot;, then give a number you did measure</li></ul>
+<h2>8. After the review</h2>
+<p>Nothing needs stopping, the supervisor keeps the site available. If you want it off, tell me and I will unload the launchd agent and stop the tunnels. Your laptop staying awake is the only cost of leaving it running.</p>
+</div></body></html>
