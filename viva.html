@@ -33,112 +33,56 @@ hr{border:0;border-top:1px dashed var(--line);margin:34px 0}
 <body><div class="wrap">
 <div class="brand"><div class="mk">M</div> ModelSmith - viva preparation</div>
 <h1>ModelSmith: Viva Preparation (5 pages)</h1>
-<p>Read this once the night before and once in the morning. Everything here is what the project actually does,</p>
-<p>so you can answer from memory without guessing.</p>
+<p>Read this once the night before and once in the morning. Everything here is what the project actually does, so you can answer from memory without guessing.</p>
 <hr>
 <h2>Page 1: The 60 second pitch</h2>
-<p><strong>What it is.</strong> A web platform where you upload a trained neural network, and it measures the model, suggests how to</p>
-<p>make it smaller for a chosen device, runs that plan for real, and proves the smaller model still gives the same answers.</p>
-<p><strong>Why it exists.</strong> Making a model smaller is normally expert work done by hand. You guess which of several methods to</p>
-<p>combine, you write an ad hoc script, and nothing tells you whether the compressed model still behaves correctly.</p>
-<p>ModelSmith turns that into one pipeline with recorded reasons and measured proof.</p>
-<p><strong>The five stages.</strong> Upload (encrypted at rest), Analyze (parameters, FLOPs, timing, bottlenecks), Plan (ranked options</p>
-<p>for a target device), Execute (real compression and benchmarking), Download (optimized model plus a report).</p>
-<p><strong>One sentence if you are put on the spot.</strong> &quot;We measure the model properly, choose a compression plan that suits the</p>
-<p>device with clear reasons, run it for real, and verify the smaller model still agrees with the original.&quot;</p>
+<p><strong>What it is.</strong> A web platform where you upload a trained neural network, and it measures the model, suggests how to make it smaller for a chosen device, runs that plan for real, and proves the smaller model still gives the same answers.</p>
+<p><strong>Why it exists.</strong> Making a model smaller is normally expert work done by hand. You guess which of several methods to combine, you write an ad hoc script, and nothing tells you whether the compressed model still behaves correctly. ModelSmith turns that into one pipeline with recorded reasons and measured proof.</p>
+<p><strong>The five stages.</strong> Upload (encrypted at rest), Analyze (parameters, FLOPs, timing, bottlenecks), Plan (ranked options for a target device), Execute (real compression and benchmarking), Download (optimized model plus a report).</p>
+<p><strong>One sentence if you are put on the spot.</strong> &quot;We measure the model properly, choose a compression plan that suits the device with clear reasons, run it for real, and verify the smaller model still agrees with the original.&quot;</p>
 <hr>
 <h2>Page 2: The algorithm, explained simply</h2>
 <h3>Planning</h3>
-<p>We keep a knowledge base of <strong>seven techniques</strong>: INT8 quantization, FP16, pruning at 20 percent, pruning at 40 percent,</p>
-<p>ONNX export, distillation, and a guided TensorRT path. Each one carries declared multipliers: how much smaller it</p>
-<p>usually makes a model, how much faster, and how much accuracy it typically keeps.</p>
-<p>From that base we build <strong>eight candidate combinations</strong>, for example <code>edge-lite</code> is INT8 plus ONNX, and <code>edge-max</code></p>
-<p>is INT8 plus pruning at 40 percent plus ONNX.</p>
+<p>We keep a knowledge base of <strong>seven techniques</strong>: INT8 quantization, FP16, pruning at 20 percent, pruning at 40 percent, ONNX export, distillation, and a guided TensorRT path. Each one carries declared multipliers: how much smaller it usually makes a model, how much faster, and how much accuracy it typically keeps.</p>
+<p>From that base we build <strong>eight candidate combinations</strong>, for example <code>edge-lite</code> is INT8 plus ONNX, and <code>edge-max</code> is INT8 plus pruning at 40 percent plus ONNX.</p>
 <p>Every candidate then goes through four steps:</p>
 <ol><li><strong>Predict.</strong> Multiply the technique factors together to get expected size, latency, memory and accuracy.</li></ol>
-<p>   Latency factors are looked up per architecture class, because a CNN and a small MLP do not respond to INT8 in the same way.</p>
+<p>Latency factors are looked up per architecture class, because a CNN and a small MLP do not respond to INT8 in the same way.</p>
 <ol><li><strong>Filter.</strong> Drop anything the target hardware cannot run, and drop anything below your minimum accuracy floor.</li><li><strong>Score.</strong> <code>score = w_size * size_saved + w_latency * latency_gain + w_memory * memory_saved + w_accuracy * accuracy_kept</code>.</li></ol>
-<p>   The weights come from the objective you pick. Balanced is 0.30, 0.30, 0.20, 0.20. Choosing &quot;smallest size&quot; sets size to 0.55.</p>
+<p>The weights come from the objective you pick. Balanced is 0.30, 0.30, 0.20, 0.20. Choosing &quot;smallest size&quot; sets size to 0.55.</p>
 <ol><li><strong>Rank.</strong> Sort by score, mark the top plan as recommended, and keep the rejected ones with the written reason.</li></ol>
-<p><strong>Why this is defensible:</strong> the planner never decides anything by magic. It predicts with visible factors, filters with</p>
-<p>explicit rules, and scores with published weights. Rejected plans are shown with reasons such as &quot;exceeds the accuracy floor&quot;</p>
-<p>or &quot;requires a GPU for TensorRT&quot;.</p>
+<p><strong>Why this is defensible:</strong> the planner never decides anything by magic. It predicts with visible factors, filters with explicit rules, and scores with published weights. Rejected plans are shown with reasons such as &quot;exceeds the accuracy floor&quot; or &quot;requires a GPU for TensorRT&quot;.</p>
 <h3>Execution</h3>
 <p>The order of operations is part of the method, and it is: <strong>prune, then export to ONNX, then INT8 or FP16, and distillation last</strong>.</p>
 <ul><li><strong>INT8 quantization</strong> uses <code>torch.quantization.quantize_dynamic</code> on the linear, LSTM, GRU and RNN layers with per channel</li></ul>
-<p>  scales. Dense layers get roughly four times smaller.</p>
+<p>scales. Dense layers get roughly four times smaller.</p>
 <ul><li><strong>Pruning</strong> uses structured L2 pruning along the output channels for convolutions, which removes whole filters, and</li></ul>
-<p>  unstructured L1 pruning for linear layers. Then <code>prune.remove</code> makes the masks permanent. Achieved sparsity is measured,</p>
-<p>  not assumed.</p>
+<p>unstructured L1 pruning for linear layers. Then <code>prune.remove</code> makes the masks permanent. Achieved sparsity is measured, not assumed.</p>
 <ul><li><strong>ONNX export</strong> uses opset 13 and is validated with <code>onnx.checker.check_model</code> before anyone calls it a success.</li><li><strong>Distillation</strong> is a real training run: a student with half the width, six epochs, 512 samples, batch 32, temperature 2,</li></ul>
-<p>  Adam at 1e-3, and KL divergence scaled by temperature squared. The per epoch loss history is stored with the run.</p>
+<p>Adam at 1e-3, and KL divergence scaled by temperature squared. The per epoch loss history is stored with the run.</p>
 <ul><li><strong>TensorRT</strong> is guided only. We do not pretend to build a GPU engine on a CPU machine.</li></ul>
-<p><strong>One rule you should memorise:</strong> a run is never marked successful unless an artifact was actually produced. The code</p>
-<p>refuses with the message &quot;refusing to mark run successful without proof&quot;.</p>
+<p><strong>One rule you should memorise:</strong> a run is never marked successful unless an artifact was actually produced. The code refuses with the message &quot;refusing to mark run successful without proof&quot;.</p>
 <h3>Verification</h3>
-<p>Both models get the same 16 random inputs, generated with a fixed seed of 42. Classifiers are compared by predicted class,</p>
-<p>other outputs by a small numeric tolerance. The agreement percentage is stored with the run and shown in the interface.</p>
-<p>We call it output agreement, never &quot;accuracy&quot;, because it is a behavioural check and not a test set result.</p>
+<p>Both models get the same 16 random inputs, generated with a fixed seed of 42. Classifiers are compared by predicted class, other outputs by a small numeric tolerance. The agreement percentage is stored with the run and shown in the interface. We call it output agreement, never &quot;accuracy&quot;, because it is a behavioural check and not a test set result.</p>
 <hr>
 <h2>Page 3: Expected questions, with answers</h2>
-<p><strong>Q: What exactly is new in this project?</strong></p>
-<p>Three things: the planner that predicts, filters and ranks plans against a target device with written reasons; an executor</p>
-<p>that really performs quantization, pruning, ONNX export and distillation rather than simulating them; and a verification</p>
-<p>step that refuses to report success without an artifact and an agreement check.</p>
-<p><strong>Q: How do you prove the compression is real?</strong></p>
-<p>The artifact file size is measured after writing, and latency is measured by running both models 30 times after 5 warm up</p>
-<p>passes. On our distillation run the artifact went from 93.8 KB to 29.7 KB, which is a 68.3 percent reduction, and mean</p>
-<p>latency dropped from 0.129 ms to 0.108 ms.</p>
-<p><strong>Q: Is the accuracy number in the planner real?</strong></p>
-<p>No, and we say so. Those are published planning factors used to filter and rank candidates. Measured numbers only appear</p>
-<p>after execution. We keep the two visually and verbally separate on purpose.</p>
-<p><strong>Q: Why is ONNX sometimes slower on your CPU?</strong></p>
-<p>Because for very small models the runtime overhead can be larger than the gains from graph fusion. We report the measured</p>
-<p>value instead of hiding it. The reliable win from compression is file size, and latency gains depend on the runtime and</p>
-<p>the hardware.</p>
-<p><strong>Q: Why did you not measure true accuracy?</strong></p>
-<p>That needs a labelled test set, which our demo models do not ship with. It is the first item on our roadmap, together with</p>
-<p>real TensorRT builds on GPU runners.</p>
-<p><strong>Q: How many techniques, and which one is best?</strong></p>
-<p>Seven, and there is no single best one. It depends on the target device and how much accuracy you can spend. Distillation</p>
-<p>usually gives the best size reduction, INT8 gives the best return for the least risk, and TensorRT gives the best GPU latency.</p>
-<p><strong>Q: What happens if a job crashes?</strong></p>
-<p>Jobs are rows in the database with statuses. A crashed job is re-queued on the next start, a failed job retries once and</p>
-<p>then fails permanently with the real error. A run is never left in a lying state.</p>
-<p><strong>Q: Why is pruning done before quantization?</strong></p>
-<p>Because structured pruning needs to identify whole filters from the weight magnitudes. After quantization the weights are</p>
-<p>stored differently, so that identification is no longer reliable. The executor enforces the order rather than trusting the user.</p>
-<p><strong>Q: How does the system scale?</strong></p>
-<p>Honestly: it is a single node design. The job runner is a thread pool inside the API process, which is right for this scale.</p>
-<p>Scaling up would mean moving the queue to a broker and running workers separately, which the current job table already supports</p>
-<p>in shape.</p>
+<p><strong>Q: What exactly is new in this project?</strong> Three things: the planner that predicts, filters and ranks plans against a target device with written reasons; an executor that really performs quantization, pruning, ONNX export and distillation rather than simulating them; and a verification step that refuses to report success without an artifact and an agreement check.</p>
+<p><strong>Q: How do you prove the compression is real?</strong> The artifact file size is measured after writing, and latency is measured by running both models 30 times after 5 warm up passes. On our distillation run the artifact went from 93.8 KB to 29.7 KB, which is a 68.3 percent reduction, and mean latency dropped from 0.129 ms to 0.108 ms.</p>
+<p><strong>Q: Is the accuracy number in the planner real?</strong> No, and we say so. Those are published planning factors used to filter and rank candidates. Measured numbers only appear after execution. We keep the two visually and verbally separate on purpose.</p>
+<p><strong>Q: Why is ONNX sometimes slower on your CPU?</strong> Because for very small models the runtime overhead can be larger than the gains from graph fusion. We report the measured value instead of hiding it. The reliable win from compression is file size, and latency gains depend on the runtime and the hardware.</p>
+<p><strong>Q: Why did you not measure true accuracy?</strong> That needs a labelled test set, which our demo models do not ship with. It is the first item on our roadmap, together with real TensorRT builds on GPU runners.</p>
+<p><strong>Q: How many techniques, and which one is best?</strong> Seven, and there is no single best one. It depends on the target device and how much accuracy you can spend. Distillation usually gives the best size reduction, INT8 gives the best return for the least risk, and TensorRT gives the best GPU latency.</p>
+<p><strong>Q: What happens if a job crashes?</strong> Jobs are rows in the database with statuses. A crashed job is re-queued on the next start, a failed job retries once and then fails permanently with the real error. A run is never left in a lying state.</p>
+<p><strong>Q: Why is pruning done before quantization?</strong> Because structured pruning needs to identify whole filters from the weight magnitudes. After quantization the weights are stored differently, so that identification is no longer reliable. The executor enforces the order rather than trusting the user.</p>
+<p><strong>Q: How does the system scale?</strong> Honestly: it is a single node design. The job runner is a thread pool inside the API process, which is right for this scale. Scaling up would mean moving the queue to a broker and running workers separately, which the current job table already supports in shape.</p>
 <hr>
 <h2>Page 4: Cloud, security and engineering</h2>
-<p><strong>Q: How does the AWS part work?</strong></p>
-<p>From the interface we call <code>ec2.run_instances</code> through boto3. The Amazon Linux 2023 image is resolved live from SSM, the</p>
-<p>instance gets a 30 GB gp3 disk, and it is set to terminate on shutdown so it cannot keep billing. The startup script installs</p>
-<p>Python, PyTorch and ONNX Runtime, downloads the runner, and shuts the machine down when it finishes.</p>
-<p><strong>Q: Where do the AWS keys go?</strong></p>
-<p>Nowhere. They are used for that single call and never written to the database. Wrong keys come back as a clear 401, missing</p>
-<p>permission as a 403, and network problems as a 502 with the AWS message.</p>
-<p><strong>Q: What is the runner protocol?</strong></p>
-<p>A run can be marked &quot;waiting for runner&quot;. The platform mints a single use token with a 24 hour lifetime. The runner downloads</p>
-<p>the manifest and the decrypted model, compresses it locally, reports progress, and posts the artifacts back as base64.</p>
-<p>Empty artifacts are rejected, and the token is burned when the run finishes.</p>
-<p><strong>Q: How do you handle security?</strong></p>
-<p>Four layers. Traffic: request rate limiting, stricter limits on failed logins, security headers, request IDs.</p>
-<p>Identity: signed tokens with a 12 hour lifetime, per token revocation and a sign out everywhere option, passwords hashed with</p>
-<p>120,000 rounds of PBKDF2 with a per user salt. Data: uploads and artifacts are encrypted at rest, SQLite runs in write-ahead</p>
-<p>log mode with foreign keys on, and there is a one click database backup. Access: member and admin roles, ownership checked on</p>
-<p>every resource, and an audit log of actions.</p>
-<p><strong>Q: How did you test it?</strong></p>
-<p>With a suite of 153 checks that runs against a live server, in 21 sections. It boots the app, registers users, uploads a model,</p>
-<p>waits for real jobs, and inspects real artifacts. It also covers the whole runner protocol, AWS error handling, cross user</p>
-<p>access attempts, oversized input, forged tokens, the rate limiter, and the security headers. Result: 153 passed, 0 failed.</p>
-<p><strong>Q: Why SQLite and not Postgres?</strong></p>
-<p>For a single node project that has to be trivially runnable and backup-able, SQLite in WAL mode is the right tool. It supports</p>
-<p>concurrent reads during writes, it has real transactions, and the whole database is one file. Moving to Postgres later is a</p>
-<p>contained change because all the access is behind one module.</p>
+<p><strong>Q: How does the AWS part work?</strong> From the interface we call <code>ec2.run_instances</code> through boto3. The Amazon Linux 2023 image is resolved live from SSM, the instance gets a 30 GB gp3 disk, and it is set to terminate on shutdown so it cannot keep billing. The startup script installs Python, PyTorch and ONNX Runtime, downloads the runner, and shuts the machine down when it finishes.</p>
+<p><strong>Q: Where do the AWS keys go?</strong> Nowhere. They are used for that single call and never written to the database. Wrong keys come back as a clear 401, missing permission as a 403, and network problems as a 502 with the AWS message.</p>
+<p><strong>Q: What is the runner protocol?</strong> A run can be marked &quot;waiting for runner&quot;. The platform mints a single use token with a 24 hour lifetime. The runner downloads the manifest and the decrypted model, compresses it locally, reports progress, and posts the artifacts back as base64. Empty artifacts are rejected, and the token is burned when the run finishes.</p>
+<p><strong>Q: How do you handle security?</strong> Four layers. Traffic: request rate limiting, stricter limits on failed logins, security headers, request IDs. Identity: signed tokens with a 12 hour lifetime, per token revocation and a sign out everywhere option, passwords hashed with 120,000 rounds of PBKDF2 with a per user salt. Data: uploads and artifacts are encrypted at rest, SQLite runs in write-ahead log mode with foreign keys on, and there is a one click database backup. Access: member and admin roles, ownership checked on every resource, and an audit log of actions.</p>
+<p><strong>Q: How did you test it?</strong> With a suite of 153 checks that runs against a live server, in 21 sections. It boots the app, registers users, uploads a model, waits for real jobs, and inspects real artifacts. It also covers the whole runner protocol, AWS error handling, cross user access attempts, oversized input, forged tokens, the rate limiter, and the security headers. Result: 153 passed, 0 failed.</p>
+<p><strong>Q: Why SQLite and not Postgres?</strong> For a single node project that has to be trivially runnable and backup-able, SQLite in WAL mode is the right tool. It supports concurrent reads during writes, it has real transactions, and the whole database is one file. Moving to Postgres later is a contained change because all the access is behind one module.</p>
 <hr>
 <h2>Page 5: Numbers to remember, and how to behave under pressure</h2>
 <h3>Numbers worth memorising</h3>
@@ -159,13 +103,9 @@ hr{border:0;border-top:1px dashed var(--line);margin:34px 0}
 <tr><td>Database</td><td>11 tables, write-ahead log, foreign keys on</td></tr>
 </table>
 <h3>If you do not know something</h3>
-<p>Say this: &quot;We did not measure that, and I would not want to guess. What I can tell you is what we did measure, which is</p>
-<p>this.&quot; Then give a real number. Admissions like that are respected more than invented figures, and the project already</p>
-<p>follows that rule everywhere.</p>
+<p>Say this: &quot;We did not measure that, and I would not want to guess. What I can tell you is what we did measure, which is this.&quot; Then give a real number. Admissions like that are respected more than invented figures, and the project already follows that rule everywhere.</p>
 <h3>If a live demo fails in front of them</h3>
-<p>Reload the page once. The site looks for a working backend among three tunnels, so a reload usually fixes it. If it does not,</p>
-<p>open <code>http://127.0.0.1:8100</code> on the laptop, which is the same application with the same data. Say plainly: &quot;the deployment</p>
-<p>runs on this machine today, and the production path is the AWS launch you can see in the interface.&quot;</p>
+<p>Reload the page once. The site looks for a working backend among three tunnels, so a reload usually fixes it. If it does not, open <code>http://127.0.0.1:8100</code> on the laptop, which is the same application with the same data. Say plainly: &quot;the deployment runs on this machine today, and the production path is the AWS launch you can see in the interface.&quot;</p>
 <h3>The three sentences that carry the whole project</h3>
 <ol><li>&quot;We measure the model instead of guessing, so every number in the report comes from a real forward pass.&quot;</li><li>&quot;The planner predicts, filters and ranks plans, and it always explains why something was rejected.&quot;</li><li>&quot;Nothing counts as a success unless an artifact was produced and the compressed model still agrees with the original.&quot;</li></ol>
 </div></body></html>
