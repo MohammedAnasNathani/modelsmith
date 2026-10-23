@@ -999,6 +999,13 @@ Adam(lr=1e-3)  <span class="c">-> per epoch loss is recorded</span></pre>
     x0 = null;
   });
 
+  window.addEventListener('hashchange', function(){
+    var h = (location.hash || '').match(/^#s(\d+)$/);
+    if (!h) return;
+    var n = parseInt(h[1], 10) - 1;
+    if (n !== i) go(n);
+  });
+
   fit();
   var m = (location.hash || '').match(/^#s(\d+)$/);
   go(m ? parseInt(m[1], 10) - 1 : 0);
