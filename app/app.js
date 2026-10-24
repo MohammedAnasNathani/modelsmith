@@ -3397,6 +3397,8 @@ async function viewShare(token) {
 function applyTheme(t) {
   document.documentElement.dataset.theme = t;
   localStorage.setItem("ms_theme", t);
+  // Swap the icon instead of overwriting the button with a bare glyph, which
+  // used to leave a stray character where the icon belonged.
   $$(".theme-btn").forEach(b => {
     b.innerHTML = ICO(t === "light" ? "moon" : "sun");
     b.title = t === "light" ? "Switch to dark theme" : "Switch to light theme";
