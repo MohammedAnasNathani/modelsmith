@@ -238,12 +238,27 @@ async function api(path, opts = {}) {
     opts.body = JSON.stringify(opts.body);
   }
   if (state.token) headers["Authorization"] = "Bearer " + state.token;
-  let resp = await fetch(API_BASE() + path, { ...opts, headers });
+  let resp;
+  try {
+    resp = await fetch(API_BASE() + path, { ...opts, headers });
+  } catch (err) {
+    if (localStorage.getItem("ms_api_base")) {
+      localStorage.removeItem("ms_api_base");
+      throw new Error("Lost the backend connection. Reload the page to reconnect.");
+    }
+    throw err;
+  }
   if (resp.status === 429) {
     // The SPA polls while jobs run; a brief 429 should pause, not blank the view.
     const wait = Math.min(4, Number(resp.headers.get("Retry-After") || 2)) * 1000;
     await new Promise(r => setTimeout(r, wait));
     resp = await fetch(API_BASE() + path, { ...opts, headers });
+  }
+  if ((resp.status === 502 || resp.status === 503 || resp.status === 504) && localStorage.getItem("ms_api_base")) {
+    // The remembered backend address has gone away. Forget it so the next load
+    // re-discovers a live one, instead of failing every request from now on.
+    localStorage.removeItem("ms_api_base");
+    throw new Error("The backend moved. Reload the page to reconnect.");
   }
   if (resp.status === 401) { logoutLocal(); throw new Error("Session expired. Log in again."); }
   const ct = resp.headers.get("Content-Type") || "";
@@ -1032,10 +1047,7 @@ async function viewLogin(register = false) {
         if (cfg.url) candidates.push(String(cfg.url).replace(/\/$/, ""));
       } catch {}
       if (API_BASE()) candidates.push(API_BASE());
-    // Last resort: the demo machine keeps this exact localtunnel address
-    // alive, so the app still finds a backend even if the published list is
-    // stale (tunnel urls rotate, this one does not).
-    candidates.push("https://modelsmith-review-2026.loca.lt");
+
       for (const url of [...new Set(candidates)]) {
         try {
           // Two endpoints, not one: a half-dead tunnel can still answer the
